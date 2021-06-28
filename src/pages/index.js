@@ -1,8 +1,12 @@
 import React from 'react';
+import HomeContainer from '../containers/Home';
+import HomeBackground from '../assets/img/homeBackground.jpg';
 
 const Index = () => {
   return (
-    <h1>Home</h1>
+    <HomeContainer homeBackground={HomeBackground}>
+      
+    </HomeContainer>
   );
 }
 

@@ -1,0 +1,16 @@
+.full-wrapper {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  grid-gap: 2rem;
+  width: 100%;
+
+  &.full-height {
+    height: 100vh;
+  }
+
+  &.homeBackground {
+    background-size: cover;
+    background-repeat: no-repeat;
+    min-height: 100%;
+  }
+}
