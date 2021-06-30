@@ -1,6 +1,7 @@
 .full-wrapper {
   display: grid;
   grid-template-columns: repeat(12, 1fr);
+  grid-template-rows: 8rem 1fr;
   grid-gap: 2rem;
   width: 100%;
 
@@ -42,9 +43,11 @@
     height: 100%;
     margin: 0 auto;
 
-    &.nav {
+    &.nav, &.homeWrapper {
       padding: 0 1.5rem;
+    }
 
+    &.nav {
       display: flex;
       align-items: center;
       justify-content: space-between;

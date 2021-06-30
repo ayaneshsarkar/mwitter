@@ -1,0 +1,30 @@
+.homeHero {
+  grid-column: 1 / -1;
+
+  .homeWrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 3rem;
+    align-items: center;
+  }
+
+  .homeHeroBanner {
+    width: 100%;
+    padding: 0 1.5rem;
+    letter-spacing: 0.2rem;
+    justify-self: start;
+  }
+  
+  &__banner {
+    font-size: 1.9rem;
+    font-weight: 700;
+    line-height: 1.7;
+    margin-bottom: 1.6rem;
+  }
+
+  &__text {
+    font-size: 5.7rem;
+    font-weight: 600;
+    line-height: 1.2;
+  }
+}
