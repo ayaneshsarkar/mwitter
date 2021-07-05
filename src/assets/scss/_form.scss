@@ -1,8 +1,12 @@
-.home__form {
+.form {
   display: flex;
   align-items: center;
   justify-content: space-between;
   flex-wrap: wrap;
+
+  &.home {
+    padding: 2rem;
+  }
 
   &--box {
     position: relative;
@@ -69,14 +73,23 @@
     left: 0;
     padding: 1.5rem 2rem;
     background-color: inherit;
-    border: 0.2rem solid $primaryColor;
-    color: $primaryColor;
     font-weight: 400;
     font-size: 1.9rem;
     border-radius: 0.7rem;
     width: 100%;
     //z-index: 1;
     transition: $mainTransition;
+
+    &.home {
+      border: 0.2rem solid $extraLightGrey;
+      color: $darkGrey;
+
+      &::placeholder, &::-webkit-input-placeholder {
+        font-weight: 400;
+        font-size: 1.7rem;
+        color: $lightGrey !important;
+      }
+    }
 
     &:focus {
       border: 0.2rem solid $primaryColor !important;
@@ -104,6 +117,10 @@
 
     opacity: 0;
     visibility: hidden;
+
+    &.home {
+      background-color: $whiteColorHome;
+    }
   }
 
   &--input:not(:placeholder-shown) + &--label {
@@ -161,23 +178,23 @@
   &--button {
     padding: 1.5rem 2rem;
     border-radius: 0.7rem;
-    background-color: $dimBlack;
-    color: $primaryColor;
+    background-color: $primaryColor;
+    color: $whiteColor;
     box-shadow: $bSm;
 
     font-size: 2rem;
     font-weight: 400;
-    transition: $normalTransition;
+    transition: $mainTransition;
 
     &:hover {
       cursor: pointer;
-      background-color: $secondaryTheme;
-      box-shadow: $bDflt;
+      background-color: $primaryColorDark;
+      // box-shadow: $bDflt;
     }
 
     &::selection {
-      background-color: $primaryColor;
-      color: $dimBlack;
+      background-color: $primaryColorDark;
+      color: $whiteColor;
     }
   }
 }

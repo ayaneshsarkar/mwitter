@@ -1,18 +1,28 @@
 .homeHero {
   grid-column: 1 / -1;
+  margin-bottom: 3rem;
 
   .homeWrapper {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    grid-gap: 3rem;
+    grid-gap: 10rem;
     align-items: center;
   }
 
-  .homeHeroBanner {
+  .homeHeroBanner, .homeForm {
     width: 100%;
     padding: 0 1.5rem;
+  }
+
+  .homeHeroBanner {
     letter-spacing: 0.2rem;
     justify-self: start;
+  }
+
+  .homeForm {
+    padding: 1.6rem;
+    background-color: $whiteColorHome;
+    border-radius: 0.5rem;
   }
   
   &__banner {
