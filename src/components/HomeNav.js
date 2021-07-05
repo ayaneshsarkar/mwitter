@@ -11,7 +11,7 @@ const HomeNav = () => {
 
         <ul className="nav__menu home">
           <li className="nav__menu_item">
-            <Link className="nav__menu_item-link" to="/">
+            <Link className="nav__menu_item-link" to="/posts">
               About
             </Link>
           </li>

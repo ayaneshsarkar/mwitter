@@ -1,0 +1,9 @@
+.posts {
+  &__nav {
+    justify-self: center;
+    align-self: center;
+
+    display: flex;
+    flex-direction: column;
+  }
+}

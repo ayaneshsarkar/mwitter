@@ -1,0 +1,11 @@
+import React from 'react';
+
+const PostWrapper = props => {
+  return (
+    <div className="post-wrapper posts">
+      { props.children }
+    </div>
+  );
+}
+
+export default PostWrapper;

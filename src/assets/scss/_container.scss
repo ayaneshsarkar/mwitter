@@ -1,5 +1,8 @@
-.full-wrapper {
+.full-wrapper, .post-wrapper {
   display: grid;
+}
+
+.full-wrapper {
   grid-template-columns: repeat(12, 1fr);
   grid-template-rows: 8rem 1fr;
   grid-gap: 2rem;
@@ -15,6 +18,12 @@
     min-height: 100%;
   }
 }
+
+.post-wrapper {
+  grid-template-columns: 1fr 3fr 1.5fr;
+  // grid-gap: 1rem;
+  width: 100%;
+} 
 
 
 .wrapper {
