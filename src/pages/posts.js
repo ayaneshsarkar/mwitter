@@ -1,16 +1,16 @@
 import React from 'react';
 import PostNav from '../components/Posts/Nav';
-import Main from '../containers/Posts';
+import Posts from '../components/Posts/Posts';
 import PostWrapper from '../containers/Posts/PostWrapper';
 
-const Posts = () => {
+const MainApp = () => {
   return (
     <PostWrapper>
       <PostNav />
-      <Main></Main>
+      <Posts />
       <div className="fullVhHeight"></div>
     </PostWrapper>
   );
 }
 
-export default Posts;
+export default MainApp;

@@ -116,5 +116,124 @@
   &__main {
     border-left: 1px solid $greyBorder;
     border-right: 1px solid $greyBorder;
+
+    &_nav {
+      position: -webkit-sticky;
+      position: sticky;
+      top: 0;
+      width: 100%;
+      height: 6rem;
+      padding: 2rem;
+      border-bottom: 1px solid $greyBorder;
+
+      display: flex;
+      align-items: center;
+
+      font-size: 2.5rem;
+      font-weight: 800;
+    }
+
+    .createPost {
+      display: flex;
+      width: 100%;
+      // min-height: 12rem;
+      border-bottom: 1px solid $greyBorder;
+
+      &__profile {
+        padding: 1rem 2rem;
+
+        &--avatar {
+          width: 5.7rem;
+          height: 5.7rem;
+          background-color: $primaryColorHover;
+          background-size: cover;
+          background-repeat: no-repeat;
+          border-radius: 50%;
+          cursor: pointer;
+        }
+      }
+
+      &__form {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+
+        &__text {
+          width: 95%;
+          font-size: 2.1rem;
+          padding-top: 2.5rem;
+          background-color: inherit;
+          border: none;
+          border-bottom: 1px solid $greyBorder;
+          resize: none;
+          color: $whiteColor;
+
+          &::placeholder {
+            font-size: 2rem;
+            font-weight: 600;
+            color: $darkGrey;
+          }
+        }
+
+        &__media {
+          width: 95%;
+          padding: 1rem 0;
+
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+
+          .mediaMenus {
+            display: flex;
+            align-items: center;
+
+            &__item {
+              width: 4rem;
+              height: 4rem;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              background-color: transparent;
+              border-radius: 50%;
+              transition: $mainTransition;
+
+              &:hover {
+                cursor: pointer;
+                background-color: $primaryColorHover;
+              }
+
+              &:not(:first-child) {
+                margin: 0 0.1rem;
+              }
+
+              &--link {
+                width: 2.5rem;
+                height: 2.5rem;
+                fill: none;
+                stroke: $primaryColor;
+                transition: $mainTransition;
+              }
+            }
+          }
+        }
+
+        &__button {
+          font-size: 1.6rem;
+          font-weight: 700;
+          text-align: center;
+          margin-right: 0.7rem;
+          padding: 1rem 2rem;
+          background-color: $primaryColor;
+          border-radius: 10rem;
+          cursor: pointer;
+          transition: $mainTransition;
+
+          &:hover {
+            background-color: $primaryColorDark;
+          }
+        }
+      }
+    }
   }
 }

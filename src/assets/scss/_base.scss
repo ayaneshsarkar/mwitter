@@ -51,6 +51,13 @@ input {
   }
 }
 
+textarea {
+  font-size: inherit;
+  font-family: inherit;
+  font-weight: inherit;
+  outline: none;
+}
+
 button {
   border: none;
   outline: none !important;
