@@ -5,5 +5,116 @@
 
     display: flex;
     flex-direction: column;
+    padding: 0 2rem;
+    overflow-y: auto;
+
+    &--logo {
+      margin: 3rem 0 3rem 0;
+      width: 8rem;
+      height: 8rem;
+      border-radius: 50%;
+      background-color: transparent;
+      
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transition: $mainTransition;
+
+      &-link {
+        width: 5rem;
+        height: 5rem;
+        fill: $whiteColor;
+        transition: $mainTransition;
+      }
+
+      &:hover {
+        cursor: pointer;
+        background-color: $primaryColorHover;
+      }
+
+      &:hover &-link {
+        fill: $primaryColor;
+      }
+    }
+
+    &_menu {
+      display: flex;
+      flex-direction: column;
+
+      &--item, &--button {
+        padding: 1.2rem 1.5rem;
+        border-radius: 10rem;
+        transition: $mainTransition;
+      }
+
+      &--item {
+        width: 100%;
+        background-color: transparent;
+        margin-bottom: 2rem;
+
+        &.active {
+          background-color: $primaryColorHover;
+        }
+
+        &.active &-link.text {
+          color: $primaryColor;
+        }
+
+        &.active &-link.icon {
+          stroke: $primaryColor;
+        }
+
+        &-link {
+          display: flex;
+          transition: $mainTransition;
+
+          &.text {
+            font-size: 2.4rem;
+            font-weight: 700;
+            color: $whiteColor;
+            margin: 0 1.6rem;
+          }
+
+          &.icon {
+            align-self: center;
+            width: 3rem;
+            height: 3rem;
+            fill: none;
+            stroke: $whiteColor;
+            stroke-width: 0.2rem;
+            margin-top: -0.3rem;
+          }
+        }
+
+        &:hover {
+          background-color: $primaryColorHover;
+        }
+
+        &:hover &-link.text {
+          color: $primaryColor;
+        }
+
+        &:hover &-link.icon {
+          stroke: $primaryColor;
+        }
+      }
+
+      &--button {
+        font-size: 2rem;
+        font-weight: 800;
+        text-align: center;
+        background-color: $primaryColor;
+
+        &:hover {
+          cursor: pointer;
+          background-color: $primaryColorDark;
+        }
+      }
+    }
+  }
+
+  &__main {
+    border-left: 1px solid $greyBorder;
+    border-right: 1px solid $greyBorder;
   }
 }

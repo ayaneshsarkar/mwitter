@@ -1,14 +1,13 @@
 import React from 'react';
+import PostNav from '../components/Posts/Nav';
+import Main from '../containers/Posts';
 import PostWrapper from '../containers/Posts/PostWrapper';
-import PostNav from '../containers/Posts/PostNav';
 
 const Posts = () => {
   return (
     <PostWrapper>
-      <PostNav>
-        
-      </PostNav>
-      <div className="fullVhHeight"></div>
+      <PostNav />
+      <Main></Main>
       <div className="fullVhHeight"></div>
     </PostWrapper>
   );

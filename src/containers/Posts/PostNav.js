@@ -1,8 +1,8 @@
 const PostNav = props => {
   return (
-    <div className="posts__nav fullVhHeight">
+    <nav className="posts__nav fullVhHeight">
       { props.children }
-    </div>
+    </nav>
   );
 }
 
