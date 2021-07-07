@@ -235,5 +235,95 @@
         }
       }
     }
+
+    .breaker {
+      width: 100%;
+      height: 1rem;
+      background-color: $postBreaker;
+      border-bottom: 1px solid $greyBorder;
+    }
+  }
+
+  &__allPosts {
+    padding: 1.6rem 0;
+  }
+
+  &__post {
+    display: flex;
+    width: 100%;
+    padding: 0 2rem;
+
+    &--icon {
+      width: 5rem;
+      height: 5rem;
+      margin-right: 1.2rem;
+      background-color: $primaryColorHover;
+      background-size: cover;
+      background-repeat: no-repeat;
+      border-radius: 50%;
+      cursor: pointer;
+    }
+
+    &--content {
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+
+      .profile {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0.5rem 0;
+
+        &__info {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-size: 1.65rem;
+
+          &--title {
+            margin-right: 0.7rem;
+            font-weight: 800;
+          }
+
+          &--handle, &--time, .dot {
+            color: $darkGrey;
+          }
+
+          .dot {
+            padding: 0 0.5rem 1rem 0.5rem;
+          }
+        }
+
+        .postDelete {
+          width: 4rem;
+          height: 4rem;
+          padding-top: -1rem;
+          border-radius: 50%;
+          background-color: transparent;
+
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          transition: $mainTransition;
+
+          &:hover {
+            cursor: pointer;
+            background-color: $primaryColorHover;
+          }
+
+          &__icon {
+            width: 2rem;
+            height: 2rem;
+            fill: none;
+            stroke: $primaryColor;
+          }
+        }
+      }
+
+      .text {
+        flex-grow: 1;
+      }
+    }
   }
 }
