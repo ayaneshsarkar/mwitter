@@ -245,7 +245,7 @@
   }
 
   &__allPosts {
-    padding: 1.6rem 0;
+    padding: 1.1rem 0 1.6rem 0;
   }
 
   &__post {
@@ -253,10 +253,15 @@
     width: 100%;
     padding: 0 2rem;
 
+    &--avatar {
+      display: flex;
+      flex-direction: column;
+      margin-right: 1.5rem;
+    }
+
     &--icon {
       width: 5rem;
       height: 5rem;
-      margin-right: 1.2rem;
       background-color: $primaryColorHover;
       background-size: cover;
       background-repeat: no-repeat;
@@ -273,13 +278,18 @@
         display: flex;
         align-items: center;
         justify-content: space-between;
-        padding: 0.5rem 0;
 
         &__info {
           display: flex;
           align-items: center;
           justify-content: center;
           font-size: 1.65rem;
+
+          &--title, &--handle, &--time, .dot {
+            &:hover {
+              text-decoration: underline;
+            }
+          }
 
           &--title {
             margin-right: 0.7rem;
@@ -322,7 +332,10 @@
       }
 
       .text {
-        flex-grow: 1;
+        font-size: 1.6rem;
+        font-weight: 400;
+        white-space: pre-wrap;
+        line-height: 2.3rem;
       }
     }
   }

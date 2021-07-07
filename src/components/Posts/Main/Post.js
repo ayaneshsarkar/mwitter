@@ -7,10 +7,12 @@ const Post = () => {
   return (
     <div className="posts__allPosts">
       <div className="posts__post">
-        <div 
-          className="posts__post--icon"
-          style={{ backgroundImage: `url(${Avatar})` }}
-          >
+        <div className="posts__post--avatar">
+          <div 
+            className="posts__post--icon"
+            style={{ backgroundImage: `url(${Avatar})` }}
+            >
+          </div>
         </div>
 
         <div className="posts__post--content">
@@ -30,7 +32,7 @@ const Post = () => {
           </div>
 
           <p className="text">
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Delectus accusamus possimus necessitatibus dicta soluta, veritatis deserunt ducimus sint aut perspiciatis!
+            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Vel, exercitationem. Voluptatibus dolorem dolore deserunt, eum temporibus soluta nostrum ab facere, amet eaque minus obcaecati laudantium.
           </p>
         </div>
       </div>
