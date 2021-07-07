@@ -20,7 +20,7 @@
 }
 
 .post-wrapper {
-  grid-template-columns: 1.3fr 3fr 1.5fr;
+  grid-template-columns: minmax(30rem, 1fr) 3fr 1.5fr;
   // grid-gap: 1rem;
   width: 100%;
 } 
@@ -62,4 +62,13 @@
       justify-content: space-between;
     }
   }
+}
+
+.rest {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 33.5rem;
+  height: 100vh;
+  border-left: 1px solid $greyBorder;
 }

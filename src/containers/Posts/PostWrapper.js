@@ -2,7 +2,7 @@ import React from 'react';
 
 const PostWrapper = props => {
   return (
-    <div className="post-wrapper posts">
+    <div className="posts">
       { props.children }
     </div>
   );

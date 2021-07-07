@@ -1,8 +1,8 @@
 const Main = props => {
   return(
-    <main className="fullVhHeight posts__main">
+    <div className="fullVhHeight posts__main">
       { props.children }
-    </main>
+    </div>
   );
 }
 

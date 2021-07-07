@@ -1,11 +1,22 @@
 .posts {
+  display: flex;
+
   &__nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+
+    width: 31.5rem;
     justify-self: center;
     align-self: center;
+    height: 100% !important;
 
     display: flex;
     flex-direction: column;
-    padding: 0 2rem;
+    padding: 0 4rem;
+    border-right: 1px solid $greyBorder;
     overflow-y: auto;
 
     &--logo {
@@ -113,18 +124,23 @@
     }
   }
 
+  .main {
+    display: flex;
+    margin-left: 31.5rem;
+    // border-left: 1px solid $greyBorder;
+  }
+
   &__main {
-    border-left: 1px solid $greyBorder;
-    border-right: 1px solid $greyBorder;
+    width: 70rem;
 
     &_nav {
-      position: -webkit-sticky;
-      position: sticky;
+      position: fixed;
       top: 0;
-      width: 100%;
+      width: 70rem;
       height: 6rem;
       padding: 2rem;
       border-bottom: 1px solid $greyBorder;
+      background-color: $dimBlack;
 
       display: flex;
       align-items: center;
@@ -136,7 +152,7 @@
     .createPost {
       display: flex;
       width: 100%;
-      // min-height: 12rem;
+      margin-top: 6rem;
       border-bottom: 1px solid $greyBorder;
 
       &__profile {
@@ -273,6 +289,7 @@
       display: flex;
       flex-direction: column;
       flex-grow: 1;
+      margin-bottom: 3rem;
 
       .profile {
         display: flex;
@@ -336,6 +353,30 @@
         font-weight: 400;
         white-space: pre-wrap;
         line-height: 2.3rem;
+      }
+
+      .media {
+        position: relative;
+        width: 100%;
+        height: 0;
+        background-color: $dimBlacker;
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+        border-radius: 1.6rem;
+        margin-top: 1rem;
+        padding-top: 50%;
+
+        &:hover {
+          cursor: pointer;
+        }
+
+        .img {
+          position: absolute;
+          width: 100%;
+          height: 100%;
+          visibility: hidden;
+        }
       }
     }
   }

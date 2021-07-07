@@ -7,8 +7,10 @@ const MainApp = () => {
   return (
     <PostWrapper>
       <PostNav />
-      <Posts />
-      <div className="fullVhHeight"></div>
+      <main className="main">
+        <Posts />
+        <div className="rest"></div>
+      </main>
     </PostWrapper>
   );
 }

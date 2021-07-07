@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom'
 import Avatar from '../../../assets/img/avatar.jpg';
+import Img from '../../../assets/img/Sample.jpg';
 import Sprite from '../../../assets/svg/feather-sprite.svg';
 
 const Post = () => {
@@ -34,6 +35,14 @@ const Post = () => {
           <p className="text">
             Lorem, ipsum dolor sit amet consectetur adipisicing elit. Vel, exercitationem. Voluptatibus dolorem dolore deserunt, eum temporibus soluta nostrum ab facere, amet eaque minus obcaecati laudantium.
           </p>
+
+          <div 
+            className="media"
+            style={{ backgroundImage: `url(${Img})` }}
+          >
+            <img src={Img} alt="Sample" className="img" />
+          </div>
+
         </div>
       </div>
     </div>
