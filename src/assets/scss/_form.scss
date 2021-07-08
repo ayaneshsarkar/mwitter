@@ -146,20 +146,21 @@
     font-weight: 600;
     font-size: 1.2rem;
     color: $primaryColor;
+    margin: 0.1rem 0 0 0.3rem;
 
     &.textarea {
       top: 16.5rem;
     }
 
-    & ~ .admin__form--input {
+    & ~ .form--input {
       border: 0.2rem solid $primaryColor !important;
     }
 
-    & ~ .admin__form--select {
+    & ~ .form--select {
       border: 0.2rem solid $primaryColor !important;
     }
 
-    & ~ .admin__form--date {
+    & ~ .form--date {
       border: 0.2rem solid $primaryColor !important;
     }
 

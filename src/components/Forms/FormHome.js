@@ -1,4 +1,6 @@
 import React from 'react';
+import { nullFunc, setFieldValue, setFieldError } from '../../helpers/formFunctions';
+import { isString } from '../../validation/formValidation';
 
 export const Input = props => {
   return (
@@ -10,7 +12,14 @@ export const Input = props => {
         name={ props.name } 
         className="form--input home" 
         placeholder={ props.placeholder || props.label || null }
-        value={ props.value || null }
+        value={ props.value }
+        onChange={props.onChange ? 
+          (e) => { 
+            setFieldValue(e, props.onChange); 
+            setFieldError(e, props.setError, isString) 
+          }
+          : nullFunc }
+        
       />
 
       <label htmlFor={ props.name } className="form--label home">{ props.label }</label>
