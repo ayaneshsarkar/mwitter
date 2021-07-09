@@ -1,13 +1,14 @@
 import { authServer } from '../config/server';
 
 export const fetchFile = async (method, host, body) => {
+  const token = await fetchAuthRoot();
   return (
     await fetch(host, {
       method,
       headers: new Headers({
-        // 'Authorization': `Bearer ${accessToken} ${refreshToken}`,
-        'Content-Type': `${body.type}`,
-        'content-disposition': `attachment; filename=${body.name}`,
+        'Authorization': `Bearer ${token}`,
+        'Content-Type': `application/json`,
+        // 'content-disposition': `attachment; filename=${body.name}`,
       }),
       body: (method !== 'GET') ? body : null
     })
@@ -55,6 +56,13 @@ export const fetchDataRegister = async (method, host, body) => {
 
 export const fetchAuthRoot = async () => {
   const res = await fetchData('POST', authServer, {username: 'root', password: 'root'}, false);
+  const data = await res.json();
+
+  return data.token;
+}
+
+export const fetchAuth = async user => {
+  const res = await fetchData('POST', authServer, user, false);
   const data = await res.json();
 
   return data.token;

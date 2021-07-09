@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { server } from '../config/server';
-import { fetchDataRegister } from '../helpers/fetch';
+import { server, serverACF } from '../config/server';
+import { fetchDataRegister, fetchFile, fetchAuth } from '../helpers/fetch';
 import { Input, File, Button } from '../components/Forms/FormHome';
 
 const HomeForm = () => {
@@ -30,7 +30,15 @@ const HomeForm = () => {
       await fetchDataRegister('POST', `${server}/users`, formData);
       const data = await res.json();
 
-      console.log(data);
+      if(data.id) {
+        const token = await fetchAuth({ username: handle, password });
+        localStorage.setItem('userToken', token);
+
+        const resAv = await fetchFile('POST', `${serverACF}/users/${data.id}`, fileURL);
+        const avatar = resAv.json();
+
+        console.log(avatar);
+      }
     } catch(err) {
       console.log(err);
     }
