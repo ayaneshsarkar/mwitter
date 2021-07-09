@@ -45,7 +45,7 @@ export const File = props => {
     <div className="form--box full-width file">
       {props.error && <p className="form--error fileError">{ props.error }</p> }
 
-      <input type="file" className="form--input file" name="avatar" placeholder="Avatar" 
+      <input type="file" className="form--input file" name="fields['avatar']" placeholder="Avatar" 
         hidden 
         ref={fileInput} 
         onChange={
@@ -55,8 +55,7 @@ export const File = props => {
             props.setName(e.target.files[0].name);
             setFileError(e, props.setError, isImage);
           }
-        } 
-        value={props.fileURL || ''} 
+        }
       />
       <div className="form--fileButton" onClick={fileClick}>
         <svg className="icon">

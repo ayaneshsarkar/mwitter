@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { server, serverACF } from '../config/server';
-import { fetchDataRegister, fetchFile, fetchAuth } from '../helpers/fetch';
+import axios from 'axios';
+import { server } from '../config/server';
+import { fetchDataRegister, fetchAuth, config } from '../helpers/fetch';
 import { Input, File, Button } from '../components/Forms/FormHome';
 
 const HomeForm = () => {
@@ -19,11 +20,30 @@ const HomeForm = () => {
   const [passwordErr, setPasswordErr] = useState('');
   const [confirmPasswordErr, setConfirmPasswordErr] = useState('');
 
+  // console.log(fileURL.lastModified)
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     const formData = new FormData(e.target);
-    // console.log(...formData);
+
+    const fields = {
+      fields: {
+        avatar: fileURL //{ 
+          // lastModified: fileURL.lastModified,
+          // lastModifiedDate: fileURL.lastModifiedDate,
+          // name: fileURL.name,
+          // size: fileURL.size,
+          // type: fileURL.type,
+          // webkitRelativePath: fileURL.webkitRelativePath
+          
+        //}
+      }
+    }
+
+    console.log(...formData);
+
+    formData.append("data", JSON.stringify(fields));
 
     try {
       const res = 
@@ -31,13 +51,13 @@ const HomeForm = () => {
       const data = await res.json();
 
       if(data.id) {
+        console.log(data);
         const token = await fetchAuth({ username: handle, password });
         localStorage.setItem('userToken', token);
 
-        const resAv = await fetchFile('POST', `${serverACF}/users/${data.id}`, fileURL);
-        const avatar = resAv.json();
-
-        console.log(avatar);
+        const configData = await config();
+        const avatar = await axios.put(`${server}/users/${data.id}`, formData, configData);
+        console.log(avatar.data);
       }
     } catch(err) {
       console.log(err);
