@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { server } from '../config/server';
+import { server, serverACF } from '../config/server';
 import { fetchDataRegister, fetchAuth, config } from '../helpers/fetch';
 import { Input, File, Button } from '../components/Forms/FormHome';
 
@@ -29,34 +29,27 @@ const HomeForm = () => {
 
     const fields = {
       fields: {
-        avatar: fileURL //{ 
-          // lastModified: fileURL.lastModified,
-          // lastModifiedDate: fileURL.lastModifiedDate,
-          // name: fileURL.name,
-          // size: fileURL.size,
-          // type: fileURL.type,
-          // webkitRelativePath: fileURL.webkitRelativePath
-          
-        //}
+        avatar: 'asfsgsdxfbg' //{ 
+        //   lastModified: fileURL.lastModified,
+        //   lastModifiedDate: fileURL.lastModifiedDate,
+        //   name: fileURL.name,
+        //   size: fileURL.size,
+        //   type: fileURL.type,
+        //   webkitRelativePath: fileURL.webkitRelativePath
+        // }
       }
     }
 
-    console.log(...formData);
-
-    formData.append("data", JSON.stringify(fields));
+    formData.append("fields", fields);
 
     try {
-      const res = 
-      await fetchDataRegister('POST', `${server}/users`, formData);
-      const data = await res.json();
+      // const res = 
+      // await fetchDataRegister('POST', `${server}/users`, formData);
+      // const data = await res.json();
 
-      if(data.id) {
-        console.log(data);
-        const token = await fetchAuth({ username: handle, password });
-        localStorage.setItem('userToken', token);
-
+      if(52) {
         const configData = await config();
-        const avatar = await axios.put(`${server}/users/${data.id}`, formData, configData);
+        const avatar = await axios.put(`${serverACF}/users/52`, JSON.stringify(fields), configData);
         console.log(avatar.data);
       }
     } catch(err) {

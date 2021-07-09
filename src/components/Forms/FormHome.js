@@ -45,7 +45,7 @@ export const File = props => {
     <div className="form--box full-width file">
       {props.error && <p className="form--error fileError">{ props.error }</p> }
 
-      <input type="file" className="form--input file" name="fields['avatar']" placeholder="Avatar" 
+      <input type="file" className="form--input file" name="fields[avatar]" placeholder="Avatar" 
         hidden 
         ref={fileInput} 
         onChange={
