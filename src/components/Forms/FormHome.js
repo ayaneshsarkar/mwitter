@@ -1,6 +1,13 @@
-import React from 'react';
-import { nullFunc, setFieldValue, setFieldError } from '../../helpers/formFunctions';
-import { isString } from '../../validation/formValidation';
+import React, { useRef } from 'react';
+import { 
+  nullFunc, 
+  setFieldValue, 
+  setFileValue, 
+  setFieldError,
+  setFileError
+} from '../../helpers/formFunctions';
+import { isString, isImage } from '../../validation/formValidation';
+import Sprite from '../../assets/svg/feather-sprite.svg';
 
 export const Input = props => {
   return (
@@ -23,6 +30,40 @@ export const Input = props => {
       />
 
       <label htmlFor={ props.name } className="form--label home">{ props.label }</label>
+    </div>
+  );
+}
+
+export const File = props => {
+  const fileInput = useRef(null);
+
+  const fileClick = () => {
+    fileInput.current.click();
+  }
+  
+  return (
+    <div className="form--box full-width file">
+      {props.error && <p className="form--error fileError">{ props.error }</p> }
+
+      <input type="file" className="form--input file" name="avatar" placeholder="Avatar" 
+        hidden 
+        ref={fileInput} 
+        onChange={
+          (e) => 
+          {
+            setFileValue(e, props.onChange); 
+            props.setName(e.target.files[0].name);
+            setFileError(e, props.setError, isImage);
+          }
+        } 
+        value={props.fileURL || ''} 
+      />
+      <div className="form--fileButton" onClick={fileClick}>
+        <svg className="icon">
+          <use xlinkHref={`${Sprite}#paperclip`}></use>
+        </svg>
+      </div>
+      <span className="form--fileText">{ props.name || 'No File Chosen' }</span>
     </div>
   );
 }

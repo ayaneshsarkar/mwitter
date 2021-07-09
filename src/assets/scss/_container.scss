@@ -9,13 +9,13 @@
   width: 100%;
 
   &.full-height {
-    height: 100vh;
+    min-height: 100vh;
   }
 
   &.homeBackground {
     background-size: cover;
     background-repeat: no-repeat;
-    min-height: 100%;
+    height: 100%;
   }
 }
 

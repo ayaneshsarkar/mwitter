@@ -51,6 +51,18 @@
     border-radius: 0.7rem;
     margin-right: 1.5rem;
 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .icon {
+      width: 1.9rem;
+      height: 1.9rem;
+      fill: none;
+      stroke: $whiteColor;
+      stroke-width: 2;
+    }
+
     &:hover {
       cursor: pointer;
     }
@@ -60,10 +72,10 @@
     font-size: 1.7rem;
     flex: 1;
     text-overflow: ellipsis;
-    color: $darkGrey;
+    color: $lightGrey;
 
     &.active {
-      color: $primaryColor;
+      color: $darkGrey;
     }
   }
 
