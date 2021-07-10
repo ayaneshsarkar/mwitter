@@ -11,14 +11,10 @@ const HomeForm = () => {
   const [signUpSubmit, setSignUpSubmit] = useState(false);
   const [signInSubmit, setSignInSubmit] = useState(false);
 
-  console.log({signUpStatus});
-  console.log({signInStatus});
-
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if(!signUpErrors && !signInSubmit && !signInStatus && !setSignUpSubmit
-      && !signInErrors) {
+    if(!signUpErrors && signInErrors) {
       setSignUpSubmit(true);
       setSignInSubmit(false);
 

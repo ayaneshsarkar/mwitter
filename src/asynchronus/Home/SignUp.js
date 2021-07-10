@@ -30,12 +30,12 @@ export const signUp = async (formData, password) => {
         const fields = { fields: { avatar: media.id } };
 
         // Update Profile Picture
-        const avatarData = await 
+        const acfData = await 
         fetchData('PUT', `${serverACF}/users/${user.id}`, fields, false);
 
-        const avatar = await avatarData.json();
+        const acf = await acfData.json();
 
-        return { user, avatar };
+        return { user, acf };
       }
     }
 
