@@ -31,9 +31,9 @@ export const Input = props => {
         value={ props.value }
         onChange={props.onChange ? 
           (e) => { 
+            setAuthErrors();
             setFieldValue(e, props.onChange); 
             setFieldError(e, props.setError, isString);
-            setAuthErrors();
           }
           : nullFunc }
         
