@@ -4,9 +4,10 @@ import {
   setFieldValue, 
   setFileValue, 
   setFieldError,
-  setFileError
+  setFileError,
+  setPasswordError
 } from '../../helpers/formFunctions';
-import { isString, isImage } from '../../validation/formValidation';
+import { isString, isEmail, matchPassword, isImage } from '../../validation/formValidation';
 import Sprite from '../../assets/svg/feather-sprite.svg';
 
 export const Input = props => {
@@ -24,6 +25,56 @@ export const Input = props => {
           (e) => { 
             setFieldValue(e, props.onChange); 
             setFieldError(e, props.setError, isString) 
+          }
+          : nullFunc }
+        
+      />
+
+      <label htmlFor={ props.name } className="form--label home">{ props.label }</label>
+    </div>
+  );
+}
+
+export const Email = props => {
+  return (
+    <div className="form--box full-width">
+      {props.error && <p className="form--error">{ props.error }</p> }
+
+      <input 
+        type="email" 
+        name={ props.name } 
+        className="form--input home" 
+        placeholder={ props.placeholder || props.label || null }
+        value={ props.value }
+        onChange={props.onChange ? 
+          (e) => { 
+            setFieldValue(e, props.onChange); 
+            setFieldError(e, props.setError, isEmail) 
+          }
+          : nullFunc }
+        
+      />
+
+      <label htmlFor={ props.name } className="form--label home">{ props.label }</label>
+    </div>
+  );
+}
+
+export const Password = props => {
+  return (
+    <div className="form--box full-width">
+      {props.error && <p className="form--error">{ props.error }</p> }
+
+      <input 
+        type="password" 
+        name={ props.name } 
+        className="form--input home" 
+        placeholder={ props.placeholder || props.label || null }
+        value={ props.value }
+        onChange={props.onChange ? 
+          (e) => { 
+            setFieldValue(e, props.onChange); 
+            setPasswordError(e, props.setErrors, matchPassword, props.match) 
           }
           : nullFunc }
         

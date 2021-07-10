@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { signUp } from '../asynchronus/Home/SignUp';
-import { Input, File, Button } from '../components/Forms/FormHome';
+import { Input, Email, Password, File, Button } from '../components/Forms/FormHome';
 
 const HomeForm = () => {
   const [handle, setHandle] = useState('');
@@ -60,8 +60,7 @@ const HomeForm = () => {
         />
 
         {/* Email */}
-        <Input 
-          type="mail" 
+        <Email 
           name="email" 
           label="Email"
           value={ email }
@@ -81,24 +80,24 @@ const HomeForm = () => {
         />
 
         {/* Password */}
-        <Input 
-          type="password" 
+        <Password 
           name="password" 
           label="Password"
           value={password}
+          match={confirmPassword}
           error={passwordErr}
-          setError={setPasswordErr}
+          setErrors={[setPasswordErr, setConfirmPasswordErr]}
           onChange={setPassword}
         />
 
         {/* Confirm Password */}
-        <Input 
-          type="password" 
+        <Password 
           name="confirmPassword" 
           label="Confirm Password"
           value={confirmPassword}
+          match={password}
           error={confirmPasswordErr}
-          setError={setConfirmPasswordErr}
+          setErrors={[setConfirmPasswordErr, setPasswordErr]}
           onChange={setConfirmPassword}
         />
 
