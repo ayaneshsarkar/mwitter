@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
+import { connect } from 'react-redux';
+import { register, logIn } from '../actions/auth';
 import SignUpBox from './Auth/SignUp';
 import SignInBox from './Auth/SignIn';
-import { signUp } from '../asynchronus/Home/SignUp';
 
-const HomeForm = () => {
+const HomeForm = props => {
   const [signUpErrors, setSignUpErrors] = useState(true);
   const [signInErrors, setSignInErrors] = useState(false);
   const [signUpStatus, setSignUpStatus] = useState(false);
@@ -11,22 +12,29 @@ const HomeForm = () => {
   const [signUpSubmit, setSignUpSubmit] = useState(false);
   const [signInSubmit, setSignInSubmit] = useState(false);
 
+  console.log(signUpErrors, signUpStatus)
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if(!signUpErrors && signInErrors) {
+    console.log(signUpErrors, signUpStatus)
+
+    if(!signUpErrors && signUpStatus) {
       setSignUpSubmit(true);
       setSignInSubmit(false);
 
       const formData = new FormData(e.target);
 
-      try {
-        const res = await signUp(formData, formData.get('password'));
+      await props.register(formData);
+    }
 
-        console.log(res);
-      } catch(err) {
-        console.error(err);
-      }
+    if(signInStatus && !signInErrors) {
+      setSignInSubmit(true);
+      setSignUpSubmit(false);
+
+      const formData = new FormData(e.target);
+
+      await props.logIn(formData);
     }
   }
   
@@ -56,4 +64,4 @@ const HomeForm = () => {
   );
 }
 
-export default HomeForm;
+export default connect(null, { register, logIn })(HomeForm);

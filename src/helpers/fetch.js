@@ -34,6 +34,19 @@ export const fetchData = async (method, host, body, iterate = true) => {
   );
 }
 
+export const fetchSingleData = async (method, host, body) => {
+  return (
+    await fetch(host, {
+      method,
+      headers: new Headers({
+        'Authorization': `Bearer ${localStorage.getItem('userToken') || ''}`,
+        'Content-Type': 'application/json',
+      }),
+      body: (method !== 'GET') ? JSON.stringify(body) : null
+    })
+  );
+}
+
 export const fetchDataRegister = async (method, host, body) => {
   const token = await fetchAuthRoot();
 
@@ -69,19 +82,25 @@ export const fetchAuthRoot = async () => {
 }
 
 export const fetchAuth = async (username, password) => {
-  const res =  (
-    await fetch(authServer, {
-      method: 'POST',
-      headers: new Headers({
-        'Content-Type': 'application/json',
-      }),
-      body: JSON.stringify({username, password})
-    })
-  );
+  try {
+    const res =  (
+      await fetch(authServer, {
+        method: 'POST',
+        headers: new Headers({
+          'Content-Type': 'application/json',
+        }),
+        body: JSON.stringify({username, password})
+      })
+    );
+  
+    const data = await res.json();
+  
+    return data.token;
 
-  const data = await res.json();
-
-  return data.token;
+  } catch(err) {
+    console.log(err);
+    return null;
+  }
 }
 
 export const config = async () => {
