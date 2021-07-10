@@ -121,7 +121,9 @@ export const File = props => {
 export const Button = props => {
   return (
     <div className="form--box no-margin">
-      <button type="submit" className={ "form--button " + props.className || null }>
+      <button type="submit" className={ "form--button " + (props.className || null) }
+        disabled={props.disabled ? true : false}
+      >
         { props.text }
       </button>
     </div>

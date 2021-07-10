@@ -206,8 +206,12 @@
     }
 
     &::selection {
-      background-color: $primaryColorDark;
-      color: $whiteColor;
+      background-color: $whiteColor;
+      color: $primaryColorDark;
+    }
+
+    &:disabled {
+      opacity: 0.5;
     }
   }
 }
