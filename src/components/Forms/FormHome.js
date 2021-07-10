@@ -11,6 +11,14 @@ import { isString, isEmail, matchPassword, isImage } from '../../validation/form
 import Sprite from '../../assets/svg/feather-sprite.svg';
 
 export const Input = props => {
+  const setAuthErrors = () => {
+    if(props.authErr) {
+      props.setAuthErr('');
+      props.setError('');
+      props.setAltError('');
+    }
+  }
+
   return (
     <div className="form--box full-width">
       {props.error && <p className="form--error">{ props.error }</p> }
@@ -24,7 +32,8 @@ export const Input = props => {
         onChange={props.onChange ? 
           (e) => { 
             setFieldValue(e, props.onChange); 
-            setFieldError(e, props.setError, isString) 
+            setFieldError(e, props.setError, isString);
+            setAuthErrors();
           }
           : nullFunc }
         

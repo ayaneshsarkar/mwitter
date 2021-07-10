@@ -1,4 +1,4 @@
-import { VERIFY_USER, CREATE_USER } from '../actions/type';
+import { VERIFY_USER, CREATE_USER, SIGNIN_USER } from '../actions/type';
 
 const initState = {
   loggedIn: false,
@@ -10,6 +10,8 @@ const authReducer = (state = initState, action) => {
     case VERIFY_USER:
       return { ...state, loggedIn: true, user: action.payload };
     case CREATE_USER:
+      return { ...state, loggedIn: true, user: action.payload };
+    case SIGNIN_USER:
       return { ...state, loggedIn: true, user: action.payload };
     default:
       return state;

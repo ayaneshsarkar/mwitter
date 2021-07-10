@@ -245,8 +245,12 @@
           cursor: pointer;
           transition: $mainTransition;
 
-          &:hover {
+          &:not(:disabled):hover {
             background-color: $primaryColorDark;
+          }
+
+          &:disabled {
+            opacity: 0.5;
           }
         }
       }

@@ -24,10 +24,14 @@ export const register = formData => async dispatch => {
 }
 
 export const logIn = formData => async dispatch => {
-  const user = await signIn(formData);
+  try {
+    const user = await signIn(formData);
 
-  if(user.id) {
     dispatch({ type: SIGNIN_USER, payload: user });
     history.push('/posts');
+    
+  } catch(err) {
+    throw new Error(err.message);
   }
+  
 }

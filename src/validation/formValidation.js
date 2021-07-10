@@ -1,7 +1,7 @@
 import { inArray } from '../helpers';
 
 export const isString = (str, fieldName) => {
-  return str ? null : `The ${fieldName} field is required`;
+  return str ? null : `The ${fieldName} field is required.`;
 }
 
 export const isEmail = (email, fieldName, req = true) => {

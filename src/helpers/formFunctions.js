@@ -3,6 +3,8 @@ export const nullFunc = () => null;
 export const setFieldValue = (e, callback) => callback(e.target.value);
 
 export const setFieldError = (e, setError, validationFunc) => {
+  setError('');
+  
   const err = validationFunc(e.target.value, e.target.placeholder.toLowerCase());
 
   if(err) {

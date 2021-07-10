@@ -12,12 +12,10 @@ const HomeForm = props => {
   const [signUpSubmit, setSignUpSubmit] = useState(false);
   const [signInSubmit, setSignInSubmit] = useState(false);
 
-  console.log(signUpErrors, signUpStatus)
+  const [signInAuthErr, setSignInAuthErr ] = useState('');
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    console.log(signUpErrors, signUpStatus)
 
     if(!signUpErrors && signUpStatus) {
       setSignUpSubmit(true);
@@ -34,7 +32,13 @@ const HomeForm = props => {
 
       const formData = new FormData(e.target);
 
-      await props.logIn(formData);
+      try {
+        await props.logIn(formData);
+      } catch(err) {
+        console.log(err.message);
+        setSignInAuthErr(err.message);
+        setSignInSubmit(false);
+      }
     }
   }
   
@@ -53,6 +57,8 @@ const HomeForm = props => {
 
         {signInStatus ?
           <SignInBox 
+            signInAuthErr={signInAuthErr}
+            setSignInAuthErr={setSignInAuthErr}
             setSignInErrors={setSignInErrors}
             signInSubmit={signInSubmit}
             setSignInStatus={setSignInStatus}

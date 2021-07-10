@@ -42,7 +42,7 @@ const CreatePost = () => {
               </li>
             </ul>
 
-            <button className="createPost__form__button">Mweet</button>
+            <button className="createPost__form__button" disabled>Mweet</button>
           </div>
         </form>
       </div>

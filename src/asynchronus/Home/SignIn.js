@@ -4,7 +4,7 @@ import { fetchAuth, fetchSingleData } from '../../helpers/fetch';
 export const signIn = async formData => {
   try {
     // Get The User Token
-    const token = await fetchAuth(formData.get('username'), formData.get('password'))
+    const token = await fetchAuth(formData.get('username'), formData.get('password'));
     
     // Store the token to Local Storage
     if(token) {
@@ -14,7 +14,7 @@ export const signIn = async formData => {
       const userData = await fetchSingleData('GET', `${server}/users/me`, null);
       const user = await userData.json();
 
-      if(user.id) {
+      if(user && user.id) {
         // Store The User Id and return the User
         localStorage.setItem('userId', user.id);
         return user;
@@ -22,7 +22,7 @@ export const signIn = async formData => {
     }
 
   } catch(err) {
-    console.log(err);
+    throw new Error(err.message);
   }
 
   return null;

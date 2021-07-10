@@ -1,22 +1,26 @@
 import React, { useState, useEffect } from 'react';
 import { signUpFormValidaton, signUpFormCheckErrors } from '../../helpers/authFuncs';
-import { Input, Email, Button } from '../Forms/FormHome';
+import { Input, Button } from '../Forms/FormHome';
 
 const SignInBox = props => {
 
-  const [email, setEmail] = useState('');
+  const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [btnDisable, setBtnDisable] = useState(true);
+ //  const [signInAuthErrTouched, setSignInAuthErrTouched] = useState(false);
 
-  const [emailErr, setEmailErr] = useState('');
+  const [usernameErr, setUsernameErr] = useState('');
   const [passwordErr, setPasswordErr] = useState('');
 
+  // console.log(usernameErr);
+  //console.log(passwordErr);
+
   const checkFields = signUpFormValidaton([
-    email, password
+    username, password
   ]);
 
   const checkErrors = signUpFormCheckErrors([
-   emailErr, passwordErr
+    usernameErr, passwordErr
   ]);
 
   const setBtnStatus = () => {
@@ -29,7 +33,17 @@ const SignInBox = props => {
     }
   }
 
+  const setAuthErrors = () => {
+    if(props.signInAuthErr) {
+      //setSignInAuthErrTouched(false);
+      setUsernameErr(props.signInAuthErr);
+      setPasswordErr(props.signInAuthErr);
+    }
+  }
+
   useEffect(() => {
+    // clearAuthErrors();
+    setAuthErrors();
     setBtnStatus();
   });
 
@@ -43,14 +57,19 @@ const SignInBox = props => {
   return (
     <>
 
-      {/* Email */}
-      <Email 
-        name="email" 
-        label="Email"
-        value={ email }
-        error={emailErr}
-        setError={setEmailErr}
-        onChange={setEmail}
+      {/* Username */}
+      <Input 
+        type="text"
+        name="username" 
+        label="Username"
+        value={ username }
+        error={usernameErr}
+        setError={setUsernameErr}
+        setAltError={setPasswordErr}
+        onChange={setUsername}
+        authErr={props.signInAuthErr}
+        setAuthErr={props.setSignInAuthErr}
+        //setAuthErrTouched={setSignInAuthErrTouched}
       />
 
       {/* Password */}
@@ -61,7 +80,11 @@ const SignInBox = props => {
         value={password}
         error={passwordErr}
         setError={setPasswordErr}
+        setAltError={setUsernameErr}
         onChange={setPassword}
+        authErr={props.signInAuthErr}
+        setAuthErr={props.setSignInAuthErr}
+        //setAuthErrTouched={setSignInAuthErrTouched}
       />
 
       {/* Submit Button */}

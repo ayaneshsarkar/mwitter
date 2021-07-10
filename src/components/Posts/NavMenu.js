@@ -6,7 +6,7 @@ const NavMenu = () => {
   return (
     <ul className="posts__nav_menu">
       <li className="posts__nav_menu--item active">
-        <Link className="posts__nav_menu--item-link">
+        <Link className="posts__nav_menu--item-link" to="/posts">
           <svg className="posts__nav_menu--item-link icon right-margin">
             <use xlinkHref={`${Sprite}#home`}></use>
           </svg>
@@ -16,7 +16,7 @@ const NavMenu = () => {
       </li>
 
       <li className="posts__nav_menu--item">
-        <Link className="posts__nav_menu--item-link">
+        <Link className="posts__nav_menu--item-link" to="/posts">
           <svg className="posts__nav_menu--item-link icon right-margin">
             <use xlinkHref={`${Sprite}#hash`}></use>
           </svg>
@@ -26,7 +26,7 @@ const NavMenu = () => {
       </li>
 
       <li className="posts__nav_menu--item">
-        <Link className="posts__nav_menu--item-link">
+        <Link className="posts__nav_menu--item-link" to="/posts">
           <svg className="posts__nav_menu--item-link icon right-margin">
             <use xlinkHref={`${Sprite}#bell`}></use>
           </svg>
@@ -36,7 +36,7 @@ const NavMenu = () => {
       </li>
 
       <li className="posts__nav_menu--item">
-        <Link className="posts__nav_menu--item-link">
+        <Link className="posts__nav_menu--item-link" to="/posts">
           <svg className="posts__nav_menu--item-link icon right-margin">
             <use xlinkHref={`${Sprite}#user`}></use>
           </svg>

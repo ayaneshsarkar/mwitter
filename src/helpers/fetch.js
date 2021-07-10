@@ -94,12 +94,16 @@ export const fetchAuth = async (username, password) => {
     );
   
     const data = await res.json();
+    const status = await res.status;
   
-    return data.token;
+    if(status === 200) {
+      return data.token;
+    } else {
+      throw new Error('Username or Password is incorrect.');
+    }
 
   } catch(err) {
-    console.log(err);
-    return null;
+    throw new Error('Username or Password is incorrect.'); 
   }
 }
 
