@@ -55,7 +55,7 @@ const SignUpBox = props => {
       <Input 
         type="text" 
         name="username" 
-        label="Handle"
+        label="Handle*"
         value={ handle }
         error={handleErr}
         setError={setHandleErr}
@@ -66,7 +66,7 @@ const SignUpBox = props => {
       <Input 
         type="text" 
         name="name" 
-        label="Full Name"
+        label="Full Name*"
         value={ fullName }
         error={fullNameErr}
         setError={setFullNameErr}
@@ -76,7 +76,7 @@ const SignUpBox = props => {
       {/* Email */}
       <Email 
         name="email" 
-        label="Email"
+        label="Email*"
         value={ email }
         error={emailErr}
         setError={setEmailErr}
@@ -96,7 +96,7 @@ const SignUpBox = props => {
       {/* Password */}
       <Password 
         name="password" 
-        label="Password"
+        label="Password*"
         value={password}
         match={confirmPassword}
         error={passwordErr}
@@ -107,7 +107,7 @@ const SignUpBox = props => {
       {/* Confirm Password */}
       <Password 
         name="confirmPassword" 
-        label="Confirm Password"
+        label="Confirm Password*"
         value={confirmPassword}
         match={password}
         error={confirmPasswordErr}

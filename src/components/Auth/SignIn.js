@@ -61,7 +61,7 @@ const SignInBox = props => {
       <Input 
         type="text"
         name="username" 
-        label="Username"
+        label="Username*"
         value={ username }
         error={usernameErr}
         setError={setUsernameErr}
@@ -76,7 +76,7 @@ const SignInBox = props => {
       <Input
         type="password"
         name="password" 
-        label="Password"
+        label="Password*"
         value={password}
         error={passwordErr}
         setError={setPasswordErr}
