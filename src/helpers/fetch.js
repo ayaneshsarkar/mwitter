@@ -1,13 +1,11 @@
 import { authServer } from '../config/server';
 
 export const fetchFile = async (method, host, fileData) => {
-  const token = await fetchAuthRoot();
-
   return (
     await fetch(host, {
       method,
       headers: new Headers({
-        'Authorization': `Bearer ${token}`,
+        'Authorization': `Bearer ${localStorage.getItem('userToken')}`,
         'Content-Disposition': 'form-data; filename="example.jpg"',
       }),
       body: (method !== 'GET') ? fileData : null
@@ -28,7 +26,7 @@ export const fetchData = async (method, host, body, iterate = true) => {
     await fetch(host, {
       method,
       headers: new Headers({
-        // 'Authorization': `Bearer ${accessToken} ${refreshToken}`,
+        'Authorization': `Bearer ${localStorage.getItem('userToken') || ''}`,
         'Content-Type': 'application/json',
       }),
       body: (method !== 'GET') ? JSON.stringify(bodyObj) : null
@@ -55,14 +53,32 @@ export const fetchDataRegister = async (method, host, body) => {
 }
 
 export const fetchAuthRoot = async () => {
-  const res = await fetchData('POST', authServer, {username: 'root', password: 'root'}, false);
+  const res =  (
+    await fetch(authServer, {
+      method: 'POST',
+      headers: new Headers({
+        'Content-Type': 'application/json',
+      }),
+      body: JSON.stringify({username: 'root', password: 'root'})
+    })
+  );
+
   const data = await res.json();
 
   return data.token;
 }
 
-export const fetchAuth = async user => {
-  const res = await fetchData('POST', authServer, user, false);
+export const fetchAuth = async (username, password) => {
+  const res =  (
+    await fetch(authServer, {
+      method: 'POST',
+      headers: new Headers({
+        'Content-Type': 'application/json',
+      }),
+      body: JSON.stringify({username, password})
+    })
+  );
+
   const data = await res.json();
 
   return data.token;

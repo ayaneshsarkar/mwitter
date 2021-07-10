@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
-// import axios from 'axios';
-import { server } from '../config/server';
-import { fetchFile } from '../helpers/fetch';
+import { signUp } from '../asynchronus/Home/SignUp';
 import { Input, File, Button } from '../components/Forms/FormHome';
 
 const HomeForm = () => {
@@ -27,10 +25,9 @@ const HomeForm = () => {
     formData.append('file', fileURL);
 
     try {
-      const res = await fetchFile('POST', `${server}/media`, formData);
-      const data = await res.json();
+      const res = await signUp(formData, password);
 
-      console.log(data);
+      console.log(res);
     } catch(err) {
       console.log(err);
     }
