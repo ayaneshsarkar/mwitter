@@ -1,15 +1,16 @@
 import { authServer } from '../config/server';
 
-export const fetchFile = async (method, host, body) => {
-  console.log(JSON.stringify(body))
+export const fetchFile = async (method, host, fileData) => {
+  const token = await fetchAuthRoot();
+
   return (
     await fetch(host, {
       method,
       headers: new Headers({
-        'Authorization': `Bearer ${localStorage.getItem('userToken')}`,
-        'Content-Type': `application/json`,
+        'Authorization': `Bearer ${token}`,
+        'Content-Disposition': 'form-data; filename="example.jpg"',
       }),
-      body: (method !== 'GET') ? body : null
+      body: (method !== 'GET') ? fileData : null
     })
   );
 }
