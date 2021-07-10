@@ -19,3 +19,7 @@ export const isImage = (file, key = null) => {
     }
   }
 }
+
+export const matchPassword = (str, fieldName) => {
+  
+}
