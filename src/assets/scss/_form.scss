@@ -199,7 +199,7 @@
     font-weight: 400;
     transition: $mainTransition;
 
-    &:hover {
+    &:not(:disabled):hover {
       cursor: pointer;
       background-color: $primaryColorDark;
       // box-shadow: $bDflt;
@@ -211,7 +211,15 @@
     }
 
     &:disabled {
+      cursor: auto;
       opacity: 0.5;
     }
+  }
+
+  .authBtnText {
+    font-size: 1.6rem;
+    margin-left: 1.6rem;
+    color: $darkGrey;
+    cursor: pointer;
   }
 }

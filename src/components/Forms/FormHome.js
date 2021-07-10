@@ -113,7 +113,7 @@ export const File = props => {
           <use xlinkHref={`${Sprite}#paperclip`}></use>
         </svg>
       </div>
-      <span className="form--fileText">{ props.name || 'No File Chosen' }</span>
+      <span className="form--fileText">{ props.name || 'No File Chosen*' }</span>
     </div>
   );
 }

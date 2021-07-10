@@ -99,3 +99,15 @@ button {
 .fullVhHeight {
   height: 100vh !important;
 }
+
+.flex {
+  display: flex;
+
+  &.align-items-center {
+    align-items: center;
+  }
+
+  &.justify-content-center {
+    justify-content: center;
+  }
+}
