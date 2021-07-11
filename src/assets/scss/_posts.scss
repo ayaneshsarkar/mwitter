@@ -177,13 +177,21 @@
 
         &__text {
           width: 95%;
+          height: 7rem;
           font-size: 2.1rem;
           padding-top: 2.5rem;
           background-color: inherit;
           border: none;
-          border-bottom: 1px solid $greyBorder;
           resize: none;
           color: $whiteColor;
+          // transition: $mainTransition;
+          backface-visibility: hidden;
+          -webkit-backface-visibility: hidden;
+
+          &.focused {
+            height: 9rem;
+            border-bottom: 1px solid $greyBorder;
+          }
 
           &::placeholder {
             font-size: 2rem;
