@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom'
 import Avatar from '../../../assets/img/avatar.jpg';
-import Img from '../../../assets/img/Sample.jpg';
+import Img from '../../../assets/img/SamplePic.jpg';
 import Sprite from '../../../assets/svg/feather-sprite.svg';
 
 const Post = () => {
