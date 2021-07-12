@@ -1,13 +1,18 @@
 import React, { useState, useRef } from 'react';
 import ProfileAvatar from './ProfileAvatar';
 import TextInput from './TextInput';
-import MediaInput from './MediaInput';;
+import MediaInput from './MediaInput';
+import Embed from './Embed';
 
 const CreatePost = () => {
   const [text, setText] = useState('');
   const [image, setImage] = useState({});
   const [video, setVideo] = useState({});
-  // const [embed, setEmbed] = useState('');
+  const [embed, setEmbed] = useState('');
+  const [embedStatus, setEmbedStatus] = useState(false);
+
+  // Errors
+  const [embedErr, setEmbedErr] = useState('');
 
   // DOM Refs
   const imageRef = useRef(null);
@@ -39,11 +44,21 @@ const CreatePost = () => {
             onChange={(e) => setFile(e, setVideo)} 
           />
 
+          <Embed
+            embed={embed}
+            setEmbed={setEmbed}
+            embedStatus={embedStatus} 
+            setEmbedStatus={setEmbedStatus}
+            error={embedErr}
+            setErr={setEmbedErr} 
+          />
+
           <MediaInput 
             image={image}
             video={video}
             imageRef={imageRef}
             videoRef={videoRef}
+            setEmbedStatus={setEmbedStatus}
           />
         </form>
       </div>

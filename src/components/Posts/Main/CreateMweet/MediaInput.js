@@ -9,6 +9,10 @@ const MediaInput = props => {
   const videoClick = () => {
     props.videoRef.current.click();
   }
+
+  const setEmbedStatus = () => {
+    props.setEmbedStatus(true);
+  }
   
   return (
     <div className="createPost__form__media">
@@ -25,7 +29,7 @@ const MediaInput = props => {
           </svg>
         </li>
 
-        <li className="mediaMenus__item">
+        <li className="mediaMenus__item" onClick={setEmbedStatus}>
           <svg className="mediaMenus__item--link">
             <use xlinkHref={`${Sprite}#paperclip`}></use>
           </svg>

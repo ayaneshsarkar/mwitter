@@ -99,9 +99,15 @@
       &::placeholder, &::-webkit-input-placeholder {
         font-weight: 400;
         font-size: 1.7rem;
-        color: $lightGrey !important;
+        color: $lightGrey;
       }
     }
+
+    &.posts {
+      color: $whiteColor !important;
+    }
+
+    
 
     &:focus {
       border: 0.2rem solid $primaryColor !important;
@@ -145,6 +151,11 @@
     color: $primaryColor;
     transform: translateY(0);
     //z-index: 10;
+  }
+
+  &--input:not(:placeholder-shown) + .postLabel {
+    color: $whiteColor !important;
+    background-color: $dimBlack !important;
   }
 
   &--input:not(:focus) ~ &--label {

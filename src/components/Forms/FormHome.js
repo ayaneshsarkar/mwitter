@@ -26,7 +26,7 @@ export const Input = props => {
       <input 
         type={ props.type } 
         name={ props.name } 
-        className="form--input home" 
+        className={`form--input home${props.className || ''}`} 
         placeholder={ props.placeholder || props.label || null }
         value={ props.value }
         onChange={props.onChange ? 
@@ -39,7 +39,11 @@ export const Input = props => {
         
       />
 
-      <label htmlFor={ props.name } className="form--label home">{ props.label }</label>
+      <label htmlFor={ props.name } 
+        className={`form--label home${props.labelClass || ''}`}
+      >
+        { props.label }
+      </label>
     </div>
   );
 }
