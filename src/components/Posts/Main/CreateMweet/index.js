@@ -1,14 +1,13 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { connect } from 'react-redux';
-import { getAllPosts } from '../../../../actions/posts';
+import { addPost } from '../../../../actions/posts';
 import ProfileAvatar from './ProfileAvatar';
 import TextInput from './TextInput';
 import MediaInput from './MediaInput';
 import Embed from './Embed';
 import MediaContent from './MediaContent';
-import createPost from '../../../../asynchronus/Posts/createPost';
 
-const CreatePost = ({ getAllPosts }) => {
+const CreatePost = ({ addPost }) => {
   const [text, setText] = useState('');
   const [textClass, setTextClass] = useState('');
   const [image, setImage] = useState(null);
@@ -33,8 +32,6 @@ const CreatePost = ({ getAllPosts }) => {
     }
   }
 
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  useEffect(() => getAllPosts(), []);
   useEffect(() => setInputTextClass());
 
   const handleSubmit = async (e) => {
@@ -43,8 +40,11 @@ const CreatePost = ({ getAllPosts }) => {
     const formData = new FormData(e.target);
 
     try {
-      const post = await createPost(formData);
-      console.log(post);
+      await addPost(formData);
+      setImage(null);
+      setVideo(null);
+      setEmbed(null);
+      setText('');
     } catch(err) {
       console.log(err.message);
     }
@@ -104,10 +104,4 @@ const CreatePost = ({ getAllPosts }) => {
   );
 }
 
-const mapStateToProps = state => {
-  return {
-    posts: Object.values(state.posts)
-  }
-}
-
-export default connect(mapStateToProps, { getAllPosts })(CreatePost);
+export default connect(null, { addPost })(CreatePost);

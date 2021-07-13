@@ -1,10 +1,14 @@
 import React from 'react';
 import Mweet from './Mweet';
 
-const Mweets = () => {
+const Mweets = ({ user, posts }) => {
   return (
-    <Mweet />
-  );
+    <div className="posts__allPosts">
+      {posts.length ? 
+        posts.map((post, i) => <Mweet key={i} mweet={post} user={user} />) : ''
+      }
+    </div>
+  )
 }
 
 export default Mweets;

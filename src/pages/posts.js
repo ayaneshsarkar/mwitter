@@ -23,7 +23,7 @@ const MainApp = ({ getAllPosts, user, posts }) => {
 const mapStateToProps = state => {
   return {
     user: state.auth.user,
-    posts: Object.keys(state.posts)
+    posts: Object.values(state.posts).sort((a, b) => b.id - a.id)
   }
 }
 

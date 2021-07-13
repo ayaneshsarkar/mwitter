@@ -343,6 +343,14 @@
     width: 100%;
     padding: 0 2rem;
 
+    &:not(:first-of-type) {
+      padding-top: 1.1rem;
+    }
+
+    &:not(:last-of-type) {
+      border-bottom: 1px solid $greyBorder;
+    }
+
     &--avatar {
       display: flex;
       flex-direction: column;
@@ -355,6 +363,7 @@
       background-color: $primaryColorHover;
       background-size: cover;
       background-repeat: no-repeat;
+      background-position: center;
       border-radius: 50%;
       cursor: pointer;
     }
@@ -436,10 +445,10 @@
         background-color: $dimBlacker;
         background-size: cover;
         background-repeat: no-repeat;
-        background-position: top;
+        background-position: center;
         border-radius: 1.6rem;
         margin-top: 1rem;
-        padding-top: 50%;
+        padding-top: 57%;
 
         &:hover {
           cursor: pointer;
