@@ -1,15 +1,18 @@
 import React, { useState, useRef, useEffect } from 'react';
+import { connect } from 'react-redux';
+import { getAllPosts } from '../../../../actions/posts';
 import ProfileAvatar from './ProfileAvatar';
 import TextInput from './TextInput';
 import MediaInput from './MediaInput';
 import Embed from './Embed';
 import MediaContent from './MediaContent';
+import createPost from '../../../../asynchronus/Posts/createPost';
 
-const CreatePost = () => {
+const CreatePost = ({ getAllPosts }) => {
   const [text, setText] = useState('');
   const [textClass, setTextClass] = useState('');
-  const [image, setImage] = useState({});
-  const [video, setVideo] = useState({});
+  const [image, setImage] = useState(null);
+  const [video, setVideo] = useState(null);
   const [embed, setEmbed] = useState('');
   const [embedStatus, setEmbedStatus] = useState(false);
 
@@ -19,7 +22,6 @@ const CreatePost = () => {
   // DOM Refs
   const imageRef = useRef(null);
   const videoRef = useRef(null);
-  // const embedRef = useRef(null);
 
   const setFile = (e, callback) => {
     callback(e.target.files[0]);
@@ -31,10 +33,21 @@ const CreatePost = () => {
     }
   }
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  useEffect(() => getAllPosts(), []);
   useEffect(() => setInputTextClass());
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+
+    const formData = new FormData(e.target);
+
+    try {
+      const post = await createPost(formData);
+      console.log(post);
+    } catch(err) {
+      console.log(err.message);
+    }
   }
 
   return (
@@ -52,6 +65,10 @@ const CreatePost = () => {
           />
           <input ref={videoRef} type="file" name="video" hidden 
             onChange={(e) => setFile(e, setVideo)} 
+          />
+
+          <input type="text" name="embed" hidden value={embed} 
+            onChange={(e) => setEmbed(e.target.value)}
           />
 
           {/* Selected Media */}
@@ -87,4 +104,10 @@ const CreatePost = () => {
   );
 }
 
-export default CreatePost;
+const mapStateToProps = state => {
+  return {
+    posts: Object.values(state.posts)
+  }
+}
+
+export default connect(mapStateToProps, { getAllPosts })(CreatePost);

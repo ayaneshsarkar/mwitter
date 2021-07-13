@@ -2,18 +2,18 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import CreateMweet from './Main/CreateMweet';
 import Main from '../../containers/Posts/Main';
-import AllPosts from './Main/Mweets';
+import Mweets from './Main/Mweets';
 
-const Posts = () => {
+const PostsLayout = ({ user, posts }) => {
   return(
     <Main>
       <nav className="posts__main_nav">
         <Link to="/posts">Home</Link>
       </nav>
-      <CreateMweet />
-      <AllPosts />
+      <CreateMweet user={user} posts={posts} />
+      <Mweets user={user} posts={posts} />
     </Main>
   );
 }
 
-export default Posts;
+export default PostsLayout;

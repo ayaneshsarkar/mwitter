@@ -33,7 +33,7 @@ const TextInput = props => {
   return (
     <textarea onFocus={styleTextarea} onBlur={unstyleTextarea}
       onChange={setText}
-      name="post" 
+      name="title" 
       className={`createPost__form__text${props.textClass || ''}`} 
       placeholder="What's Happening?"
 

@@ -6,7 +6,7 @@ export const fetchFile = async (method, host, fileData) => {
       method,
       headers: new Headers({
         'Authorization': `Bearer ${localStorage.getItem('userToken')}`,
-        'Content-Disposition': 'form-data; filename="example.jpg"',
+        'Content-Disposition': 'form-data;',
       }),
       body: (method !== 'GET') ? fileData : null
     })

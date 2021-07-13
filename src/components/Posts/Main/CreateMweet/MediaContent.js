@@ -4,7 +4,7 @@ import Sprite from '../../../../assets/svg/feather-sprite.svg';
 const MediaContent = props => {
   return (
     <>
-      {(props.image instanceof File) ? 
+      {(props.image instanceof File && props.image.name) ? 
         <div className="createPost__mediaContent"
           style={{ backgroundImage: `url(${URL.createObjectURL(props.image)})` }}
         >
@@ -19,7 +19,7 @@ const MediaContent = props => {
               <use xlinkHref={`${Sprite}#x`}></use>
             </svg>
           </div>
-        </div> : (props.video instanceof File) ?
+        </div> : (props.video instanceof File && props.video.name) ?
 
         <div className="createPost__mediaContent">
           <video className="video" muted controls>
