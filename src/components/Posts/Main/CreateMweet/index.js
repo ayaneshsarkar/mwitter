@@ -1,11 +1,13 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import ProfileAvatar from './ProfileAvatar';
 import TextInput from './TextInput';
 import MediaInput from './MediaInput';
 import Embed from './Embed';
+import MediaContent from './MediaContent';
 
 const CreatePost = () => {
   const [text, setText] = useState('');
+  const [textClass, setTextClass] = useState('');
   const [image, setImage] = useState({});
   const [video, setVideo] = useState({});
   const [embed, setEmbed] = useState('');
@@ -23,6 +25,14 @@ const CreatePost = () => {
     callback(e.target.files[0]);
   }
 
+  const setInputTextClass = () => {
+    if(image instanceof File || video instanceof File || embed) {
+      setTextClass(' noBorder');
+    }
+  }
+
+  useEffect(() => setInputTextClass());
+
   const handleSubmit = (e) => {
     e.preventDefault();
   }
@@ -34,7 +44,7 @@ const CreatePost = () => {
         <form className="createPost__form" onSubmit={handleSubmit} 
           encType="multipart/form-data"
         >
-          <TextInput value={text} setValue={setText} />
+          <TextInput textClass={textClass} value={text} setValue={setText} />
 
           {/* File Inputs */}
           <input ref={imageRef} type="file" name="image" hidden 
@@ -42,6 +52,15 @@ const CreatePost = () => {
           />
           <input ref={videoRef} type="file" name="video" hidden 
             onChange={(e) => setFile(e, setVideo)} 
+          />
+
+          {/* Selected Media */}
+          <MediaContent 
+            image={image}
+            setImage={setImage}
+            video={video}
+            setVideo={setVideo}
+            embed={embed}
           />
 
           <Embed

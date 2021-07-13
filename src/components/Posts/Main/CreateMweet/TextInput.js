@@ -2,11 +2,11 @@ import React from 'react';
 
 const TextInput = props => {
   const styleTextarea = (e) => {
-    e.target.className = "createPost__form__text focused";
+    e.target.className = `createPost__form__text focused${props.textClass || ''}`;
   }
 
   const unstyleTextarea = (e) => {
-    e.target.className = "createPost__form__text";
+    e.target.className = `createPost__form__text${props.textClass || ''}`;
   }
 
   const setText = (e) => {
@@ -17,7 +17,7 @@ const TextInput = props => {
     <textarea onFocus={styleTextarea} onBlur={unstyleTextarea}
       onChange={setText}
       name="post" 
-      className="createPost__form__text" 
+      className={`createPost__form__text${props.textClass || ''}`} 
       placeholder="What's Happening?"
       value={props.value} 
     />

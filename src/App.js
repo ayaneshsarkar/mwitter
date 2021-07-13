@@ -9,8 +9,7 @@ import './assets/scss/index.scss';
 
 const App = props => {
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  // useEffect(() => props.verifyAuth(), []);
-  useEffect(() => props.verifyAuth());
+  useEffect(() => props.verifyAuth(), []);
 
   return (
     <>
