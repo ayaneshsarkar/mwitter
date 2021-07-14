@@ -25,7 +25,23 @@ export const isImage = (file, key = null) => {
     const fileType = fileName.split('.')[fileName.split('.').length - 1].toLowerCase();
 
     if(!inArray(fileType, allowedArray)) {
-      return `Uploaded ${key} is not an image.`;
+      return `Uploaded ${key || 'file'} is not an image.`;
+    } else {
+      return null;
+    }
+  }
+}
+
+export const isVideo = (file, key = null) => {
+  if(!(file instanceof File)) {
+    return 'Invalid File.';
+  } else {
+    const fileName = file.name;
+    const allowedArray = ["mp4", "3gp", "m4v", "mov", "wmv", "avi", "mpg", "ogv", "3gp2"];
+    const fileType = fileName.split('.')[fileName.split('.').length - 1].toLowerCase();
+
+    if(!inArray(fileType, allowedArray)) {
+      return `Uploaded ${key || 'file'} is not a video.`;
     } else {
       return null;
     }

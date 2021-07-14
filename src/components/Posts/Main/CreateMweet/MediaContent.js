@@ -1,19 +1,41 @@
 import React, { useState, useEffect } from 'react';
+import { isImage, isVideo } from '../../../../validation/formValidation';
 import Sprite from '../../../../assets/svg/feather-sprite.svg';
 
 const MediaContent = props => {
   const [image, setImage] = useState(null);
   const [video, setVideo] = useState(null);
   
-  const setActualMedia = (img, currentImage, callback) => {
-    if(img instanceof File && img.name && !currentImage) {
-      callback(img);
+  const setActualMedia = (media, currentMedia, callback, error) => {
+    if(media instanceof File && media.name && !currentMedia && !error) {
+      callback(media);
     } 
   }
 
   const setActualMediaOnChange = () => {
-    setActualMedia(props.image, image, setImage);
-    setActualMedia(props.video, video, setVideo);
+    setActualMedia(props.image, image, setImage, props.imgErr);
+    setActualMedia(props.video, video, setVideo, props.vidErr);
+
+    if(props.imgErr && image) {
+      setImage(null);
+      props.setImage(null);
+    }
+
+    if(props.vidErr && video) {
+      setVideo(null);
+      props.setVideo(null);
+    }
+  }
+
+  const setMediaErrors = () => {
+    if(image) {
+      const imgErr = isImage(image);
+      if(imgErr) props.setImgErr(imgErr);
+
+    } else if(video) {
+      const videoErr = isVideo(video);
+      if(videoErr) props.setVidErr(videoErr);
+    }
   }
 
   const clearMedia = (callback, currentCallback) => {
@@ -21,7 +43,10 @@ const MediaContent = props => {
     currentCallback(null);
   }
 
-  useEffect(() => setActualMediaOnChange());
+  useEffect(() => {
+    setActualMediaOnChange();
+    setMediaErrors();
+  });
 
   return (
     <>

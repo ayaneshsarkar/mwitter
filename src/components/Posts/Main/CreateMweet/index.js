@@ -5,6 +5,7 @@ import ProfileAvatar from './ProfileAvatar';
 import TextInput from './TextInput';
 import MediaInput from './MediaInput';
 import Embed from './Embed';
+import PostValidationAlert from '../../../../alerts/PostValidationAlert';
 import MediaContent from './MediaContent';
 
 const CreatePost = ({ user, addPost }) => {
@@ -16,7 +17,11 @@ const CreatePost = ({ user, addPost }) => {
   const [embedStatus, setEmbedStatus] = useState(false);
 
   // Errors
+  const [imgErr, setImgErr] = useState('');
+  const [vidErr, setVidErr] = useState('');
   const [embedErr, setEmbedErr] = useState('');
+  const [validationErrImg, setValidationErrImg] = useState(false);
+  const [validationErrVid, setValidationErrVid] = useState(false);
 
   // DOM Refs
   const imageRef = useRef(null);
@@ -32,7 +37,15 @@ const CreatePost = ({ user, addPost }) => {
     }
   }
 
-  useEffect(() => setInputTextClass());
+  const setMediaErrors = () => {
+    if(imgErr) setValidationErrImg(true);
+    if(vidErr) setValidationErrVid(true);
+  }
+
+  useEffect(() => {
+    setInputTextClass();
+    setMediaErrors();
+  });
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -75,10 +88,30 @@ const CreatePost = ({ user, addPost }) => {
           {/* Selected Media */}
           <MediaContent 
             image={image}
+            imgErr={imgErr}
+            setImgErr={setImgErr}
             setImage={setImage}
             video={video}
+            vidErr={vidErr}
+            setVidErr={setVidErr}
             setVideo={setVideo}
             embed={embed}
+          />
+
+          {/* Image Error Popup */}
+          <PostValidationAlert 
+            open={validationErrImg}
+            setClose={setValidationErrImg}
+            error={imgErr}
+            optionalErr={setImgErr}
+          />
+
+          {/* Video Error Popup */}
+          <PostValidationAlert 
+            open={validationErrVid}
+            setClose={setValidationErrVid}
+            error={vidErr}
+            optionalErr={setVidErr}
           />
 
           <Embed
