@@ -1,12 +1,16 @@
 import React from 'react';
-import Avatar from '../../../../assets/img/avatar.jpg';
 
-const ProfileAvatar = () => {
+const ProfileAvatar = ({ user }) => {
+  // Check If User Exists
+  const checkUser = (user) => Object.keys(user).length;
+
   return (
     <div className="createPost__profile">
       <div 
         className="createPost__profile--avatar"
-        style={{ backgroundImage: `url(${Avatar})` }}
+        style={{ 
+          backgroundImage: `url(${checkUser(user) ? user.acf.avatar.sizes.large : ''})` 
+        }}
       ></div>
     </div>
   );

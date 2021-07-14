@@ -7,7 +7,7 @@ import MediaInput from './MediaInput';
 import Embed from './Embed';
 import MediaContent from './MediaContent';
 
-const CreatePost = ({ addPost }) => {
+const CreatePost = ({ user, addPost }) => {
   const [text, setText] = useState('');
   const [textClass, setTextClass] = useState('');
   const [image, setImage] = useState(null);
@@ -53,11 +53,12 @@ const CreatePost = ({ addPost }) => {
   return (
     <>
       <div className="createPost">
-        <ProfileAvatar />
+        <ProfileAvatar user={user} />
+        
         <form className="createPost__form" onSubmit={handleSubmit} 
           encType="multipart/form-data"
         >
-          <TextInput textClass={textClass} value={text} setValue={setText} />
+          <TextInput user={user} textClass={textClass} value={text} setValue={setText} />
 
           {/* File Inputs */}
           <input ref={imageRef} type="file" name="image" hidden 

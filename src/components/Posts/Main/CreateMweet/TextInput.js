@@ -36,7 +36,6 @@ const TextInput = props => {
       name="title" 
       className={`createPost__form__text${props.textClass || ''}`} 
       placeholder="What's Happening?"
-
       value={props.value} 
     />
   );

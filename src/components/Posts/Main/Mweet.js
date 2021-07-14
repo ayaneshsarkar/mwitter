@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom'
 import Img from '../../../assets/img/SamplePic.jpg';
 import Sprite from '../../../assets/svg/feather-sprite.svg';
 
 const Mweet = ({ user, mweet }) => {
+  const [contWidth, setContWidth] = useState(0);
   const checkUser = (user) => Object.keys(user).length;
 
   return (
@@ -11,8 +12,8 @@ const Mweet = ({ user, mweet }) => {
       <div className="posts__post--avatar">
         <div 
           className="posts__post--icon"
-          style={{ backgroundImage: 
-            `url(${checkUser(user) ? user.acf.avatar.sizes.large : ''})` 
+          style={{ 
+            backgroundImage: `url(${checkUser(user) ? user.acf.avatar.sizes.large : ''})`
           }}
           >
         </div>
@@ -45,9 +46,14 @@ const Mweet = ({ user, mweet }) => {
           { mweet.acf.text }
         </p>
 
-        <div 
+        <div
           className="media"
-          style={{ backgroundImage: `url(${mweet.acf.image.sizes['2048x2048']})` }}
+          onLoad={(e) => setContWidth(e.target.offsetWidth)}
+          style={{ 
+            backgroundImage: `url(${mweet.acf.image.sizes.large})`,
+            paddingTop: mweet.acf.image.sizes['large-height'] / 
+              mweet.acf.image.sizes['large-width'] * contWidth
+          }}
         >
           <img src={Img} alt="Sample" className="img" />
         </div>
