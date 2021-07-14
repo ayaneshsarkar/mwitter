@@ -57,3 +57,19 @@ export const matchPassword = (str, fieldName, match, req = true) => {
 
   return null;
 }
+
+export const isURL = (url, key = 'url', req = false) => {
+  if(req && !url) {
+    return `The ${key} is required.`;
+  }
+
+  // const regEx = /^(http[s]?:\/\/(www\.)?|ftp:\/\/(www\.)?|www\.){1}([0-9A-Za-z-\.@:%_\+~#=]+)+((\.[a-zA-Z]{2,3})+)(\/(.)*)?(\?(.)*)?/g;
+
+  const regEx = /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_+.~#?&//=]*)/
+  
+  if(url && !regEx.test(url)) {
+    return `The ${key} is not a valid URL`;
+  }
+
+  return null;
+}

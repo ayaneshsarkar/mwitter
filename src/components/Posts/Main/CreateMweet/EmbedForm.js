@@ -1,10 +1,10 @@
 import React from 'react';
-import { Input } from '../../../Forms/FormHome';
+import { URL } from '../../../Forms/FormHome';
 
 const EmbedForm = props => {
   return (
     <>
-      <Input 
+      <URL 
         type="text"
         name="embed"
         className=" posts"

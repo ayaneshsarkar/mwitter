@@ -38,6 +38,18 @@ export const setFileError = (e, setError, validationFunc) => {
   };
 }
 
+export const setURLError = (e, setError, validationFunc) => {
+  setError('');
+  
+  const err = validationFunc(e.target.value, e.target.placeholder.toLowerCase());
+
+  if(err) {
+    setError(err)
+  } else {
+    setError('');
+  };
+}
+
 export const callUserFuncArr = funcs => {
   if(Array.isArray(funcs)) {
     funcs.forEach(func => func());

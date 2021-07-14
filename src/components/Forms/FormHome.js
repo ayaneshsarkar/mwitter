@@ -4,10 +4,13 @@ import {
   setFieldValue, 
   setFileValue, 
   setFieldError,
+  setURLError,
   setFileError,
   setPasswordError
 } from '../../helpers/formFunctions';
-import { isString, isEmail, matchPassword, isImage } from '../../validation/formValidation';
+import { 
+  isString, isEmail, matchPassword, isImage, isURL 
+} from '../../validation/formValidation';
 import Sprite from '../../assets/svg/feather-sprite.svg';
 
 export const Input = props => {
@@ -127,6 +130,35 @@ export const File = props => {
         </svg>
       </div>
       <span className="form--fileText">{ props.name || 'No File Chosen*' }</span>
+    </div>
+  );
+}
+
+export const URL = props => {
+  return (
+    <div className="form--box full-width">
+      {props.error && <p className="form--error">{ props.error }</p> }
+
+      <input 
+        type="text" 
+        name={ props.name } 
+        className={`form--input home${props.className || ''}`} 
+        placeholder={ props.placeholder || props.label || null }
+        value={ props.value }
+        onChange={props.onChange ? 
+          (e) => { 
+            setFieldValue(e, props.onChange); 
+            setURLError(e, props.setError, isURL) 
+          }
+          : nullFunc }
+        
+      />
+
+      <label htmlFor={ props.name } 
+        className={`form--label home${props.labelClass || ''}`}
+      >
+        { props.label }
+      </label>
     </div>
   );
 }
