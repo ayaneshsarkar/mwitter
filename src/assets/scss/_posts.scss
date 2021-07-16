@@ -325,6 +325,12 @@
           }
         }
       }
+
+      &__embedBox {
+        position: relative;
+        width: 95%;
+        
+      }
     }
 
     .breaker {

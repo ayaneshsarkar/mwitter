@@ -3,9 +3,11 @@ import { Link } from 'react-router-dom'
 import Img from '../../../assets/img/SamplePic.jpg';
 import Sprite from '../../../assets/svg/feather-sprite.svg';
 
-const Mweet = ({ user, mweet }) => {
+const Mweet = ({ user, mweet, match }) => {
   const [contWidth, setContWidth] = useState(0);
   const checkUser = (user) => Object.keys(user).length;
+
+  console.log(match);
 
   return (
     <div className="posts__post">
