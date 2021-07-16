@@ -5,7 +5,7 @@ import PostNav from '../components/Posts/Nav';
 import PostsLayout from '../components/Posts/PostsLayout';
 import PostWrapper from '../containers/Posts/PostWrapper';
 
-const MainApp = ({ getAllPosts, user, posts }) => {
+const MainApp = ({ getAllPosts, user, posts, location }) => {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => getAllPosts(), []);
   
@@ -13,7 +13,7 @@ const MainApp = ({ getAllPosts, user, posts }) => {
     <PostWrapper>
       <PostNav />
       <main className="main">
-        <PostsLayout user={user} posts={posts} />
+        <PostsLayout user={user} posts={posts} location={location} />
         <div className="rest"></div>
       </main>
     </PostWrapper>

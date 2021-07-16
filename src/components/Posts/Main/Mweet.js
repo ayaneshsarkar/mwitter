@@ -3,11 +3,20 @@ import { Link } from 'react-router-dom'
 import Img from '../../../assets/img/SamplePic.jpg';
 import Sprite from '../../../assets/svg/feather-sprite.svg';
 
-const Mweet = ({ user, mweet, match }) => {
-  const [contWidth, setContWidth] = useState(0);
+const Mweet = ({ user, mweet, location }) => {
+  const [paddingTop, setPaddingTop] = useState(0);
   const checkUser = (user) => Object.keys(user).length;
 
-  console.log(match);
+  const getPaddingTop = (mweetData, containerWidth) => {
+    if(location.pathname === '/posts') {
+      setPaddingTop('50%');
+    } else {
+      setPaddingTop(
+        mweetData.acf.image.sizes['large-height'] / 
+        mweetData.acf.image.sizes['large-width'] * containerWidth
+      );
+    }
+  }
 
   return (
     <div className="posts__post">
@@ -50,11 +59,10 @@ const Mweet = ({ user, mweet, match }) => {
 
         <div
           className="media"
-          onLoad={(e) => setContWidth(e.target.offsetWidth)}
+          onLoad={(e) => getPaddingTop(mweet, e.target.offsetWidth)}
           style={{ 
             backgroundImage: `url(${mweet.acf.image.sizes.large})`,
-            paddingTop: mweet.acf.image.sizes['large-height'] / 
-              mweet.acf.image.sizes['large-width'] * contWidth
+            paddingTop
           }}
         >
           <img src={Img} alt="Sample" className="img" />
