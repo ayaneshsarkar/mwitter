@@ -61,8 +61,7 @@ const Mweet = ({ user, mweet, location }) => {
           className="media"
           onLoad={(e) => getPaddingTop(mweet, e.target.offsetWidth)}
           style={{ 
-            backgroundImage: `url(${mweet.acf.image.sizes.large})`,
-            paddingTop
+            backgroundImage: `url(${mweet.acf.image.sizes.large})`, paddingTop
           }}
         >
           <img src={Img} alt="Sample" className="img" />

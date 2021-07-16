@@ -298,7 +298,49 @@
           height: 100%;
           visibility: hidden;
         }
+      }
 
+      &__embedBox {
+        position: relative;
+        width: 95%;
+        background-color: $primaryColorHover;
+        border-radius: 2rem;
+        margin-top: 1.6rem;
+
+        &--embed {
+          width: 100%;
+          display: flex;
+          align-items: center;
+
+          &-image {
+            position: relative;
+            width: 30%;
+          }
+
+          &-content {
+            width: 70%;
+            justify-self: center;
+
+            .title {
+              font-size: 1.6rem;
+              font-weight: 600;
+              color: $whiteColor;
+            }
+
+            .link {
+              font-size: 1.3rem;
+              font-weight: 300;
+              color: $darkGrey;
+
+              &:hover, &:visited {
+                color: inherit;
+              }
+            }
+          }
+        }
+      }
+
+      &__mediaContent, &__embedBox &__embedBox--embed {
         .cross {
           position: absolute;
           top: 0.7rem;
@@ -324,12 +366,6 @@
             stroke: $whiteColor;
           }
         }
-      }
-
-      &__embedBox {
-        position: relative;
-        width: 95%;
-        
       }
     }
 
