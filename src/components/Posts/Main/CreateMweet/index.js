@@ -45,7 +45,13 @@ const CreatePost = ({ user, addPost }) => {
 
   const setEmbedData = async () => {
     if(!image && !video && !embedErr && embed) {
-      return await getEmbedData(embed);
+      try {
+        const data = await getEmbedData(embed);
+        console.log(data);
+        // const image = data.querySelector("meta[property='og:image']").getAttribute("content");
+      } catch(err) {
+        console.log(err.message)
+      }
     }
   }
 

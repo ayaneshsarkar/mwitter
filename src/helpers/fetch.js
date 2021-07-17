@@ -112,6 +112,7 @@ export const normalFetch = async (method, host, body) => {
     await fetch(host, {
       method,
       headers: new Headers({
+        'Access-Control-Allow-Origin' : '*',
         'Content-Type': 'application/json',
       }),
       body: (method !== 'GET') ? JSON.stringify(body) : null
@@ -128,4 +129,16 @@ export const config = async () => {
       "authorization": `Bearer ${token}`
     }
   }
+}
+
+export const getMeta = (metas, metaName) => {
+  if(Array.isArray(metas)) {
+    metas.forEach(meta => {
+      if(meta.getAttribute('name') === metaName) {
+        return meta.getAttribute('content');
+      } 
+    })
+  }
+
+  return null;
 }
