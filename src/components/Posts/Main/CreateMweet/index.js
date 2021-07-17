@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { addPost } from '../../../../actions/posts';
+import { getEmbedData } from '../../../../asynchronus/Posts/embed';
 import ProfileAvatar from './ProfileAvatar';
 import TextInput from './TextInput';
 import MediaInput from './MediaInput';
@@ -42,9 +43,16 @@ const CreatePost = ({ user, addPost }) => {
     if(vidErr) setValidationErrVid(true);
   }
 
+  const setEmbedData = async () => {
+    if(!image && !video && !embedErr && embed) {
+      return await getEmbedData(embed);
+    }
+  }
+
   useEffect(() => {
     setInputTextClass();
     setMediaErrors();
+    setEmbedData();
   });
 
   const handleSubmit = async (e) => {

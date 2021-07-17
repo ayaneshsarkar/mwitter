@@ -107,6 +107,18 @@ export const fetchAuth = async (username, password) => {
   }
 }
 
+export const normalFetch = async (method, host, body) => {
+  return (
+    await fetch(host, {
+      method,
+      headers: new Headers({
+        'Content-Type': 'application/json',
+      }),
+      body: (method !== 'GET') ? JSON.stringify(body) : null
+    })
+  );
+}
+
 export const config = async () => {
   const token = await fetchAuthRoot();
   
