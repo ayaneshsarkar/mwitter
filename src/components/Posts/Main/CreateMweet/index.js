@@ -16,6 +16,7 @@ const CreatePost = ({ user, addPost }) => {
   const [video, setVideo] = useState(null);
   const [embed, setEmbed] = useState('');
   const [embedStatus, setEmbedStatus] = useState(false);
+  const [metaData, setMetaData] = useState(null);
 
   // Errors
   const [imgErr, setImgErr] = useState('');
@@ -47,10 +48,13 @@ const CreatePost = ({ user, addPost }) => {
     if(!image && !video && !embedErr && embed) {
       try {
         const data = await getEmbedData(embed);
-        console.log(data);
-        // const image = data.querySelector("meta[property='og:image']").getAttribute("content");
+
+        if(data !== metaData) {
+          setMetaData({ ...data });
+        }
+        
       } catch(err) {
-        console.log(err.message)
+        setMetaData(null)
       }
     }
   }
@@ -110,6 +114,8 @@ const CreatePost = ({ user, addPost }) => {
             setVidErr={setVidErr}
             setVideo={setVideo}
             embed={embed}
+            embedErr={embedErr}
+            metaData={metaData}
           />
 
           {/* Image Error Popup */}

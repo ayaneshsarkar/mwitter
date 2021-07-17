@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { isImage, isVideo } from '../../../../validation/formValidation';
+import EmbedData from './EmbedData';
 import Sprite from '../../../../assets/svg/feather-sprite.svg';
 
 const MediaContent = props => {
@@ -77,7 +78,9 @@ const MediaContent = props => {
               <use xlinkHref={`${Sprite}#x`}></use>
             </svg>
           </div>
-        </div> : ''
+        </div> : (!image && !video && !props.embedErr && props.metaData) ?
+        
+        <EmbedData embed={props.metaData} /> : ''
       }
     </>
   );

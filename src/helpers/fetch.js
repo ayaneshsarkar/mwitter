@@ -132,12 +132,10 @@ export const config = async () => {
 }
 
 export const getMeta = (metas, metaName) => {
-  if(Array.isArray(metas)) {
-    metas.forEach(meta => {
-      if(meta.getAttribute('name') === metaName) {
-        return meta.getAttribute('content');
-      } 
-    })
+  for(let i = 0; i < metas.length; i++) {
+    if(metas[0].getAttribute('name') === metaName) {
+      return metas[i].getAttribute('content');
+    } 
   }
 
   return null;
