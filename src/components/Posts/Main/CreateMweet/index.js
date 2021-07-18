@@ -161,6 +161,7 @@ const CreatePost = ({ user, addPost }) => {
           <MediaInput 
             image={image}
             video={video}
+            embed={embed}
             imageRef={imageRef}
             videoRef={videoRef}
             setEmbedStatus={setEmbedStatus}

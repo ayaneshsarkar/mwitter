@@ -3,19 +3,21 @@ import Sprite from '../../../../assets/svg/feather-sprite.svg';
 
 const MediaInput = props => {
   const imageClick = () => {
-    if(!props.video) {
+    if(!props.video && !props.image && !props.embed) {
       props.imageRef.current.click();
     }
   }
 
   const videoClick = () => {
-    if(!props.image) {
+    if(!props.image && !props.video && !props.embed) {
       props.videoRef.current.click();
     }
   }
 
   const setEmbedStatus = () => {
-    props.setEmbedStatus(true);
+    if(!props.image && !props.video) {
+      props.setEmbedStatus(true);
+    }
   }
   
   return (
