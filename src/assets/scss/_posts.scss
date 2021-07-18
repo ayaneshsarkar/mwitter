@@ -325,7 +325,7 @@
 
           &-image {
             position: relative;
-            width: 25%;
+            min-width: 25%;
             height: 100%;
             border-top-left-radius: 2rem;
             border-bottom-left-radius: 2rem;
@@ -339,7 +339,7 @@
           }
 
           &-content {
-            max-width: 75%;
+            width: 75%;
             align-self: center;
             padding: 1.6rem;
 
@@ -388,7 +388,7 @@
         }
       }
 
-      &__mediaContent, &__embedBox &__embedBox--embed {
+      &__mediaContent, &__embedBox {
         .cross {
           position: absolute;
           top: 0.7rem;
@@ -412,6 +412,16 @@
             height: 4rem;
             fill: none;
             stroke: $whiteColor;
+          }
+
+          &.embed {
+            width: 4rem;
+            height: 4rem;
+
+            .embed__content {
+              width: 3rem;
+              height: 3rem;
+            }
           }
         }
       }

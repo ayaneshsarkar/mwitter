@@ -1,7 +1,7 @@
 import React from 'react';
 import Sprite from '../../../../assets/svg/feather-sprite.svg';
 
-const EmbedData = ({ embed }) => {
+const EmbedData = ({ embed, setEmbed }) => {
   return (
     <div className="createPost__embedBox">
       <div className="createPost__embedBox--embed">
@@ -20,6 +20,12 @@ const EmbedData = ({ embed }) => {
             <p className="text">{ embed.url }</p>
           </div>
         </div>
+      </div>
+
+      <div className="cross embed" onClick={() => setEmbed('')}>
+        <svg className="cross__content embed__content">
+          <use xlinkHref={`${Sprite}#x`}></use>
+        </svg>
       </div>
     </div>
   )

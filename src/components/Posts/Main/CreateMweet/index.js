@@ -17,6 +17,7 @@ const CreatePost = ({ user, addPost }) => {
   const [embed, setEmbed] = useState('');
   const [embedStatus, setEmbedStatus] = useState(false);
   const [metaData, setMetaData] = useState(null);
+  const [btnDisable, setBtnDisable] = useState(true);
 
   // Errors
   const [imgErr, setImgErr] = useState('');
@@ -51,11 +52,23 @@ const CreatePost = ({ user, addPost }) => {
 
         if(data !== metaData) {
           setMetaData({ ...data });
+          setEmbedErr('');
         }
         
       } catch(err) {
-        setMetaData(null)
+        setMetaData(null);
+        setEmbedErr('URL not found!');
       }
+    } else {
+      setMetaData(null);
+    }
+  }
+
+  const checkErrorsForBtn = () => {
+    if(!imgErr && !vidErr && !embedErr && text) {
+      setBtnDisable(false);
+    } else {
+      setBtnDisable(true);
     }
   }
 
@@ -63,6 +76,7 @@ const CreatePost = ({ user, addPost }) => {
     setInputTextClass();
     setMediaErrors();
     setEmbedData();
+    checkErrorsForBtn();
   });
 
   const handleSubmit = async (e) => {
@@ -115,6 +129,7 @@ const CreatePost = ({ user, addPost }) => {
             setVideo={setVideo}
             embed={embed}
             embedErr={embedErr}
+            setEmbed={setEmbed}
             metaData={metaData}
           />
 
@@ -149,6 +164,7 @@ const CreatePost = ({ user, addPost }) => {
             imageRef={imageRef}
             videoRef={videoRef}
             setEmbedStatus={setEmbedStatus}
+            btnDisable={btnDisable}
           />
         </form>
       </div>

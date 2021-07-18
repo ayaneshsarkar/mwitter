@@ -40,7 +40,11 @@ const MediaInput = props => {
         </li>
       </ul>
       
-      <button className="createPost__form__button" disabled>Mweet</button>
+      <button className="createPost__form__button" 
+        disabled={props.btnDisable}
+      >
+        Mweet
+      </button>
     </div>
   );
 }

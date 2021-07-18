@@ -10,7 +10,7 @@ const EmbedForm = props => {
         className=" posts"
         label="Attach URL"
         labelClass=" postLabel"
-        value={props.embed}
+        value={props.embed || ''}
         error={props.error}
         setError={props.setError}
         onChange={props.setEmbed}

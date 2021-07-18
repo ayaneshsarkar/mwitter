@@ -24,13 +24,13 @@ export const getEmbedData = async (url) => {
     const metas = doc.getElementsByTagName('meta');
     const links = doc.getElementsByTagName('link');
     const favIcon = getFavicon(links);
-    const ogImage = doc.querySelector("meta[property='og:image']")?.getAttribute("content");
+    const ogImage = doc.querySelector("meta[property='og:image']").getAttribute("content");
 
     return {
       url: url.replace(/^(?:https?:\/\/)?(?:www\.)?/i, "").split('/')[0],
       title: doc.title,
       description: metas.description.content,
-      image: ogImage || favIcon || null
+      image: favIcon || ogImage || null
     }
     
   } catch(err) {

@@ -78,9 +78,9 @@ const MediaContent = props => {
               <use xlinkHref={`${Sprite}#x`}></use>
             </svg>
           </div>
-        </div> : (!image && !video && !props.embedErr && props.metaData) ?
+        </div> : (!image && !video && !props.embedErr && props.embed && props.metaData) ?
         
-        <EmbedData embed={props.metaData} /> : ''
+        <EmbedData embed={props.metaData} setEmbed={props.setEmbed} /> : ''
       }
     </>
   );
