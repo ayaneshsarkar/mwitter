@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { createRef, useState } from 'react';
+import ContentEditable from 'react-contenteditable';
 
 const TextInput = props => {
-  const [newLineCount, setNewLineCount] = useState(0);
-  const [textHeight, setTextHeight] = useState(90);
+
+  const [contentEditableRef] = useState(createRef());
 
   const styleTextarea = (e) => {
     e.target.className = `createPost__form__text focused${props.textClass || ''}`;
@@ -14,29 +15,17 @@ const TextInput = props => {
     }
   }
 
-  const adjustTextAreaHeight = () => {
-    if(newLineCount) {
-      setTextHeight((newLineCount * 30) + 90);
-    }
-  }
-
   const setText = (e) => {
-    setTextHeight(e.target.offsetHeight);
-    setNewLineCount((e.target.value.match(/\n/g) || []).length);
-
-    adjustTextAreaHeight();
-
-    e.target.style.height = (textHeight/10) + 'rem';
     props.setValue(e.target.value);
   }
 
   return (
-    <textarea onFocus={styleTextarea} onBlur={unstyleTextarea}
+    <ContentEditable onFocus={styleTextarea} onBlur={unstyleTextarea}
+      innerRef={contentEditableRef}
       onChange={setText}
-      name="title" 
       className={`createPost__form__text${props.textClass || ''}`} 
       placeholder="What's Happening?"
-      value={props.value} 
+      html={props.value}
     />
   );
 }
