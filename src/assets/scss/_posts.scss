@@ -197,11 +197,8 @@
           backface-visibility: hidden;
           -webkit-backface-visibility: hidden;
 
-          span {
-            top: 2rem;
-          }
-
-          a, a:hover, a:visited {
+          span, a, a:hover, a:visited {
+            font-weight: 600;
             color: $linkColor;
           }
 

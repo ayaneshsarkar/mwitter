@@ -14,3 +14,22 @@ export const capitalize = string => {
   const remainingString = string.slice(1);
   return capitalizedFirstLetter + remainingString;
 }
+
+export const getHashtags = str => {
+  const regEx = /(#[a-zA-Z0-9-_]+)/g;
+  const strArr = str.split(' ');
+  const returnArr = [];
+
+  strArr.forEach(el => {
+    if(regEx.test(el)) {
+      console.log(el)
+      el = `<span>${el}</span>`
+    }
+
+    returnArr.push(el);
+  });
+
+  //console.log(returnArr);
+
+  return returnArr.join(' ');
+}
