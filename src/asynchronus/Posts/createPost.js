@@ -21,7 +21,7 @@ const extractTags = string => {
     }
   });
 
-  console.log(tags);
+  return tags;
 }
 
 const createPost = async formData => {
@@ -33,7 +33,24 @@ const createPost = async formData => {
       video: null,
       embed: formData.get('embed') || null,
     };
-    const tags = extractTags(formData.get('title'));
+
+    const tags = [];
+    const tagsStr = extractTags(formData.get('title'));
+
+    // Creating Tags
+    tagsStr.forEach(async tagStr => {
+      const tagFields = { name: tagStr };
+      
+      try {
+        const tagRes = await fetchSingleData('POST', `${server}/mweet-tags`, tagFields);
+        const tagData = await tagRes.json();
+
+        tags.push(tagData.id);
+
+      } catch(err) {
+        throw new Error(err.message);
+      }
+    });
 
     // Upload Media
     if(formData.get('video') instanceof File && formData.get('video').name) {
@@ -47,11 +64,14 @@ const createPost = async formData => {
 
     formData.forEach((val, key) => data[key] = val);
     data.fields = fields;
-    data.tags = tags;
+    data['mweet-tags'] = tags;
     data.status = 'publish';
 
+    // Sending The Actual Mweeet
     const res = await fetchSingleData('POST', `${server}/mweets`, data);
     const post = await res.json();
+
+    console.log(post);
 
     return post;
 
