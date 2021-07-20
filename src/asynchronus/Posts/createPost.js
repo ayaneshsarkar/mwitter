@@ -9,6 +9,21 @@ const sendMedia = async (formData, fileType) => {
   return file;
 }
 
+const extractTags = string => {
+  const tags = [];
+  const strippedStr = string.replace( /(<([^>]+)>)/ig, '');
+  const strArr = strippedStr.split(' ');
+
+  strArr.forEach(str => {
+    if(str.includes('#')) {
+      const hashStrippedStr = str.replace(/#([^\\s]*)/g, '$1');
+      tags.push(hashStrippedStr);
+    }
+  });
+
+  console.log(tags);
+}
+
 const createPost = async formData => {
   try {
     let data = {};
@@ -16,8 +31,9 @@ const createPost = async formData => {
       text: formData.get('title'), 
       image: null, 
       video: null,
-      embed: formData.get('embed') || null
+      embed: formData.get('embed') || null,
     };
+    const tags = extractTags(formData.get('title'));
 
     // Upload Media
     if(formData.get('video') instanceof File && formData.get('video').name) {
@@ -31,6 +47,7 @@ const createPost = async formData => {
 
     formData.forEach((val, key) => data[key] = val);
     data.fields = fields;
+    data.tags = tags;
     data.status = 'publish';
 
     const res = await fetchSingleData('POST', `${server}/mweets`, data);

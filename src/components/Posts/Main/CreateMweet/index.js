@@ -83,6 +83,7 @@ const CreatePost = ({ user, addPost }) => {
     e.preventDefault();
 
     const formData = new FormData(e.target);
+    formData.append('title', text);
 
     try {
       await addPost(formData);
