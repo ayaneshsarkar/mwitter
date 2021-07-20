@@ -109,9 +109,11 @@ const CreatePost = ({ user, addPost }) => {
           {/* File Inputs */}
           <input ref={imageRef} type="file" name="image" hidden 
             onChange={(e) => setFile(e, setImage)} 
+            // value={image || new File([''], '')}
           />
           <input ref={videoRef} type="file" name="video" hidden 
             onChange={(e) => setFile(e, setVideo)} 
+            // value={video || new File([''], '')}
           />
 
           <input type="text" name="embed" hidden value={embed} 

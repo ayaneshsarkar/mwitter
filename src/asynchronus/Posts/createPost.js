@@ -24,6 +24,24 @@ const extractTags = string => {
   return tags;
 }
 
+const createTags = async (text, tagsArr = []) => {
+  try {
+    const tagsStr = extractTags(text);
+
+    for(const i in tagsStr) {
+      const tagFields = { name: tagsStr[i] };
+      const tagRes = await fetchSingleData('POST', `${server}/mweetTags`, tagFields);
+      const tagData = await tagRes.json();
+      tagsArr.push(tagData.id);
+    };
+
+    return tagsArr;
+
+  } catch(err) {
+    throw new Error(err.message);
+  }
+}
+
 const createPost = async formData => {
   try {
     let data = {};
@@ -34,23 +52,8 @@ const createPost = async formData => {
       embed: formData.get('embed') || null,
     };
 
-    const tags = [];
-    const tagsStr = extractTags(formData.get('title'));
-
     // Creating Tags
-    tagsStr.forEach(async tagStr => {
-      const tagFields = { name: tagStr };
-      
-      try {
-        const tagRes = await fetchSingleData('POST', `${server}/mweet-tags`, tagFields);
-        const tagData = await tagRes.json();
-
-        tags.push(tagData.id);
-
-      } catch(err) {
-        throw new Error(err.message);
-      }
-    });
+    const tags = await createTags(formData.get('title'));
 
     // Upload Media
     if(formData.get('video') instanceof File && formData.get('video').name) {
@@ -64,8 +67,11 @@ const createPost = async formData => {
 
     formData.forEach((val, key) => data[key] = val);
     data.fields = fields;
-    data['mweet-tags'] = tags;
+    data.mweetTags = tags;
     data.status = 'publish';
+
+    console.log(data);
+    console.log(JSON.stringify(data));
 
     // Sending The Actual Mweeet
     const res = await fetchSingleData('POST', `${server}/mweets`, data);
