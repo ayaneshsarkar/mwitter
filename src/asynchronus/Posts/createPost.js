@@ -24,15 +24,31 @@ const extractTags = string => {
   return tags;
 }
 
+const matchTags = async tag => {
+  const res = await fetchSingleData('GET', `${server}/mweetTags?search=${tag}`, null);
+  const dataArr = await res.json();
+  let id = null;
+
+  dataArr.forEach(data => data.slug === tag.toLowerCase() ? id = data.id : null);
+  return id;
+}
+
 const createTags = async (text, tagsArr = []) => {
   try {
     const tagsStr = extractTags(text);
 
     for(const i in tagsStr) {
       const tagFields = { name: tagsStr[i] };
-      const tagRes = await fetchSingleData('POST', `${server}/mweetTags`, tagFields);
-      const tagData = await tagRes.json();
-      tagsArr.push(tagData.id);
+
+      const matchedTag = await matchTags(tagFields.name);
+
+      if(!matchedTag) {
+        const tagRes = await fetchSingleData('POST', `${server}/mweetTags`, tagFields);
+        const tagData = await tagRes.json();
+        tagsArr.push(tagData.id);
+      } else {
+        tagsArr.push(matchedTag);
+      }
     };
 
     return tagsArr;
@@ -70,14 +86,9 @@ const createPost = async formData => {
     data.mweetTags = tags;
     data.status = 'publish';
 
-    console.log(data);
-    console.log(JSON.stringify(data));
-
     // Sending The Actual Mweeet
     const res = await fetchSingleData('POST', `${server}/mweets`, data);
     const post = await res.json();
-
-    console.log(post);
 
     return post;
 
