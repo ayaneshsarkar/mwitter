@@ -1,11 +1,21 @@
 import React, { useState } from 'react';
+import { connect } from 'react-redux';
 import { Link } from 'react-router-dom'
+import { removePost } from '../../../actions/posts';
 import Img from '../../../assets/img/SamplePic.jpg';
 import Sprite from '../../../assets/svg/feather-sprite.svg';
 
-const Mweet = ({ user, mweet, location }) => {
+const Mweet = ({ user, mweet, location, removePost }) => {
   const [paddingTop, setPaddingTop] = useState(0);
   const checkUser = (user) => Object.keys(user).length;
+
+  const deleteMweet = async id => {
+    try {
+      await removePost(id);
+    } catch(err) {
+      console.error(err.message);
+    }
+  }
 
   const getPaddingTop = (mweetData, containerWidth) => {
     if(location.pathname === '/posts') {
@@ -45,7 +55,7 @@ const Mweet = ({ user, mweet, location }) => {
           </Link>
 
           {(checkUser(user) && (mweet.author === user.id)) ? 
-            <div className="postDelete">
+            <div className="postDelete" onClick={() => deleteMweet(mweet.id)}>
               <svg className="postDelete__icon">
                 <use xlinkHref={`${Sprite}#trash`}></use>
               </svg>
@@ -53,8 +63,7 @@ const Mweet = ({ user, mweet, location }) => {
           }
         </div>
 
-        <p className="text">
-          { mweet.acf.text || '' }
+        <p className="text" dangerouslySetInnerHTML={{ __html: mweet.acf.text }}>
         </p>
 
         {mweet.acf.image ? 
@@ -75,4 +84,4 @@ const Mweet = ({ user, mweet, location }) => {
   );
 }
 
-export default Mweet;
+export default connect(null, { removePost })(Mweet);

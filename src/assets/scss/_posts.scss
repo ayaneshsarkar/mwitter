@@ -549,6 +549,15 @@
         font-weight: 400;
         white-space: pre-wrap;
         line-height: 2.3rem;
+
+        span, a, a:hover, a:visited {
+          font-weight: 600;
+          color: $linkColor;
+        }
+
+        span:hover {
+          cursor: pointer;
+        }
       }
 
       .media {

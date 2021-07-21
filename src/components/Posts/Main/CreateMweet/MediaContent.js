@@ -10,7 +10,7 @@ const MediaContent = props => {
   const setActualMedia = (media, currentMedia, callback, error) => {
     if(media instanceof File && media.name && !currentMedia && !error) {
       callback(media);
-    } 
+    }
   }
 
   const setActualMediaOnChange = () => {
@@ -51,13 +51,13 @@ const MediaContent = props => {
 
   return (
     <>
-      {(image) ? 
+      {(image &&  props.image) ? 
         <div className="createPost__mediaContent"
-          style={{ backgroundImage: `url(${URL.createObjectURL(image)})` }}
+          style={{ backgroundImage: `url(${image ? URL.createObjectURL(image) : ''})` }}
         >
           <img 
-            src={URL.createObjectURL(props.image)} 
-            alt={props.image.name} 
+            src={image ? URL.createObjectURL(props.image) : ''} 
+            alt={image ? props.image.name : ''} 
             className="img" 
           />
 
@@ -66,7 +66,7 @@ const MediaContent = props => {
               <use xlinkHref={`${Sprite}#x`}></use>
             </svg>
           </div>
-        </div> : (video) ?
+        </div> : (video && props.video) ?
 
         <div className="createPost__mediaContent">
           <video className="video" muted controls>
