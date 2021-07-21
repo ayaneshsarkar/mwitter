@@ -15,21 +15,26 @@ export const capitalize = string => {
   return capitalizedFirstLetter + remainingString;
 }
 
+
 export const getHashtags = str => {
-  const regEx = /(#[a-zA-Z0-9-_]+)/g;
-  const strArr = str.split(' ');
+  const safeStr = str.replace(/<\/?script[^>]*>/g, '');
+  const pureStr = safeStr.replace(/<\/?span[^>]*>/g, '');
+  const regExHash = /(#[a-zA-Z0-9-_]+)/g;
+  const regExProfile = /(@[a-zA-Z0-9-_]+)/g;
+  const regExSpcial = /[`!$%^&*()_+\-=[\]{};':"\\|,.<>/?~`]/;
+  const strArr = pureStr.split(' ');
   const returnArr = [];
 
   strArr.forEach(el => {
-    if(regEx.test(el)) {
-      console.log(el)
+    if((regExHash.test(el) || regExProfile.test(el)) && !regExSpcial.test(el)) {
       el = `<span>${el}</span>`
     }
+
+    if(/\n/g.test(el)) console.log('new Line');
 
     returnArr.push(el);
   });
 
-  //console.log(returnArr);
 
   return returnArr.join(' ');
 }
