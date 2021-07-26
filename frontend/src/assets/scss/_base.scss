@@ -1,0 +1,118 @@
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+html {
+  box-sizing: border-box;
+  font-size: 62.5% !important;
+}
+
+body {
+  font-family: 'Nunito', sans-serif;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.6;
+  background-color: $dimBlack;
+  color: $whiteColor;
+  overflow-x: hidden;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+
+  &:link, &:visited {
+    color: inherit;
+  }
+}
+
+ul {
+  list-style: none;
+}
+
+input {
+  border: none;
+  font-family: inherit;
+  font-weight: inherit;
+  font-size: inherit;
+
+  &:focus {
+    outline: none !important;
+    border: none !important;
+    box-shadow: none !important;
+  }
+
+  &::placeholder {
+    font-size: inherit;
+    font-family: inherit;
+    font-weight: inherit;
+    color: inherit;
+  }
+}
+
+textarea {
+  font-size: inherit;
+  font-family: inherit;
+  font-weight: inherit;
+  outline: none;
+}
+
+button {
+  border: none;
+  outline: none !important;
+  color: inherit;
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+}
+
+.img, .video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  max-width: 100%;
+}
+
+.primaryHeading {
+  font-family: inherit;
+  font-weight: 800;
+  font-size: 5rem;
+  text-align: center;
+  padding: 0 0 7rem 0;
+}
+
+.br-none {
+  border-radius: 0 !important;
+}
+
+.fullWidth {
+  width: 100% !important;
+}
+
+.fullHeight {
+  height: 100% !important;
+}
+
+.fullVhHeight {
+  height: 100vh !important;
+}
+
+.flex {
+  display: flex;
+
+  &.align-items-center {
+    align-items: center;
+  }
+
+  &.justify-content-center {
+    justify-content: center;
+  }
+}
+
+.br-none {
+  border-radius: 0;
+}
