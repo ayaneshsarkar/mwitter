@@ -10,19 +10,15 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    env: 
-      working-dir: './frontend'
+    defaults: 
+      run: 
+        shell: bash
+        working-directory: frontend
     steps:
       - uses: actions/checkout@v2
-      - name: frontend directory
-        run: ls
-        working-directory: ${{env.working-dir}}
       - uses: actions/setup-node@v2
         with:
           node-version: '14'
-      - name: frontend directory
-        run: ls
-        working-directory: ${{env.working-dir}}
       - run: npm install
       - run: npm run build
         
