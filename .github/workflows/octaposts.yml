@@ -19,7 +19,7 @@ jobs:
           node-version: '14'
       - name: frontend directory
         run: ls
-        working-directory: ${{env.working-directory}}
+        working-directory: ${{env.working-dir}}
       - run: npm install
       - run: npm run build
         
