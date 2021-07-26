@@ -14,12 +14,12 @@ jobs:
       working-dir: './frontend'
     steps:
       - uses: actions/checkout@v2
-      - uses: actions/setup-node@v2
-        with:
-          node-version: '14'
       - name: frontend directory
         run: ls
         working-directory: ${{env.working-dir}}
+      - uses: actions/setup-node@v2
+        with:
+          node-version: '14'
       - run: npm install
       - run: npm run build
         
