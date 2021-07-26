@@ -3,13 +3,15 @@ name: octaposts
 
 on:
   push:
-    paths: "frontend/**"
+    branches: [ dev ]
 
   workflow_dispatch:
 
 jobs:
   build:
     runs-on: ubuntu-latest
+    env: 
+      working-dir: './frontend'
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v2
