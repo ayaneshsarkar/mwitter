@@ -3,7 +3,7 @@ name: octaposts
 
 on:
   push:
-    branches: [ dev ]
+    paths: "frontend/**"
 
   workflow_dispatch:
 
