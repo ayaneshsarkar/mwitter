@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom'
 import { removePost } from '../../../actions/posts';
+import history from '../../../config/history';
 import Img from '../../../assets/img/SamplePic.jpg';
 import Sprite from '../../../assets/svg/feather-sprite.svg';
 
@@ -28,6 +29,15 @@ const Mweet = ({ user, mweet, location, removePost }) => {
     }
   }
 
+  const getTag = (e) => {
+    const tagName = e.target.tagName.toLowerCase();
+
+    if(tagName === 'span') {
+      const tag = e.target.textContent.slice(1, e.target.textContent.length);
+      history.push(`/tag/${tag}`);
+    }
+  }
+
   return (
     <div className="posts__post">
       <div className="posts__post--avatar">
@@ -45,7 +55,6 @@ const Mweet = ({ user, mweet, location, removePost }) => {
           <Link to="/posts" className="profile__info">
             <h4 className="profile__info--title">
               { checkUser(user) ? user.name : '' }
-              {/* Donald J. Trump 🔴⚪ */}
             </h4>
             <p className="profile__info--handle">
               @{ checkUser(user) ? user.slug : '' }
@@ -63,7 +72,9 @@ const Mweet = ({ user, mweet, location, removePost }) => {
           }
         </div>
 
-        <p className="text" dangerouslySetInnerHTML={{ __html: mweet.acf.text }}>
+        <p 
+          onClick={(e) => getTag(e)}
+          className="text" dangerouslySetInnerHTML={{ __html: mweet.acf.text }}>
         </p>
 
         {mweet.acf.image ? 

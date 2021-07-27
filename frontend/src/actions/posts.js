@@ -1,5 +1,6 @@
 import { GET_POSTS, CREATE_POST, DELETE_POST } from './type';
 import { getPosts, deletePost } from '../asynchronus/Posts';
+import { searchPostsByTerm, searchPostsByTag } from '../asynchronus/Posts/searchPosts';
 import createPost from '../asynchronus/Posts/createPost';
 
 export const getAllPosts = () => async dispatch => {
@@ -27,6 +28,16 @@ export const removePost = id => async dispatch => {
     await deletePost(id);
     dispatch({ type: DELETE_POST, payload: id });
 
+  } catch(err) {
+    throw new Error(err.message);
+  }
+}
+
+export const getPostsBySearch = (search, tag = false) => async dispatch => {
+  try {
+    const posts = !tag ? await searchPostsByTerm(search) : await searchPostsByTag(search);
+    dispatch({ type: GET_POSTS, payload: posts });
+    
   } catch(err) {
     throw new Error(err.message);
   }

@@ -6,12 +6,10 @@ import history from './config/history';
 import Home from './pages';
 import Posts from './pages/posts';
 import './assets/scss/index.scss';
-import {server} from './config/server';
 
 const App = props => {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => props.verifyAuth(), []);
-  console.log(server)
 
   return (
     <>
