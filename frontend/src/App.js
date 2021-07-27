@@ -6,6 +6,7 @@ import history from './config/history';
 import Home from './pages';
 import Posts from './pages/posts';
 import Searh from './pages/search';
+import Tag from './pages/tag';
 import './assets/scss/index.scss';
 
 const App = props => {
@@ -18,7 +19,8 @@ const App = props => {
         <Switch>
           <Route exact path="/" component={Home} />
           <Route exact path="/posts" component={Posts} />
-          <Route exact path="/search/:term" component={Searh} />
+          <Route path="/search/:term" component={Searh} />
+          <Route path="/tag/:tag" component={Tag} />
         </Switch>
       </Router>
     </>

@@ -1,27 +1,25 @@
-import React from 'react';
-// import { connect } from 'react-redux';
-// import { getAllPosts } from '../actions/posts';
-//import PostsLayout from '../components/Posts/PostsLayout';
+import React, { useEffect } from 'react';
+import { connect } from 'react-redux';
+import { getPostsBySearch } from '../actions/posts';
+import PostsLayout from '../components/Posts/PostsLayout';
 import PostContainer from '../containers/Posts/PostContainer';
 
-const Search = (props) => {
+const Search = ({ getPostsBySearch, match, user, posts, location  }) => {
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  //useEffect(() => props.getAllPosts(), []);
-
-  console.log(props)
+  useEffect(() => getPostsBySearch(match.params.term), []);
   
   return (
     <PostContainer>
-      {/* <PostsLayout user={props.user} posts={props.posts} location={props.location} /> */}
+      <PostsLayout user={user} posts={posts} location={location} />
     </PostContainer>
   );
 }
 
-// const mapStateToProps = state => {
-//   return {
-//     user: state.auth.user,
-//     posts: Object.values(state.posts).sort((a, b) => b.id - a.id)
-//   }
-// }
+const mapStateToProps = state => {
+  return {
+    user: state.auth.user,
+    posts: Object.values(state.posts).sort((a, b) => b.id - a.id)
+  }
+}
 
-export default Search;
+export default connect(mapStateToProps, { getPostsBySearch })(Search);

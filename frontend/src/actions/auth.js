@@ -9,7 +9,7 @@ export const verifyAuth = () => async dispatch => {
 
   if(user) {
     dispatch({ type: VERIFY_USER, payload: user });
-    history.push('/posts');
+    // history.push('/posts');
   }
 }
 

@@ -24,7 +24,7 @@ export const searchPostsByTag = async tag => {
     const tagId = await getTagId(tag);
     
     if(tagId) {
-      const res = await fetchSingleData('GET', `${server}/mweets?tags=${tagId}`, null);
+      const res = await fetchSingleData('GET', `${server}/mweets?mweetTags=${tagId}`, null);
       const data = await res.json();
       return data;
 

@@ -19,7 +19,8 @@ const Mweet = ({ user, mweet, location, removePost }) => {
   }
 
   const getPaddingTop = (mweetData, containerWidth) => {
-    if(location.pathname === '/posts') {
+    if(location.pathname === '/posts' || location.pathname.includes('search')
+    || location.pathname.includes('tag')) {
       setPaddingTop('50%');
     } else {
       setPaddingTop(

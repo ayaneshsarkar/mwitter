@@ -36,9 +36,10 @@ export const removePost = id => async dispatch => {
 export const getPostsBySearch = (search, tag = false) => async dispatch => {
   try {
     const posts = !tag ? await searchPostsByTerm(search) : await searchPostsByTag(search);
+    console.log(posts);
     dispatch({ type: GET_POSTS, payload: posts });
     
   } catch(err) {
-    throw new Error(err.message);
+    console.error(err.message);
   }
 }
