@@ -15,9 +15,13 @@
 
     display: flex;
     flex-direction: column;
-    padding: 0 3rem;
+    // padding: 0 3rem;
     border-right: 1px solid $greyBorder;
     overflow-y: auto;
+
+    &_container {
+      padding: 0 3rem;
+    }
 
     &--logo {
       margin: 3rem 0 3rem 0;
@@ -126,22 +130,22 @@
 
   .main {
     display: flex;
+    width: 52.7vw;
     margin-left: 31.5rem;
-    // border-left: 1px solid $greyBorder;
   }
 
   &__main {
-    width: 52.7vw;
+    width: 100%;
 
     &_nav {
       position: fixed;
       top: 0;
-      width: 52.7vw;
+      width: 52.6vw;
       height: 6rem;
       padding: 2rem;
       border-bottom: 1px solid $greyBorder;
-      border-left: $greyBorder;
       background-color: $dimBlack;
+      //border-right: 1px solid $greyBorder;
 
       display: flex;
       align-items: center;
