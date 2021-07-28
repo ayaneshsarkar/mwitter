@@ -18,7 +18,7 @@ const Tag = ({ getPostsBySearch, match, user, posts, location  }) => {
 const mapStateToProps = state => {
   return {
     user: state.auth.user,
-    posts: Object.values(state.posts).sort((a, b) => b.id - a.id)
+    posts: Object.values(state.searchResults).sort((a, b) => b.id - a.id)
   }
 }
 

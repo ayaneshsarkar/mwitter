@@ -1,14 +1,32 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom'
 import { removePost } from '../../../actions/posts';
+import { getMediaUrl, getUser } from '../../../asynchronus/Posts';
 import history from '../../../config/history';
 import Img from '../../../assets/img/SamplePic.jpg';
 import Sprite from '../../../assets/svg/feather-sprite.svg';
 
 const Mweet = ({ user, mweet, location, removePost }) => {
+  const [author, setAuthor] = useState(null);
+  const [mweetAuthorUrl, setMweetAuthorUrl] = useState(null);
   const [paddingTop, setPaddingTop] = useState(0);
-  const checkUser = (user) => Object.keys(user).length;
+  const checkUser = user => Object.keys(user).length;
+
+  useEffect(() => {
+    getAuthorImage(parseInt(mweet.acf.authorImage));
+    getAuthor(mweet.author);
+  }, [mweet.acf.authorImage, mweet.author]);
+
+  const getAuthorImage = async mediaId => {
+    const mediaUrl = await getMediaUrl(mediaId);
+    setMweetAuthorUrl(mediaUrl);
+  }
+
+  const getAuthor = async authorId => {
+    const author = await getUser(authorId);
+    setAuthor(author);
+  }
 
   const deleteMweet = async id => {
     try {
@@ -41,24 +59,26 @@ const Mweet = ({ user, mweet, location, removePost }) => {
 
   return (
     <div className="posts__post">
+      {/* Profile Image */}
       <div className="posts__post--avatar">
         <div 
           className="posts__post--icon"
           style={{ 
-            backgroundImage: `url(${checkUser(user) ? user.acf.avatar.sizes.large : ''})`
+            backgroundImage: `url(${mweetAuthorUrl ? mweetAuthorUrl : ''})`
           }}
           >
         </div>
       </div>
 
+      {/* Profile Content */}
       <div className="posts__post--content">
         <div className="profile">
           <Link to="/posts" className="profile__info">
             <h4 className="profile__info--title">
-              { checkUser(user) ? user.name : '' }
+              { author ? author.name : '' }
             </h4>
             <p className="profile__info--handle">
-              @{ checkUser(user) ? user.slug : '' }
+              @{ author ? author.slug : '' }
             </p>
             <p className="dot">.</p>
             <p className="profile__info--time">5m</p>
@@ -73,6 +93,7 @@ const Mweet = ({ user, mweet, location, removePost }) => {
           }
         </div>
 
+        {/* Mweet Content */}
         <p 
           onClick={(e) => getTag(e)}
           className="text" dangerouslySetInnerHTML={{ __html: mweet.acf.text }}>

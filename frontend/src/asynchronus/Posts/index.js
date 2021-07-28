@@ -24,3 +24,27 @@ export const deletePost = async id => {
     throw new Error(err.message);
   }
 }
+
+export const getMediaUrl = async mediaId => {
+  try {
+    const res = await fetchSingleData('GET', `${server}/media/${mediaId}`, null);
+    const data = await res.json();
+
+    return data ? data.media_details.sizes.large.source_url : null;
+
+  } catch(err) {
+    console.error(err.message);
+  }
+}
+
+export const getUser = async userId => {
+  try {
+    const res = await fetchSingleData('GET', `${server}/users/${userId}`, null);
+    const data = await res.json();
+  
+    return data;
+    
+  } catch(err) {
+    console.error(err.message);
+  }
+}
