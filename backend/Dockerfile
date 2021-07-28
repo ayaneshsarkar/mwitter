@@ -1,4 +1,4 @@
-FROM wordpress:5.8.0
+FROM wordpress:5.8.0-php8.0-fpm-alpine
 
 WORKDIR /var/www/html
 
