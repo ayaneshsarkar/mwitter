@@ -5,8 +5,7 @@ import PostsLayout from '../components/Posts/PostsLayout';
 import PostContainer from '../containers/Posts/PostContainer';
 
 const Search = ({ getPostsBySearch, match, user, posts, location  }) => {
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  useEffect(() => getPostsBySearch(match.params.term), []);
+  useEffect(() => getPostsBySearch(match.params.term), [getPostsBySearch, match.params.term]);
   
   return (
     <PostContainer>
