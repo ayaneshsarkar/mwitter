@@ -11,6 +11,10 @@ const Tags = () => {
           </svg>
           <input type="text" className="tags__search--input" placeholder="Search Mwitter" />
         </form>
+
+        <ul className="tags__list">
+          
+        </ul>
       </div>
     </aside>
   );

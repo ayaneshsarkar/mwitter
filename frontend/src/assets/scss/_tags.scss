@@ -41,6 +41,19 @@
   }
 
   &__list {
-    
+    width: 100%;
+    margin-top: 7.5rem;
+
+    &--item {
+      width: 100%;
+      padding-left: 1.6rem;
+      color: $whiteColor;
+
+      &-link {
+        color: inherit;
+        font-size: 2rem;
+        font-weight: 800;
+      }
+    }
   }
 }
