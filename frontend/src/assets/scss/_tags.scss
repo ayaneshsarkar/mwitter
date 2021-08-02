@@ -1,0 +1,46 @@
+.tags {
+  margin: 0 1.6rem;
+
+  &__search {
+    position: fixed;
+    top: 1rem;
+    right: 1.3rem;
+    width: 29rem;
+    height: 5rem;
+    font-size: 1.6rem;
+    color: $whiteColor;
+    background-color: $searchColor;
+    border-radius: 10rem;
+    transition: $mainTransition;
+
+    display: flex;
+    align-items: center;
+
+    &--input {
+      width: 100%;
+      padding: 2.3rem;
+      background-color: transparent;
+      color: inherit;
+      font-size: inherit;
+      border-radius: inherit;
+      margin-left: -1.6rem;
+
+      &::placeholder {
+        color: $lightGrey;
+      }
+    }
+
+    &--icon {
+      width: 2.3rem;
+      height: 2.3rem;
+      margin-left: 1.6rem;
+      fill: none;
+      stroke: $lightGrey;
+      stroke-width: 0.1rem;
+    }
+  }
+
+  &__list {
+    
+  }
+}

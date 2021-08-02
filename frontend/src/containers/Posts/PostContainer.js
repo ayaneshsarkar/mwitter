@@ -1,6 +1,7 @@
 import React from 'react';
 import PostNav from '../../components/Posts/Nav';
 import PostWrapper from './PostWrapper';
+import Tags from '../../components/Posts/Tags';
 
 const PostContainer = props => {
   return (
@@ -9,7 +10,7 @@ const PostContainer = props => {
       <main className="main">
         { props.children }
       </main>
-      <div className="rest"></div>
+      <Tags />
     </PostWrapper>
   );
 }
