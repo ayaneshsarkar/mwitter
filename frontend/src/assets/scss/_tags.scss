@@ -24,7 +24,7 @@
     color: $whiteColor;
     background-color: $searchColor;
     border-radius: 10rem;
-    transition: $mainTransition;
+    // transition: $mainTransition;
 
     display: flex;
     align-items: center;
@@ -60,6 +60,10 @@
       stroke: $lightGrey;
       stroke-width: 0.1rem;
     }
+  }
+
+  &__search:focus-within {
+    border: 0.2rem solid $primaryColor;
   }
 
   &__list {
