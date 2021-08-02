@@ -63,14 +63,14 @@
     background-color: $postBreaker;
     border-radius: 2rem;
 
+    &__box {
+      width: 100%;
+    }
+
     &--item {
       width: 100%;
       padding: 2rem 1.6rem;
       color: $whiteColor;
-      
-      &:not(:last-of-type) {
-        border-bottom: 0.1rem solid $greyBorder;
-      }
 
       &-link, &-heading {
         color: inherit;
@@ -85,6 +85,14 @@
         font-size: 1.9rem;
         color: $extraLightGrey;
         font-weight: 600;
+      }
+
+      &:hover {
+        cursor: pointer;
+      }
+
+      &:not(:last-of-type) {
+        border-bottom: 0.1rem solid $greyBorder;
       }
     }
   }

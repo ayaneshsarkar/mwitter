@@ -1,51 +1,27 @@
-import React from 'react';
-import Sprite from '../../../assets/svg/feather-sprite.svg';
+import React, { useEffect } from 'react';
+import { connect } from 'react-redux';
+import { getAllTags } from '../../../actions/tags';
+import Search from './Search';
+import TagList from './TagList';
 
-const Tags = () => {
+const Tags = ({ getAllTags, tags }) => {
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  useEffect(() => getAllTags(), []);
+
   return (
     <aside className="rest">
       <div className="tags">
-        <div className="tags__searchBox">
-          <form className="tags__search">
-            <svg className="tags__search--icon">
-              <use xlinkHref={`${Sprite}#search`}></use>
-            </svg>
-            <input type="text" className="tags__search--input" placeholder="Search Mwitter" />
-          </form>
-        </div>
-
-        <ul className="tags__list">
-          <li className="tags__list--item">
-            <div className="tags__list--item-heading">What's Happening</div>
-          </li>
-
-          <li className="tags__list--item">
-            <div className="tags__list--item-link">
-              <a href="/posts">#Witcher</a>
-            </div>
-          </li>
-
-          <li className="tags__list--item">
-            <div className="tags__list--item-link">
-              <a href="/posts">#Witcher</a>
-            </div>
-          </li>
-
-          <li className="tags__list--item">
-            <div className="tags__list--item-link">
-              <a href="/posts">#Witcher</a>
-            </div>
-          </li>
-
-          <li className="tags__list--item">
-            <div className="tags__list--item-link">
-              <a href="/posts">#Witcher</a>
-            </div>
-          </li>
-        </ul>
+        <Search />
+        <TagList tags={tags} />
       </div>
     </aside>
   );
 }
 
-export default Tags;
+const mapStateToProps = state => {
+  return {
+    tags: Object.values(state.tags)
+  };
+}
+
+export default connect(mapStateToProps, { getAllTags })(Tags);
