@@ -1,12 +1,25 @@
 .tags {
   margin: 0 1.6rem;
+  margin-bottom: 5rem;
+
+  &__searchBox {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 23vw;
+    height: 6rem;
+    background-color: $dimBlack;
+    border-left: 0.1rem solid $greyBorder;
+    transition: $mainTransition;
+
+    display: flex;
+    justify-content: center;
+  }
 
   &__search {
-    position: fixed;
-    top: 1rem;
-    right: 1.3rem;
-    width: 29rem;
-    height: 5rem;
+    margin-top: 0.5rem;
+    width: 90%;
+    height: 80%;
     font-size: 1.6rem;
     color: $whiteColor;
     background-color: $searchColor;
@@ -24,6 +37,10 @@
       font-size: inherit;
       border-radius: inherit;
       margin-left: -1.6rem;
+
+      &:focus, &:hover {
+        cursor: text;
+      }
 
       &::placeholder {
         color: $lightGrey;
@@ -43,16 +60,31 @@
   &__list {
     width: 100%;
     margin-top: 7.5rem;
+    background-color: $postBreaker;
+    border-radius: 2rem;
 
     &--item {
       width: 100%;
-      padding-left: 1.6rem;
+      padding: 2rem 1.6rem;
       color: $whiteColor;
+      
+      &:not(:last-of-type) {
+        border-bottom: 0.1rem solid $greyBorder;
+      }
 
-      &-link {
+      &-link, &-heading {
         color: inherit;
         font-size: 2rem;
+      }
+
+      &-heading {
         font-weight: 800;
+      }
+
+      &-link {
+        font-size: 1.9rem;
+        color: $extraLightGrey;
+        font-weight: 600;
       }
     }
   }
