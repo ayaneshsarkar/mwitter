@@ -112,6 +112,23 @@ const Mweet = ({ user, mweet, location, removePost }) => {
           : ''
         }
 
+        <ul className="icons">
+          <li className="item">
+            <svg className="icon">
+              <use xlinkHref={`${Sprite}#heart`}></use>
+            </svg>
+          </li>
+          <li className="item">
+            <svg className="icon">
+              <use xlinkHref={`${Sprite}#message-circle`}></use>
+            </svg>
+          </li>
+          <li className="item">
+            <svg className="icon">
+              <use xlinkHref={`${Sprite}#share`}></use>
+            </svg>
+          </li>
+        </ul>
       </div>
     </div>
   );

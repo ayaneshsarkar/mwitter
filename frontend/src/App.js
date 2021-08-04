@@ -14,16 +14,14 @@ const App = props => {
   useEffect(() => props.verifyAuth(), []);
 
   return (
-    <>
-      <Router history={history}>
-        <Switch>
-          <Route exact path="/" component={Home} />
-          <Route exact path="/posts" component={Posts} />
-          <Route path="/search/:term" component={Searh} />
-          <Route path="/tag/:tag" component={Tag} />
-        </Switch>
-      </Router>
-    </>
+    <Router history={history}>
+      <Switch>
+        <Route exact path="/" component={Home} />
+        <Route exact path="/posts" component={Posts} />
+        <Route path="/search/:term" component={Searh} />
+        <Route path="/tag/:tag" component={Tag} />
+      </Switch>
+    </Router>
   );
 }
 
