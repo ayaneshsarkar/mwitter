@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 import { removePost } from '../../../actions/posts';
 import { getMediaUrl, getUser } from '../../../asynchronus/Posts';
 import history from '../../../config/history';
+import CommentAlert from './CommentAlert';
 import Img from '../../../assets/img/SamplePic.jpg';
 import Sprite from '../../../assets/svg/feather-sprite.svg';
 
@@ -11,6 +12,7 @@ const Mweet = ({ user, mweet, location, removePost }) => {
   const [author, setAuthor] = useState(null);
   const [mweetAuthorUrl, setMweetAuthorUrl] = useState(null);
   const [paddingTop, setPaddingTop] = useState(0);
+  const [commentBox, setCommentBox] = useState(false);
   const checkUser = user => Object.keys(user).length;
 
   useEffect(() => {
@@ -130,6 +132,8 @@ const Mweet = ({ user, mweet, location, removePost }) => {
           </li>
         </ul>
       </div>
+
+      <CommentAlert open={commentBox} setClose={setCommentBox} />
     </div>
   );
 }
