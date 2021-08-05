@@ -161,6 +161,11 @@
       margin-top: 6rem;
       border-bottom: 1px solid $greyBorder;
 
+      &.popUp {
+        margin-top: 0 !important;
+        border-bottom: none !important;
+      }
+
       &__profile {
         padding: 1rem 2rem;
 

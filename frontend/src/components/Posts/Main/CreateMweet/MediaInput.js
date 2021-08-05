@@ -23,29 +23,33 @@ const MediaInput = props => {
   return (
     <div className="createPost__form__media">
       <ul className="mediaMenus">
-        <li className="mediaMenus__item" onClick={imageClick}>
-          <svg className="mediaMenus__item--link">
-            <use xlinkHref={`${Sprite}#image`}></use>
-          </svg>
-        </li>
+        {!props.comment ? 
+        <>
+          <li className="mediaMenus__item" onClick={imageClick}>
+            <svg className="mediaMenus__item--link">
+              <use xlinkHref={`${Sprite}#image`}></use>
+            </svg>
+          </li>
 
-        <li className="mediaMenus__item" onClick={videoClick}>
-          <svg className="mediaMenus__item--link">
-            <use xlinkHref={`${Sprite}#youtube`}></use>
-          </svg>
-        </li>
+          <li className="mediaMenus__item" onClick={videoClick}>
+            <svg className="mediaMenus__item--link">
+              <use xlinkHref={`${Sprite}#youtube`}></use>
+            </svg>
+          </li>
 
-        <li className="mediaMenus__item" onClick={setEmbedStatus}>
-          <svg className="mediaMenus__item--link">
-            <use xlinkHref={`${Sprite}#paperclip`}></use>
-          </svg>
-        </li>
+          <li className="mediaMenus__item" onClick={setEmbedStatus}>
+            <svg className="mediaMenus__item--link">
+              <use xlinkHref={`${Sprite}#paperclip`}></use>
+            </svg>
+          </li>
+        </>
+        : ''}
       </ul>
       
       <button className="createPost__form__button" 
         disabled={props.btnDisable}
       >
-        Mweet
+        {!props.comment ? 'Mweet' : 'Reply' }
       </button>
     </div>
   );

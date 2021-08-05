@@ -9,7 +9,7 @@ import Embed from './Embed';
 import PostValidationAlert from '../../../../alerts/PostValidationAlert';
 import MediaContent from './MediaContent';
 
-const CreatePost = ({ user, addPost }) => {
+const CreatePost = ({ user, addPost, popUp, comment }) => {
   const [text, setText] = useState('');
   const [textClass, setTextClass] = useState('');
   const [image, setImage] = useState(null);
@@ -98,7 +98,7 @@ const CreatePost = ({ user, addPost }) => {
 
   return (
     <>
-      <div className="createPost">
+      <div className={`createPost${popUp ? ' popUp' : ''}`}>
         <ProfileAvatar user={user} />
         
         <form className="createPost__form" onSubmit={handleSubmit} 
@@ -106,60 +106,71 @@ const CreatePost = ({ user, addPost }) => {
         >
           <TextInput user={user} textClass={textClass} value={text} setValue={setText} />
 
-          {/* File Inputs */}
-          <input ref={imageRef} type="file" name="image" hidden 
-            onChange={(e) => setFile(e, setImage)} 
-            // value={image || new File([''], '')}
-          />
-          <input ref={videoRef} type="file" name="video" hidden 
-            onChange={(e) => setFile(e, setVideo)} 
-            // value={video || new File([''], '')}
-          />
+          
 
-          <input type="text" name="embed" hidden value={embed} 
-            onChange={(e) => setEmbed(e.target.value)}
-          />
+          {/* File Inputs */}
+          {!popUp ? 
+            <>
+              <input ref={imageRef} type="file" name="image" hidden 
+                onChange={(e) => setFile(e, setImage)} 
+                // value={image || new File([''], '')}
+              />
+              <input ref={videoRef} type="file" name="video" hidden 
+                onChange={(e) => setFile(e, setVideo)} 
+                // value={video || new File([''], '')}
+              />
+
+              <input type="text" name="embed" hidden value={embed} 
+                onChange={(e) => setEmbed(e.target.value)}
+              /> 
+            </>
+            : ''
+          }
 
           {/* Selected Media */}
-          <MediaContent 
-            image={image}
-            imgErr={imgErr}
-            setImgErr={setImgErr}
-            setImage={setImage}
-            video={video}
-            vidErr={vidErr}
-            setVidErr={setVidErr}
-            setVideo={setVideo}
-            embed={embed}
-            embedErr={embedErr}
-            setEmbed={setEmbed}
-            metaData={metaData}
-          />
+          {!comment ? 
+            <>
+              <MediaContent 
+                image={image}
+                imgErr={imgErr}
+                setImgErr={setImgErr}
+                setImage={setImage}
+                video={video}
+                vidErr={vidErr}
+                setVidErr={setVidErr}
+                setVideo={setVideo}
+                embed={embed}
+                embedErr={embedErr}
+                setEmbed={setEmbed}
+                metaData={metaData}
+              />
 
-          {/* Image Error Popup */}
-          <PostValidationAlert 
-            open={validationErrImg}
-            setClose={setValidationErrImg}
-            error={imgErr}
-            optionalErr={setImgErr}
-          />
+              {/* Image Error Popup */}
+              <PostValidationAlert 
+                open={validationErrImg}
+                setClose={setValidationErrImg}
+                error={imgErr}
+                optionalErr={setImgErr}
+              />
 
-          {/* Video Error Popup */}
-          <PostValidationAlert 
-            open={validationErrVid}
-            setClose={setValidationErrVid}
-            error={vidErr}
-            optionalErr={setVidErr}
-          />
+              {/* Video Error Popup */}
+              <PostValidationAlert 
+                open={validationErrVid}
+                setClose={setValidationErrVid}
+                error={vidErr}
+                optionalErr={setVidErr}
+              />
 
-          <Embed
-            embed={embed}
-            setEmbed={setEmbed}
-            embedStatus={embedStatus} 
-            setEmbedStatus={setEmbedStatus}
-            error={embedErr}
-            setErr={setEmbedErr} 
-          />
+              <Embed
+                embed={embed}
+                setEmbed={setEmbed}
+                embedStatus={embedStatus} 
+                setEmbedStatus={setEmbedStatus}
+                error={embedErr}
+                setErr={setEmbedErr} 
+              />
+            </>
+          : ''}
 
           <MediaInput 
             image={image}
@@ -169,11 +180,12 @@ const CreatePost = ({ user, addPost }) => {
             videoRef={videoRef}
             setEmbedStatus={setEmbedStatus}
             btnDisable={btnDisable}
+            comment={comment}
           />
         </form>
       </div>
 
-      <div className="breaker"></div>
+      {popUp ? '' : <div className="breaker"></div>}
     </>
   );
 }

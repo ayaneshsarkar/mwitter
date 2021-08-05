@@ -133,7 +133,7 @@ const Mweet = ({ user, mweet, location, removePost }) => {
         </ul>
       </div>
 
-      <CommentAlert open={commentBox} setClose={setCommentBox} />
+      <CommentAlert open={commentBox} setClose={setCommentBox} user={user} />
     </div>
   );
 }

@@ -5,6 +5,10 @@
   padding: 4rem;
   min-width: 65vw;
 
+  &.commentBox {
+    padding: 2rem;
+  }
+
   .embedHead {
     display: flex;
     align-items: center;

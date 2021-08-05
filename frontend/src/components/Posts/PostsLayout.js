@@ -10,7 +10,7 @@ const PostsLayout = ({ user, posts, location }) => {
       <nav className="posts__main_nav">
         <Link to="/posts">Home</Link>
       </nav>
-      <CreateMweet user={user} posts={posts} />
+      <CreateMweet user={user} popUp={false} />
       <Mweets user={user} posts={posts} location={location} />
     </Main>
   );
