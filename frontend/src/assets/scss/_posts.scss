@@ -593,6 +593,12 @@
         &:hover, span:hover {
           cursor: pointer;
         }
+
+        &.comment {
+          &:hover {
+            pointer-events: none !important;
+          }
+        }
       }
 
       .media {

@@ -2,37 +2,35 @@ import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom'
 import { removePost } from '../../../actions/posts';
+import { removeComment } from '../../../actions/comments';
 import { getMediaUrl, getUser } from '../../../asynchronus/Posts';
 import history from '../../../config/history';
 import CommentAlert from './CommentAlert';
 import Img from '../../../assets/img/SamplePic.jpg';
 import Sprite from '../../../assets/svg/feather-sprite.svg';
 
-const Mweet = ({ user, mweet, location, removePost, single, comments }) => {
+const Mweet = ({ user, mweet, location, removePost, removeComment, single, comments }) => {
   const [author, setAuthor] = useState(null);
   const [mweetAuthorUrl, setMweetAuthorUrl] = useState(null);
   const [paddingTop, setPaddingTop] = useState(0);
   const [commentBox, setCommentBox] = useState(false);
   const checkUser = user => Object.keys(user).length;
 
-  useEffect(() => {
-    getAuthorImage(parseInt(mweet.acf.authorImage));
-    getAuthor(mweet.author);
-  }, [mweet.acf.authorImage, mweet.author]);
-
-  const getAuthorImage = async mediaId => {
-    const mediaUrl = await getMediaUrl(mediaId);
-    setMweetAuthorUrl(mediaUrl);
-  }
+  useEffect(() => getAuthor(mweet.author), [mweet.author]);
 
   const getAuthor = async authorId => {
     const author = await getUser(authorId);
     setAuthor(author);
+
+    if(author) {
+      const mediaUrl = await getMediaUrl(parseInt(author.acf.avatar.id));
+      setMweetAuthorUrl(mediaUrl);
+    }
   }
 
   const deleteMweet = async id => {
     try {
-      await removePost(id);
+      !comments ? await removePost(id) : await removeComment(id);
     } catch(err) {
       console.error(err.message);
     }
@@ -55,11 +53,13 @@ const Mweet = ({ user, mweet, location, removePost, single, comments }) => {
   const getTag = (e) => {
     const tagName = e.target.tagName.toLowerCase();
 
-    if(tagName === 'span') {
-      const tag = e.target.textContent.replace('#', '');
-      history.push(`/tag/${tag}`);
-    } else {
-      history.push(`/post/${mweet.id}`);
+    if(!comments) {
+      if(tagName === 'span') {
+        const tag = e.target.textContent.replace('#', '');
+        history.push(`/tag/${tag}`);
+      } else {
+        history.push(`/post/${mweet.id}`);
+      }
     }
   }
 
@@ -103,12 +103,22 @@ const Mweet = ({ user, mweet, location, removePost, single, comments }) => {
           {/* Mweet Content */}
           {!single ? 
             <>
-              <p 
-                onClick={(e) => getTag(e)}
-                className="text" dangerouslySetInnerHTML={{ __html: mweet.acf.text }}>
-              </p>
+              {!comments ? 
+                <p 
+                  onClick={(e) => getTag(e)}
+                  className="text" dangerouslySetInnerHTML={{ __html: mweet.acf.text }}>
+                </p> : 
 
-              {mweet.acf.image ? 
+                <p 
+                  onClick={(e) => getTag(e)}
+                  className="text comment" 
+                  dangerouslySetInnerHTML={{ 
+                    __html: mweet.content.rendered.replace(/(<([^>]+)>)/ig, '')
+                  }}>
+                </p>
+              }
+
+              {mweet.acf.image && !comments ? 
                 <div
                 className="media"
                 onLoad={(e) => getPaddingTop(mweet, e.target.offsetWidth)}
@@ -207,4 +217,4 @@ const Mweet = ({ user, mweet, location, removePost, single, comments }) => {
   );
 }
 
-export default connect(null, { removePost })(Mweet);
+export default connect(null, { removePost, removeComment })(Mweet);
