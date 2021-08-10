@@ -66,6 +66,7 @@ const createPost = async formData => {
       image: null, 
       video: null,
       embed: formData.get('embed') || null,
+      authorImage: formData.get('authorImage')
     };
 
     // Creating Tags

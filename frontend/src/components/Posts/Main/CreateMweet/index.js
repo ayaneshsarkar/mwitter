@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { addPost } from '../../../../actions/posts';
+import { addComment } from '../../../../actions/comments';
 import { getEmbedData } from '../../../../asynchronus/Posts/embed';
 import ProfileAvatar from './ProfileAvatar';
 import TextInput from './TextInput';
@@ -9,7 +10,7 @@ import Embed from './Embed';
 import PostValidationAlert from '../../../../alerts/PostValidationAlert';
 import MediaContent from './MediaContent';
 
-const CreatePost = ({ user, addPost, popUp, comment }) => {
+const CreatePost = ({ user, addPost, addComment, popUp, comment, id }) => {
   const [text, setText] = useState('');
   const [textClass, setTextClass] = useState('');
   const [image, setImage] = useState(null);
@@ -84,13 +85,21 @@ const CreatePost = ({ user, addPost, popUp, comment }) => {
 
     const formData = new FormData(e.target);
     formData.append('title', text);
+    formData.append('authorImage', user.acf.avatar.id);
+    formData.append('comment_status', 'open');
 
     try {
-      await addPost(formData);
+      if(!comment) {
+        await addPost(formData);
+      } else {
+        await addComment(user.id, id, formData);
+      }
+
       setImage(null);
       setVideo(null);
       setEmbed(null);
       setText('');
+
     } catch(err) {
       console.log(err.message);
     }
@@ -190,4 +199,4 @@ const CreatePost = ({ user, addPost, popUp, comment }) => {
   );
 }
 
-export default connect(null, { addPost })(CreatePost);
+export default connect(null, { addPost, addComment })(CreatePost);

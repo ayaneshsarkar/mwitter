@@ -120,7 +120,7 @@ const Mweet = ({ user, mweet, location, removePost }) => {
               <use xlinkHref={`${Sprite}#heart`}></use>
             </svg>
           </li>
-          <li className="item">
+          <li className="item" onClick={() => setCommentBox(true)}>
             <svg className="icon">
               <use xlinkHref={`${Sprite}#message-circle`}></use>
             </svg>
@@ -133,7 +133,7 @@ const Mweet = ({ user, mweet, location, removePost }) => {
         </ul>
       </div>
 
-      <CommentAlert open={commentBox} setClose={setCommentBox} user={user} />
+      <CommentAlert open={commentBox} setClose={setCommentBox} user={user} id={mweet.id} />
     </div>
   );
 }
