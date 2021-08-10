@@ -26,7 +26,7 @@ const TextInput = props => {
       innerRef={contentEditableRef}
       onChange={setText}
       className={`createPost__form__text${props.textClass || ''}`} 
-      placeholder="What's Happening?"
+      placeholder={!props.comment ? "What's Happening?" : 'Write a Reply!'}
       html={props.value}
     />
   );

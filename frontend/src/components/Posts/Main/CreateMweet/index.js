@@ -113,7 +113,8 @@ const CreatePost = ({ user, addPost, addComment, popUp, comment, id }) => {
         <form className="createPost__form" onSubmit={handleSubmit} 
           encType="multipart/form-data"
         >
-          <TextInput user={user} textClass={textClass} value={text} setValue={setText} />
+          <TextInput user={user} textClass={textClass} value={text} setValue={setText} 
+          comment={comment} />
 
           
 
