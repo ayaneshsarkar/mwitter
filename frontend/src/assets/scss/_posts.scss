@@ -471,7 +471,14 @@
 
     &.single {
       margin-top: 6rem;
-      padding: 1.1rem 0 2rem 0 !important;
+      padding: 1.1rem 2rem 2rem 2rem !important;
+      flex-wrap: wrap;
+
+      .last {
+        margin-top: 1rem;
+        //padding: 0 0.5rem;
+        flex: 1 1 100%;
+      }
     }
 
     &:not(:first-of-type) {
@@ -486,6 +493,11 @@
       display: flex;
       flex-direction: column;
       margin-right: 1.5rem;
+    }
+
+    &.single &--icon {
+      width: 5.7rem;
+      height: 5.7rem;
     }
 
     &--icon {
@@ -628,8 +640,91 @@
             width: 2rem;
             height: 2rem;
             fill: none;
-            stroke: $primaryColor;
+            stroke: $svgColor;
+            stroke-width: 1.5;
             transition: $mainTransition;
+          }
+        }
+      }
+    }
+
+    &.single .profile__info {
+      font-size: 1.9rem;
+    }
+
+    &.single .profile__info--title {
+      font-weight: 700;
+    }
+
+    &.single .posts__post--content {
+      .profile .profile__info {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .singleDot, .singleTime {
+        display: none;
+      }
+
+      .text {
+        font-size: 2.55rem;
+        font-weight: 400;
+        white-space: pre-wrap;
+        line-height: 1.3;
+
+        &:hover {
+          cursor: text;
+        }
+      }
+
+      .postTime {
+        width: 100%;
+        margin: 1rem 0;
+        font-size: 1.9rem;
+
+        &:hover {
+          cursor: pointer;
+        }
+
+        .dot {
+          color: $darkGrey;
+          padding: 0 0.5rem 1rem 0.5rem;
+        }
+      }
+
+      .interactInfo {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        font-size: 1.7rem;
+        color: $darkGrey;
+        padding: 1.6rem 0;
+        border-top: 1px solid $greyBorder;
+        border-bottom: 1px solid $greyBorder;
+
+        .int {
+          color: $whiteColor;
+          font-weight: 600;
+        }
+
+        .item:not(:last-of-type) {
+          margin-right: 2rem;
+        }
+      }
+
+      .icons {
+        width: 100%;
+        justify-content: space-around;
+        padding-bottom: 1.6rem;
+        border-bottom: 1px solid $greyBorder;
+
+        .item {
+          width: 3.85rem;
+          height: 3.85rem;
+
+          .icon {
+            width: 2.8rem;
+            height: 2.8rem;
           }
         }
       }

@@ -42,6 +42,8 @@ const Mweet = ({ user, mweet, location, removePost, single }) => {
     if(location.pathname === '/posts' || location.pathname.includes('search')
     || location.pathname.includes('tag')) {
       setPaddingTop('50%');
+    } else if(location.pathname.includes('post')) {
+      setPaddingTop('65%')
     } else {
       setPaddingTop(
         mweetData.acf.image.sizes['large-height'] / 
@@ -54,7 +56,7 @@ const Mweet = ({ user, mweet, location, removePost, single }) => {
     const tagName = e.target.tagName.toLowerCase();
 
     if(tagName === 'span') {
-      const tag = e.target.textContent.slice(1, e.target.textContent.length);
+      const tag = e.target.textContent.replace('#', '');
       history.push(`/tag/${tag}`);
     } else {
       history.push(`/post/${mweet.id}`);
@@ -84,8 +86,8 @@ const Mweet = ({ user, mweet, location, removePost, single }) => {
             <p className="profile__info--handle">
               @{ author ? author.slug : '' }
             </p>
-            <p className="dot">.</p>
-            <p className="profile__info--time">5m</p>
+            <p className="dot singleDot">.</p>
+            <p className="profile__info--time singleTime">5m</p>
           </Link>
 
           {(checkUser(user) && (mweet.author === user.id)) ? 
@@ -98,42 +100,105 @@ const Mweet = ({ user, mweet, location, removePost, single }) => {
         </div>
 
         {/* Mweet Content */}
-        <p 
-          onClick={(e) => getTag(e)}
-          className="text" dangerouslySetInnerHTML={{ __html: mweet.acf.text }}>
-        </p>
+        {!single ? 
+          <>
+            <p 
+              onClick={(e) => getTag(e)}
+              className="text" dangerouslySetInnerHTML={{ __html: mweet.acf.text }}>
+            </p>
 
-        {mweet.acf.image ? 
-          <div
-          className="media"
-          onLoad={(e) => getPaddingTop(mweet, e.target.offsetWidth)}
-          style={{ 
-            backgroundImage: `url(${mweet.acf.image.sizes.large})`, paddingTop
-          }}
-          >
-            <img src={Img} alt="Sample" className="img" />
-          </div> 
+            {mweet.acf.image ? 
+              <div
+              className="media"
+              onLoad={(e) => getPaddingTop(mweet, e.target.offsetWidth)}
+              style={{ 
+                backgroundImage: `url(${mweet.acf.image.sizes.large})`, paddingTop
+              }}
+              >
+                <img src={Img} alt="Sample" className="img" />
+              </div> 
+              : ''
+            }
+
+            <ul className="icons">
+              <li className="item">
+                <svg className="icon">
+                  <use xlinkHref={`${Sprite}#heart`}></use>
+                </svg>
+              </li>
+              <li className="item" onClick={() => setCommentBox(true)}>
+                <svg className="icon">
+                  <use xlinkHref={`${Sprite}#message-circle`}></use>
+                </svg>
+              </li>
+              <li className="item">
+                <svg className="icon">
+                  <use xlinkHref={`${Sprite}#share`}></use>
+                </svg>
+              </li>
+            </ul>
+          </>
           : ''
         }
-
-        <ul className="icons">
-          <li className="item">
-            <svg className="icon">
-              <use xlinkHref={`${Sprite}#heart`}></use>
-            </svg>
-          </li>
-          <li className="item" onClick={() => setCommentBox(true)}>
-            <svg className="icon">
-              <use xlinkHref={`${Sprite}#message-circle`}></use>
-            </svg>
-          </li>
-          <li className="item">
-            <svg className="icon">
-              <use xlinkHref={`${Sprite}#share`}></use>
-            </svg>
-          </li>
-        </ul>
       </div>
+
+      {single ? 
+        <div className="posts__post--content last">
+          <p 
+            onClick={(e) => getTag(e)}
+            className="text" dangerouslySetInnerHTML={{ __html: mweet.acf.text }}>
+          </p>
+
+          {mweet.acf.image ? 
+            <div
+            className="media"
+            onLoad={(e) => getPaddingTop(mweet, e.target.offsetWidth)}
+            style={{ 
+              backgroundImage: `url(${mweet.acf.image.sizes.large})`, paddingTop
+            }}
+            >
+              <img src={Img} alt="Sample" className="img" />
+            </div> 
+            : ''
+          }
+
+          <div className="d-flex-center postTime">
+            <p className="profile__info--time">5m</p>
+            <p className="dot">.</p>
+            <p className="profile__info--time">Aug 10, 2021</p>
+            <p className="dot">.</p>
+            <p className="profile__info--time">Mwitter For Web</p>
+          </div>
+
+          <div className="interactInfo">
+            <div className="d-flex-center item">
+              <p className="mr-1 int">500</p> Likes
+            </div>
+            <div className="d-flex-center">
+              <p className="mr-1 int">5</p> Comments
+            </div>
+          </div>
+
+          <ul className="icons">
+            <li className="item">
+              <svg className="icon">
+                <use xlinkHref={`${Sprite}#heart`}></use>
+              </svg>
+            </li>
+            <li className="item" onClick={() => setCommentBox(true)}>
+              <svg className="icon">
+                <use xlinkHref={`${Sprite}#message-circle`}></use>
+              </svg>
+            </li>
+            <li className="item">
+              <svg className="icon">
+                <use xlinkHref={`${Sprite}#share`}></use>
+              </svg>
+            </li>
+          </ul>
+        </div> 
+        : ''
+      }
 
       <CommentAlert open={commentBox} setClose={setCommentBox} user={user} id={mweet.id} />
     </div>
