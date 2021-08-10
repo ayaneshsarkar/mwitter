@@ -5,7 +5,7 @@ import Main from '../../containers/Posts/Main';
 import Mweets from './Main/Mweets';
 import Mweet from './Main/Mweet';
 
-const PostsLayout = ({ user, posts, post, location, create }) => {
+const PostsLayout = ({ user, posts, post, comments, location, create }) => {
   return(
     <Main>
       <nav className="posts__main_nav">
@@ -20,6 +20,11 @@ const PostsLayout = ({ user, posts, post, location, create }) => {
       }
 
       {post ? <Mweet user={user} mweet={post} location={location} single={true} /> : ''}
+
+      { comments && comments.length ?
+        <Mweets user={user} posts={comments} location={location} create={true} comments={true} 
+        /> : '' 
+      }
     </Main>
   );
 }

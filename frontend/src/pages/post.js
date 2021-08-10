@@ -4,12 +4,13 @@ import { getSinglePost } from '../actions/posts';
 import PostsLayout from '../components/Posts/PostsLayout';
 import PostContainer from '../containers/Posts/PostContainer';
 
-const MainApp = ({ getSinglePost, user, post, location, match }) => {
+const MainApp = ({ getSinglePost, user, post, comments, location, match }) => {
   useEffect(() => getSinglePost(match.params.id), [getSinglePost, match.params.id]);
 
   return (
     <PostContainer>
-      <PostsLayout user={user} post={post} location={location} create={false} />
+      <PostsLayout user={user} post={post} location={location} create={false} 
+      comments={comments} />
     </PostContainer>
   );
 }
@@ -17,7 +18,8 @@ const MainApp = ({ getSinglePost, user, post, location, match }) => {
 const mapStateToProps = (state, ownProps) => {
   return {
     user: state.auth.user,
-    post: state.posts[ownProps.match.params.id]
+    post: state.posts[ownProps.match.params.id],
+    comments: Object.values(state.comments).sort((a, b) => b.id - a.id)
   }
 }
 

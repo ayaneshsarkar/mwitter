@@ -15,6 +15,6 @@ export const GET_TAGS = 'GET_TAGS';
 
 // COMMENTS
 export const GET_COMMENTS = 'GET_COMMENTS';
+export const GET_COMMENTS_BY_POSTS = 'GET_COMMENTS_BY_POSTS';
 export const CREATE_COMMENT = 'CREATE_COMMENT';
-
 export const DELETE_COMMENT = 'DELETE_COMMENT';

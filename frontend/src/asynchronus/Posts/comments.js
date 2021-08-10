@@ -13,6 +13,18 @@ export const getComments = async () => {
   }
 }
 
+export const getCommentsByPosts = async postId => {
+  try {
+    const res = await fetchSingleData('GET', `${server}/comments?post=${postId}`, null);
+    const data = await res.json();
+
+    return data;
+
+  } catch(err) {
+    throw new Error(err.message);
+  }
+}
+
 export const createComment = async (userId, postId, formData) => {
   try {
     const comment = {
