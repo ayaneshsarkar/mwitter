@@ -1,5 +1,5 @@
-import { GET_POSTS, CREATE_POST, DELETE_POST, GET_SEARCH_POSTS } from './type';
-import { getPosts, deletePost } from '../asynchronus/Posts';
+import { GET_POSTS, GET_POST, CREATE_POST, DELETE_POST, GET_SEARCH_POSTS } from './type';
+import { getPosts, getPost, deletePost } from '../asynchronus/Posts';
 import { searchPostsByTerm, searchPostsByTag } from '../asynchronus/Posts/searchPosts';
 import createPost from '../asynchronus/Posts/createPost';
 
@@ -7,6 +7,16 @@ export const getAllPosts = () => async dispatch => {
   try {
     const posts = await getPosts();
     dispatch({ type: GET_POSTS, payload: posts });
+
+  } catch(err) {
+    throw new Error(err.message);
+  }
+}
+
+export const getSinglePost = id => async dispatch => {
+  try {
+    const post = await getPost(id);
+    dispatch({ type: GET_POST, payload: post });
 
   } catch(err) {
     throw new Error(err.message);

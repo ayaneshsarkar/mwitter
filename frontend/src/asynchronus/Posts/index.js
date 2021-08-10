@@ -13,6 +13,18 @@ export const getPosts = async () => {
   }
 }
 
+export const getPost = async id => {
+  try {
+    const res = await fetchData('GET', `${server}/mweets/${id}`, null, false);
+    const post = await res.json();
+
+    return post;
+
+  } catch(err) {
+    throw new Error(err.message);
+  }
+}
+
 export const deletePost = async id => {
   try {
     const res = await fetchSingleData('DELETE', `${server}/mweets/${id}`, null);

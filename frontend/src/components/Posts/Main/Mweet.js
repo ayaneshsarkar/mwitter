@@ -8,7 +8,7 @@ import CommentAlert from './CommentAlert';
 import Img from '../../../assets/img/SamplePic.jpg';
 import Sprite from '../../../assets/svg/feather-sprite.svg';
 
-const Mweet = ({ user, mweet, location, removePost }) => {
+const Mweet = ({ user, mweet, location, removePost, single }) => {
   const [author, setAuthor] = useState(null);
   const [mweetAuthorUrl, setMweetAuthorUrl] = useState(null);
   const [paddingTop, setPaddingTop] = useState(0);
@@ -56,11 +56,13 @@ const Mweet = ({ user, mweet, location, removePost }) => {
     if(tagName === 'span') {
       const tag = e.target.textContent.slice(1, e.target.textContent.length);
       history.push(`/tag/${tag}`);
+    } else {
+      history.push(`/post/${mweet.id}`);
     }
   }
 
   return (
-    <div className="posts__post">
+    <div className={`posts__post${single ? ' single' : ''}`}>
       {/* Profile Image */}
       <div className="posts__post--avatar">
         <div 

@@ -6,7 +6,7 @@ const Mweets = ({ user, posts, location, create }) => {
     <div className={`posts__allPosts${!create ? ' margin' : '' }`}>
       {posts.length ? 
         posts.map((post, i) => 
-          <Mweet key={i} mweet={post} user={user} location={location} 
+          <Mweet key={i} mweet={post} user={user} location={location} single={false}
         />) : ''
       }
     </div>
