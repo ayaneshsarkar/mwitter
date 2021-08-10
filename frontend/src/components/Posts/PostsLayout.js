@@ -4,14 +4,14 @@ import CreateMweet from './Main/CreateMweet';
 import Main from '../../containers/Posts/Main';
 import Mweets from './Main/Mweets';
 
-const PostsLayout = ({ user, posts, location }) => {
+const PostsLayout = ({ user, posts, location, create }) => {
   return(
     <Main>
       <nav className="posts__main_nav">
         <Link to="/posts">Home</Link>
       </nav>
-      <CreateMweet user={user} popUp={false} />
-      <Mweets user={user} posts={posts} location={location} />
+      { create ? <CreateMweet user={user} popUp={false} /> : ''}
+      <Mweets user={user} posts={posts} location={location} create={create} />
     </Main>
   );
 }

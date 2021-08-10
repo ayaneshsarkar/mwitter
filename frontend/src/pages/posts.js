@@ -10,7 +10,7 @@ const MainApp = ({ getAllPosts, user, posts, location }) => {
   
   return (
     <PostContainer>
-      <PostsLayout user={user} posts={posts} location={location} />
+      <PostsLayout user={user} posts={posts} location={location} create={true} />
     </PostContainer>
   );
 }
