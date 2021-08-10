@@ -45,7 +45,7 @@ export const createComment = async (userId, postId, formData) => {
 
 export const deleteComment = async commentId => {
   try {
-    const res = await fetchSingleData('DELETE', `${server}/${commentId}`, null);
+    const res = await fetchSingleData('DELETE', `${server}/comments/${commentId}`, null);
     const data = await res.json();
 
     return data;
