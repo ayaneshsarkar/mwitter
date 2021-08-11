@@ -30,8 +30,8 @@ const ProfileInfo = ({ user, status }) => {
         }
       </div>
 
-      <div className="profile__info">
-        <div className="profile__info--user">
+      <div className="profile__maininfo">
+        <div className="profile__maininfo--user">
           <span className="profile__name">{ user ? user.name : '' }</span>
           <span className="profile__handle">@{ user ? user.slug : '' }</span>
         </div>

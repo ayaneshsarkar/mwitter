@@ -22,7 +22,7 @@
     justify-content: space-between;
   }
 
-  &__info {
+  &__maininfo {
     display: flex;
     flex-direction: column;
 
@@ -106,6 +106,7 @@
   &__follow {
     font-size: 1.6rem;
     color: $darkGrey;
+    margin-bottom: 1.6rem;
 
     &--following {
       margin-right: 2rem;
