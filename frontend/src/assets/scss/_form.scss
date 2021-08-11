@@ -8,9 +8,18 @@
     padding: 2rem;
   }
 
+  &.profileForm {
+    padding: 1.2rem 1.6rem 2.3rem 1.6rem;
+  }
+
   &--box {
     position: relative;
     margin-bottom: 9rem;
+
+    &.profileButton {
+      margin-top: 3.54rem;
+      margin-bottom: 0;
+    }
 
     &.adjust {
       flex: 1;
@@ -92,7 +101,7 @@
     //z-index: 1;
     transition: $mainTransition;
 
-    &.home {
+    &.home, &.profile {
       border: 0.2rem solid $extraLightGrey;
       color: $darkGrey;
 
@@ -100,6 +109,15 @@
         font-weight: 400;
         font-size: 1.7rem;
         color: $lightGrey !important;
+      }
+    }
+
+    &.profile {
+      border: 0.1rem solid $darkGrey;
+      color: $whiteColor;
+
+      &:focus {
+        border: 0.1rem solid $primaryColor !important;
       }
     }
 
@@ -138,6 +156,10 @@
 
     &.home {
       background-color: $whiteColorHome;
+    }
+
+    &.profile {
+      background-color: $dimBlack;
     }
   }
 
