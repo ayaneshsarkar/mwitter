@@ -42,7 +42,7 @@ export const getMediaUrl = async mediaId => {
     const res = await fetchSingleData('GET', `${server}/media/${mediaId}`, null);
     const data = await res.json();
 
-    return data ? data.media_details.sizes.large.source_url : null;
+    return data ? data.media_details.sizes.full.source_url : null;
 
   } catch(err) {
     console.error(err.message);

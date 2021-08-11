@@ -1,9 +1,11 @@
 import React, { useState, useRef } from 'react';
+import { connect } from 'react-redux';
+import { updateCurrentUser } from '../../actions/auth';
 import Alert from '../../containers/Posts/Alert';
 import ProfileCover from './ProfileCover';
 import ProfileInfo from './ProfileInfo';
 
-const EditProfile = ({ open, setClose, user, status }) => {
+const EditProfile = ({ open, setClose, user, status, updateCurrentUser }) => {
   const [avatar, setAvatar] = useState(null);
   const [cover, setCover] = useState(null);
   const [title, setTitle] = useState('');
@@ -29,7 +31,13 @@ const EditProfile = ({ open, setClose, user, status }) => {
 
     const formData = new FormData(e.target);
 
-    console.log(formData.get('avatar').name);
+    try {
+      await updateCurrentUser(user, formData);
+      setClose(false);
+
+    } catch(err) {
+      console.log(err.message);
+    }
   }
 
   return (
@@ -54,10 +62,10 @@ const EditProfile = ({ open, setClose, user, status }) => {
           </div>
 
           <div className="form--box full-width">
-            <textarea rows="3" type="text" name="bio" className="form--input profile" 
+            <textarea rows="3" type="text" name="description" className="form--input profile" 
               placeholder="Bio" style={{ resize: 'none' }} 
               onChange={(e) => setChange(e, setBio, setBioChange)} 
-              value={bioChange ? bio : user.acf.bio}
+              value={bioChange ? bio : user.description}
             />
             <label htmlFor="name" className="form--label profile">Bio</label>
           </div>
@@ -76,4 +84,4 @@ const EditProfile = ({ open, setClose, user, status }) => {
   )
 };
 
-export default EditProfile;
+export default connect(null, { updateCurrentUser })(EditProfile);

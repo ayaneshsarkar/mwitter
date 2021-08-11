@@ -1,8 +1,9 @@
-import { VERIFY_USER, CREATE_USER, SIGNIN_USER } from './type';
+import { VERIFY_USER, CREATE_USER, SIGNIN_USER, UPDATE_USER } from './type';
 import history from '../config/history';
 import { signUp } from '../asynchronus/Home/SignUp';
 import { signIn } from '../asynchronus/Home/SignIn';
 import { verifyUser } from '../asynchronus/VerifyUser';
+import { updateUser } from '../asynchronus/UpdateUser';
 
 export const verifyAuth = () => async dispatch => {
   const user = await verifyUser();
@@ -34,4 +35,14 @@ export const logIn = formData => async dispatch => {
     throw new Error(err.message);
   }
   
+}
+
+export const updateCurrentUser = (user, formData) => async dispatch => {
+  try {
+    const { userData } = await updateUser(user, formData);
+    dispatch({ type: UPDATE_USER, payload: userData });
+
+  } catch(err) {
+    throw new Error(err.message);
+  }
 }

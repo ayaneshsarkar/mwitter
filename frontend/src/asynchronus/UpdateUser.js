@@ -1,7 +1,7 @@
-import { server } from '../config/server';
+import { server, serverACF } from '../config/server';
 import { fetchData, fetchFile } from '../helpers/fetch';
 
-export const sendMedia = async formData => {
+const sendMedia = async formData => {
   try {
     const res = await fetchFile('POST', `${server}/media`, formData);
     const data = await res.json();
@@ -15,16 +15,14 @@ export const sendMedia = async formData => {
 export const updateUser = async (user, formData) => {
   try {
     const data = {};
-    const fields = {
-      bio: formData.get('bio') || user.acf.bio || ''
-    }
+    const fields = { fields: {  } }
 
     if(formData.get('avatar').name) {
       if(formData.get('file')) formData.delete('file');
       formData.append('file', formData.get('avatar'));
 
       const avatarData = await sendMedia(formData);
-      fields.avatar = avatarData.id;
+      fields.fields.avatar = avatarData.id;
     }
 
     if(formData.get('cover').name) {
@@ -32,20 +30,27 @@ export const updateUser = async (user, formData) => {
       formData.append('file', formData.get('cover'));
 
       const coverData = await sendMedia(formData);
-      fields.cover = coverData.id;
+      fields.fields.cover = coverData.id;
     }
 
     formData.forEach((val, key) => data[key] = val);
-    data.fields = fields;
     
     if(!formData.get('name') && user.name) {
       data.name = user.name;
     }
 
-    const userRes = await fetchData('PUT', `${server}/user/${user.id}`, data, false);
+    if(!formData.get('description') && user.description) {
+      data.description = user.description;
+    }
+
+    // Update Media
+    const acfData = await fetchData('PUT', `${serverACF}/users/${user.id}`, fields, false);
+    const acf = await acfData.json();
+
+    const userRes = await fetchData('POST', `${server}/users/${user.id}`, data, false);
     const userData = await userRes.json();
 
-    return userData;
+    return { userData, acf };
 
   } catch(err) {
     throw new Error(err.message);

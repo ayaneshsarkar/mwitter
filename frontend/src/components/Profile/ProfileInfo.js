@@ -5,16 +5,11 @@ import Sprite from '../../assets/svg/feather-sprite.svg';
 const ProfileInfo = ({ user, status, popUp, avatarRef, avatarFile }) => {
   const [editAlert, setEditAlert] = useState(false);
   const [avatar, setAvatar] = useState(null);
-  const [bio, setBio] = useState('You do not have a Bio!');
 
   useEffect(() => {
     const getAcf = () => {
-      if(user.acf && user.acf.avatar.sizes.large) {
+      if(user.acf && user.acf.avatar && user.acf.avatar.sizes.large) {
         setAvatar(user.acf.avatar.sizes.large);
-      }
-
-      if(user.acf && user.acf.bio) {
-        setBio(user.acf.bio);
       }
     }
 
@@ -58,7 +53,9 @@ const ProfileInfo = ({ user, status, popUp, avatarRef, avatarFile }) => {
           <span className="profile__handle">@{ user ? user.slug : '' }</span>
         </div>
 
-        <div className="profile__bio">{ bio }</div>
+        <div className="profile__bio">
+          { user.description || 'You do not have a Bio!' }
+        </div>
 
         <div className="profile__join d-flex-center">
           <svg className="profile__join--icon">

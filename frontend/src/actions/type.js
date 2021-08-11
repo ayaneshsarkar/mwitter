@@ -2,6 +2,7 @@
 export const VERIFY_USER = 'VERIFY_USER';
 export const CREATE_USER = 'CREATE_USER';
 export const SIGNIN_USER = 'SIGNIN_USER';
+export const UPDATE_USER = 'UPDATE_USER';
 
 // POSTS
 export const GET_POSTS = 'GET_POSTS';
