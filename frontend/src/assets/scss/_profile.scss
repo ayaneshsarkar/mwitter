@@ -1,0 +1,120 @@
+.profile {
+  &__cover {
+    width: 100%;
+    height: 25.5rem;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-color: $coverColor;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  &__container {
+    padding: 1.2rem 1.6rem 0 1.6rem;
+    margin-bottom: 1.6rem;
+  }
+
+  &__media {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  &__info {
+    display: flex;
+    flex-direction: column;
+
+    &--user {
+      display: flex;
+      flex-direction: column;
+      margin-top: 0.4rem;
+      margin-bottom: 1.2rem;
+    }
+  }
+
+  &__avatar {
+    width: 13rem;
+    height: 13rem;
+    margin-top: -7.5rem;
+    border-radius: 50%;
+    background-color: $darkGrey;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    border: 0.2rem solid $dimBlack;
+    // box-shadow: rgb(0 0 0 / 2%) 0px 0px 2px inset;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  &__button {
+    font-size: 1.6rem;
+    font-weight: 600;
+    padding: 1rem 2rem;
+    color: $primaryColor;
+    background-color: $dimBlack;
+    border: 0.1rem solid $primaryColor;
+    border-radius: 10rem;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  &__name {
+    font-size: 2.5rem;
+    font-weight: 800;
+    line-height: 1.3;
+  }
+
+  &__bio, &__handle {
+    font-size: 1.65rem;
+    line-height: 1.3;
+  }
+
+  &__handle {
+    color: $darkGrey;
+  }
+
+  &__bio {
+    font-size: 1.6rem;
+    margin-bottom: 1.2rem;
+  }
+
+  &__join {
+    margin-bottom: 1.2rem;
+
+    &--icon {
+      width: 1.65rem;
+      height: 1.65rem;
+      fill: none;
+      stroke: $darkGrey;
+      margin-top: -0.3rem;
+      margin-right: 1rem;
+    }
+
+    &--time {
+      font-size: 1.6rem;
+      color: $darkGrey;
+    }
+  }
+
+  &__follow {
+    font-size: 1.6rem;
+    color: $darkGrey;
+
+    &--following {
+      margin-right: 2rem;
+    }
+
+    .imp {
+      font-weight: 600;
+      color: $whiteColor;
+      margin-right: 0.5rem;
+    }
+  }
+}

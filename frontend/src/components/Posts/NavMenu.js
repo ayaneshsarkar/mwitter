@@ -36,7 +36,7 @@ const NavMenu = () => {
       </li>
 
       <li className="posts__nav_menu--item">
-        <Link className="posts__nav_menu--item-link" to="/posts">
+        <Link className="posts__nav_menu--item-link" to="/edit-profile">
           <svg className="posts__nav_menu--item-link icon right-margin">
             <use xlinkHref={`${Sprite}#user`}></use>
           </svg>
