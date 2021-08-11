@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import EditProfile from "./EditProfile";
 import Sprite from '../../assets/svg/feather-sprite.svg';
 
-const ProfileInfo = ({ user, status, popUp, avatarRef }) => {
+const ProfileInfo = ({ user, status, popUp, avatarRef, avatarFile }) => {
   const [editAlert, setEditAlert] = useState(false);
   const [avatar, setAvatar] = useState(null);
   const [bio, setBio] = useState('You do not have a Bio!');
@@ -33,7 +33,7 @@ const ProfileInfo = ({ user, status, popUp, avatarRef }) => {
         <div className="profile__avatar" 
         style={!popUp ? 
           { backgroundImage: `url(${avatar || null})` } :
-          { backgroundImage: `linear-gradient(to right, rgba(0, 0, 0, 0.5) 65%, rgba(0, 0, 0, 0.7)), url(${avatar || null})` }
+          { backgroundImage: `linear-gradient(to right, rgba(0, 0, 0, 0.5) 65%, rgba(0, 0, 0, 0.7)), url(${avatarFile ? URL.createObjectURL(avatarFile) : (avatar || null)})` }
         }>
           {popUp && <div className="clickIconBox" onClick={clickAvatar}>
             <svg className="clickIcon">

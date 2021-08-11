@@ -1,5 +1,6 @@
 .profile {
   &__cover {
+    position: relative;
     width: 100%;
     height: 25.5rem;
     background-size: cover;
@@ -12,6 +13,41 @@
 
     &:hover {
       cursor: pointer;
+    }
+
+    .clickIconContainer {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+
+      display: flex;
+    }
+
+    .clickIconBox {
+      width: 5rem;
+      height: 5rem;
+      border-radius: 50%;
+      background-color: transparent;
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      &:not(:last-of-type) {
+        margin-right: 2rem;
+      }
+
+      .clickIcon {
+        width: 3.2rem;
+        height: 3.2rem;
+        fill: none;
+        stroke: $extraLightGrey;
+      }
+
+      &:hover {
+        background-color: rgba(255, 255, 255, 0.1);
+      }
     }
   }
 
@@ -50,10 +86,6 @@
     background-repeat: no-repeat;
     border: 0.2rem solid $dimBlack;
     // box-shadow: rgb(0 0 0 / 2%) 0px 0px 2px inset;
-
-    .shady {
-      opacity: 0.75;
-    }
 
     .clickIconBox {
       position: absolute;
