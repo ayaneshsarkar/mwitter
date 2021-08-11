@@ -39,6 +39,7 @@
   }
 
   &__avatar {
+    position: relative;
     width: 13rem;
     height: 13rem;
     margin-top: -7.5rem;
@@ -49,6 +50,36 @@
     background-repeat: no-repeat;
     border: 0.2rem solid $dimBlack;
     // box-shadow: rgb(0 0 0 / 2%) 0px 0px 2px inset;
+
+    .shady {
+      opacity: 0.75;
+    }
+
+    .clickIconBox {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 5rem;
+      height: 5rem;
+      border-radius: 50%;
+      background-color: transparent;
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      .clickIcon {
+        width: 3.2rem;
+        height: 3.2rem;
+        fill: none;
+        stroke: $extraLightGrey;
+      }
+
+      &:hover {
+        background-color: rgba(255, 255, 255, 0.1);
+      }
+    }
 
     &:hover {
       cursor: pointer;

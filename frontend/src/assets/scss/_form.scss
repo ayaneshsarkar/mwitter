@@ -247,6 +247,10 @@
       cursor: auto;
       opacity: 0.5;
     }
+
+    &.profile {
+      background-color: $linkColor;
+    }
   }
 
   .authBtnText {
