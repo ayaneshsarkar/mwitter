@@ -12,6 +12,7 @@ const EditProfile = ({ open, setClose, user, status, updateCurrentUser }) => {
   const [bio, setBio] = useState('');
   const [titleChange, setTitleChange] = useState(false);
   const [bioChange, setBioChange] = useState(false);
+  const [disabled, setDisabld] = useState(false);
 
   const avatarRef = useRef(null);
   const coverRef = useRef(null);
@@ -28,11 +29,13 @@ const EditProfile = ({ open, setClose, user, status, updateCurrentUser }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setDisabld(true);
 
     const formData = new FormData(e.target);
 
     try {
       await updateCurrentUser(user, formData);
+      setDisabld(false);
       setClose(false);
 
     } catch(err) {
@@ -76,7 +79,9 @@ const EditProfile = ({ open, setClose, user, status, updateCurrentUser }) => {
           ref={coverRef} />
 
           <div className="form--box profileButton">
-            <button type="submit" className="form--button profile">Save</button>
+            <button type="submit" className="form--button profile" disabled={disabled}>
+              Save
+            </button>
           </div>
         </form>
       </div>
