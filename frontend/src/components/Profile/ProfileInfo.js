@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from "react";
+import EditProfile from "./EditProfile";
 import Sprite from '../../assets/svg/feather-sprite.svg';
 
-const ProfileInfo = ({ user, status }) => {
+const ProfileInfo = ({ user, status, popUp }) => {
+  const [editAlert, setEditAlert] = useState(false);
   const [avatar, setAvatar] = useState(null);
   const [bio, setBio] = useState('You do not have a Bio!');
 
@@ -20,17 +22,22 @@ const ProfileInfo = ({ user, status }) => {
   }, [user.acf]);
 
   return (
-    <div className="profile__container">
+    <div className={`profile__container${popUp ? ' popUp' : ''}`}>
       <div className="profile__media">
         <div className="profile__avatar" style={{ backgroundImage: `url(${avatar || null})` }}>
         </div>
 
-        { status &&
-          <button className="profile__button">Edit Profile</button>
+        { (status && !popUp) &&
+          <>
+            <button className="profile__button" onClick={() => setEditAlert(true)}>
+              Edit Profile
+            </button>
+            <EditProfile open={editAlert} setClose={setEditAlert} user={user} status={status} />
+          </>
         }
       </div>
 
-      <div className="profile__maininfo">
+      {!popUp && <div className="profile__maininfo">
         <div className="profile__maininfo--user">
           <span className="profile__name">{ user ? user.name : '' }</span>
           <span className="profile__handle">@{ user ? user.slug : '' }</span>
@@ -57,7 +64,7 @@ const ProfileInfo = ({ user, status }) => {
             <span>Followers</span>
           </div>
         </div>
-      </div>
+      </div>}
     </div>
   );
 }

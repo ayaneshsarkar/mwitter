@@ -56,4 +56,9 @@
       color: $primaryColor;
     }
   }
+
+  &.profile {
+    min-width: 57vw;
+    padding: 0;
+  }
 }

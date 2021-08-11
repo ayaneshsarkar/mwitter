@@ -17,7 +17,7 @@ const Alert = props => {
     <Dialog 
       open={props.open}
       onClose={closeAlert}
-      classes={{ paper: 'br-none' }}
+      classes={!props.borderRadius ? { paper: 'br-none' } : undefined}
       maxWidth="lg"
       TransitionComponent={props.transition ? Transition : undefined}
     >

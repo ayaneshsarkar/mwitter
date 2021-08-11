@@ -1,10 +1,13 @@
 import React from 'react';
 
-const ProfileCover = ({ user }) => {
+const ProfileCover = ({ user, popUp }) => {
   const avatar = user.acf ? user.acf.avatar.sizes.cover : null;
   
   return (
-    <div className="profile__cover" style={{ backgroundImage: `url(${avatar || ''})` }}></div>
+    <div className={`profile__cover${popUp ? ' popUp' : ''}`} 
+      style={{ backgroundImage: `url(${avatar || ''})` }}
+    >
+    </div>
   );
 }
 

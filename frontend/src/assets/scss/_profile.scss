@@ -6,6 +6,10 @@
     background-repeat: no-repeat;
     background-color: $coverColor;
 
+    &.popUp {
+      height: 17.4rem;
+    }
+
     &:hover {
       cursor: pointer;
     }
