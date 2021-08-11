@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef } from 'react';
 import Alert from '../../containers/Posts/Alert';
 import ProfileCover from './ProfileCover';
 import ProfileInfo from './ProfileInfo';
@@ -24,10 +24,13 @@ const EditProfile = ({ open, setClose, user, status }) => {
     }
   }
 
-  useEffect(() => {
-    console.log(avatar);
-    console.log(cover);
-  }, [avatar, cover]);
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    const formData = new FormData(e.target);
+
+    console.log(formData.get('avatar').name);
+  }
 
   return (
     <Alert open={open} setClose={setClose}>
@@ -40,7 +43,7 @@ const EditProfile = ({ open, setClose, user, status }) => {
         />
 
         <form className="form profileForm" encType="multipart/form-data"
-        onSubmit={(e) => e.preventDefault()} >
+        onSubmit={(e) => handleSubmit(e)} >
           <div className="form--box full-width">
             <input type="text" name="name" className="form--input profile" 
               placeholder="Full Name" 
