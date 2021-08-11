@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import Main from '../../containers/Posts/Main';
 import ProfileCover from './ProfileCover';
 import ProfileInfo from './ProfileInfo';
-// import Mweets from './Main/Mweets';
+import Mweets from '../Posts/Main/Mweets';
 
 const ProfileLayout = ({ user, posts, location, status, title }) => {
   return(
@@ -17,10 +17,11 @@ const ProfileLayout = ({ user, posts, location, status, title }) => {
         <ProfileInfo user={user ? user : null} status={status} />
       </div>
 
-      {/* { posts && posts.length ? 
-        <Mweets user={user} posts={posts} location={location} create={false} />
+      { posts && posts.length ? 
+        <Mweets user={user} posts={posts} location={location} create={true} 
+        profile={true} />
         : ''
-      } */}
+      }
     </Main>
   );
 }

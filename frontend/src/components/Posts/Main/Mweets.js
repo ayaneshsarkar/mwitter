@@ -1,10 +1,10 @@
 import React from 'react';
 import Mweet from './Mweet';
 
-const Mweets = ({ user, posts, comments, location, create }) => {
+const Mweets = ({ user, posts, comments, profile, location, create }) => {
   return (
     <div className={`posts__allPosts${!create ? ' margin' : '' }`}>
-      {comments ? <div className="breaker comments"></div> : ''}
+      {(comments || profile) ? <div className="breaker comments"></div> : ''}
 
       {posts.length ? 
         posts.map((post, i) => 
