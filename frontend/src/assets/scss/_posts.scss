@@ -1,26 +1,36 @@
 .posts {
+  // display: grid;
+  // grid-template-columns: 27.5rem auto 35rem;
+  // margin: 0 auto;
+
   display: flex;
 
   &__nav {
     position: fixed;
     top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
 
     width: 23.05vw;
-    justify-self: center;
-    align-self: center;
     height: 100% !important;
 
     display: flex;
     flex-direction: column;
     // padding: 0 3rem;
     border-right: 1px solid $greyBorder;
-    overflow-y: auto;
+    // overflow-y: auto;
+
+    overflow-y: scroll;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+
+    display: flex;
+    align-items: center;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
 
     &_container {
-      padding: 0 3rem;
+      // padding: 0 3rem;
     }
 
     &--logo {
