@@ -38,6 +38,10 @@
   &__nav {
     height: 100% !important;
 
+    @media only screen and (max-width: $bpSmaller) {
+      height: 5rem;
+    }
+
     &_container {
       position: fixed;
       width: 27.5rem;
@@ -72,8 +76,14 @@
       }
 
       @media only screen and (max-width: $bpSmaller) {
-        width: 0;
+        bottom: 0;
+        width: 100vw;
+        height: 5.7rem;
+        flex-direction: row;
+        background-color: $dimBlack;
         border-right: none;
+        border-top: 0.1rem solid $greyBorder;
+        z-index: 3;
       }
 
       &::-webkit-scrollbar {
@@ -101,6 +111,10 @@
         margin-left: 0;
       }
 
+      @media only screen and (max-width: $bpSmaller) {
+        display: none;
+      }
+
       &-link {
         width: 5rem;
         height: 5rem;
@@ -126,6 +140,14 @@
         align-items: center;
       }
 
+      @media only screen and (max-width: $bpSmaller) {
+        width: 100%;
+        height: 100%;
+        flex-direction: row;
+        justify-content: space-around;
+        align-items: center;
+      }
+
       &--item, &--button {
         padding: 1.2rem 1.5rem;
         border-radius: 10rem;
@@ -143,10 +165,24 @@
           display: flex;
           justify-content: center;
           align-items: center;
+
+          @media only screen and (max-width: $bpSmaller) {
+            width: 4rem;
+            height: 4rem;
+          }
+        }
+
+        @media only screen and (max-width: $bpSmaller) {
+          padding: 0;
+          margin-bottom: 0;
         }
 
         &.active {
           background-color: $primaryColorHover;
+
+          @media only screen and (max-width: $bpSmaller) {
+            background-color: transparent;
+          }
         }
 
         &.active &-link.text {
@@ -180,11 +216,21 @@
             stroke: $whiteColor;
             stroke-width: 0.2rem;
             margin-top: -0.3rem;
+
+            @media only screen and (max-width: $bpSmaller) {
+              width: 2.92rem;
+              height: 2.92rem;
+              margin-top: 0;
+            }
           }
         }
 
         &:hover {
           background-color: $primaryColorHover;
+
+          @media only screen and (max-width: $bpSmaller) {
+            background-color: transparent;
+          }
         }
 
         &:hover &-link.text {
