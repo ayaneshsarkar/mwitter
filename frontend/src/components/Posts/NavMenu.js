@@ -45,6 +45,16 @@ const NavMenu = () => {
         </Link>
       </li>
 
+      <li className="posts__nav_menu--item tweet">
+        <Link className="posts__nav_menu--item-link" to="/posts">
+          <svg className="posts__nav_menu--item-link icon right-margin">
+            <use xlinkHref={`${Sprite}#edit-3`}></use>
+          </svg>
+
+          <p className="posts__nav_menu--item-link text">Tweet</p>
+        </Link>
+      </li>
+
       <button className="posts__nav_menu--button">Mweet</button>
     </ul>
   );

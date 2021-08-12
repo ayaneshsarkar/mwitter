@@ -22,7 +22,7 @@ const Mweet = ({ user, mweet, location, removePost, removeComment, single, comme
     const author = await getUser(authorId);
     setAuthor(author);
 
-    if(author) {
+    if(author && author.acf) {
       const mediaUrl = await getMediaUrl(parseInt(author.acf.avatar.id));
       setMweetAuthorUrl(mediaUrl);
     }
@@ -64,9 +64,9 @@ const Mweet = ({ user, mweet, location, removePost, removeComment, single, comme
   }
 
   return (
-    <div className={`posts__post${single ? ' single' : ''}`}>
+    <div className={`posts__post${single ? ' single' : ''}${comments ? ' comments' : ''}`}>
       {/* Profile Image */}
-      <div className="posts__post--avatar">
+      {(author && author.acf) && <div className="posts__post--avatar">
         <div 
           className="posts__post--icon"
           style={{ 
@@ -74,12 +74,12 @@ const Mweet = ({ user, mweet, location, removePost, removeComment, single, comme
           }}
           >
         </div>
-      </div>
+      </div>}
 
       {/* Profile Content */}
       <div className="posts__post--content">
         <div className="profile">
-          <Link to="/posts" className="profile__info">
+          {(author && author.name) && <Link to="/posts" className="profile__info">
             <h4 className="profile__info--title">
               { author ? author.name : '' }
             </h4>
@@ -88,7 +88,7 @@ const Mweet = ({ user, mweet, location, removePost, removeComment, single, comme
             </p>
             <p className="dot singleDot">.</p>
             <p className="profile__info--time singleTime">5m</p>
-          </Link>
+          </Link>}
 
           {(checkUser(user) && (mweet.author === user.id)) ? 
             <div className="postDelete" onClick={() => deleteMweet(mweet.id)}>
@@ -106,7 +106,7 @@ const Mweet = ({ user, mweet, location, removePost, removeComment, single, comme
               <p 
                 onClick={(e) => getTag(e)}
                 className="text" dangerouslySetInnerHTML={{ __html: mweet.acf.text }}>
-              </p> : 
+              </p> : (mweet.content && mweet.content.rendered) ?
 
               <p 
                 onClick={(e) => getTag(e)}
@@ -114,10 +114,10 @@ const Mweet = ({ user, mweet, location, removePost, removeComment, single, comme
                 dangerouslySetInnerHTML={{ 
                   __html: mweet.content.rendered.replace(/(<([^>]+)>)/ig, '')
                 }}>
-              </p>
+              </p> : ''
             }
 
-            {mweet.acf.image && !comments ? 
+            {(mweet.acf && mweet.acf.image && !comments) ? 
               <div
               className="media"
               onLoad={(e) => getPaddingTop(mweet, e.target.offsetWidth)}

@@ -80,6 +80,7 @@
         width: 100vw;
         height: 5.7rem;
         flex-direction: row;
+        justify-content: center;
         background-color: $dimBlack;
         border-right: none;
         border-top: 0.1rem solid $greyBorder;
@@ -159,6 +160,27 @@
         background-color: transparent;
         margin-bottom: 2rem;
 
+        &.tweet:hover &-link.icon {
+          stroke: $whiteColor;
+        }
+
+        &.tweet {
+          display: none;
+
+          &:hover {
+            background-color: $primaryColorDark;
+          } 
+
+          @media only screen and (max-width: $bpSideBreak) {
+            display: flex;
+            background-color: $primaryColor;
+          }
+
+          @media only screen and (max-width: $bpSmaller) {
+            display: none;
+          }
+        }
+
         @media only screen and (max-width: $bpSideBreak) {
           width: 6rem;
           height: 6rem;
@@ -167,8 +189,8 @@
           align-items: center;
 
           @media only screen and (max-width: $bpSmaller) {
-            width: 4rem;
-            height: 4rem;
+            width: 5rem;
+            height: 5rem;
           }
         }
 
@@ -226,6 +248,7 @@
         }
 
         &:hover {
+          // cursor: pointer;
           background-color: $primaryColorHover;
 
           @media only screen and (max-width: $bpSmaller) {
@@ -262,8 +285,6 @@
 
   .main {
     display: flex;
-    // width: 52.7vw;
-    // margin-left: 31.5rem;
   }
 
   &__main {
@@ -620,6 +641,12 @@
       }
     }
 
+    &.comments {
+      @media only screen and (max-width: $bpSmaller) {
+        margin-top: 0;
+      }
+    }
+
     &.margin {
       margin-top: 6rem;
     }
@@ -640,6 +667,12 @@
         margin-top: 1rem;
         //padding: 0 0.5rem;
         flex: 1 1 100%;
+      }
+    }
+
+    &.comments:last-of-type {
+      @media only screen and (max-width: $bpSmaller) {
+        margin-bottom: 5.7rem;
       }
     }
 

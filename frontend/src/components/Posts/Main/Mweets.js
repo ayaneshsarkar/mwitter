@@ -4,7 +4,12 @@ import Mweet from './Mweet';
 const Mweets = ({ user, posts, comments, profile, location, create }) => {
   return (
     <div 
-      className={`posts__allPosts${!create ? ' margin' : '' }${profile ? ' profile' : ''}`}
+      className={
+        `
+        posts__allPosts${!create ? ' margin' : '' }${profile ? ' profile' : ''}
+        ${comments ? ' comments' : ''}
+        `
+      }
     >
       {(comments || profile) ? <div className="breaker comments"></div> : ''}
 
