@@ -4,7 +4,7 @@ import Tag from './Tag';
 const TagList = ({ tags }) => {
   return (
     <ul className="tags__list">
-      <li className="tags__list--item">
+      <li className="tags__list--item tagHead">
         <div className="tags__list--item-heading">What's Happening</div>
       </li>
 

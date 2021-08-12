@@ -141,6 +141,14 @@
       padding: 2rem 1.6rem;
       color: $whiteColor;
 
+      &.tagHead {
+        pointer-events: none;
+      }
+
+      &.tagHead .tags__list--item-heading {
+        pointer-events: none;
+      }
+
       &-link, &-heading {
         color: inherit;
         font-size: 2rem;
