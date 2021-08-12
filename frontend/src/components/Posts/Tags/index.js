@@ -1,17 +1,26 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { connect } from 'react-redux';
 import { getAllTags } from '../../../actions/tags';
 import Search from './Search';
 import TagList from './TagList';
 
 const Tags = ({ getAllTags, tags }) => {
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  useEffect(() => getAllTags(), []);
+  const [searchWidth, setSearchWidth] = useState(0);
+
+  useEffect(() => { getAllTags(); setWidth(); }, [getAllTags]);
+
+  const searchRef = useRef(null);
+
+  const setWidth = () => {
+    if(searchRef && searchRef.current && searchRef.current.offsetWidth) {
+      setSearchWidth(searchRef.current.offsetWidth);
+    }
+  }
 
   return (
-    <aside className="rest">
+    <aside className="rest" ref={searchRef}>
       <div className="tags">
-        <Search />
+        <Search searchWidth={searchWidth} />
         <TagList tags={tags} />
       </div>
     </aside>

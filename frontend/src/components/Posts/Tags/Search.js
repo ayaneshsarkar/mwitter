@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import history from '../../../config/history';
 import Sprite from '../../../assets/svg/feather-sprite.svg';
 
-const Search = () => {
+const Search = ({ searchWidth }) => {
   const [search, setSeatch] = useState('');
 
   const handleSubmit = (e) => {
@@ -12,7 +12,7 @@ const Search = () => {
   }
   
   return (
-    <div className="tags__searchBox">
+    <div className="tags__searchBox" style={{ width: searchWidth }}>
       <form className="tags__search" onSubmit={(e) => handleSubmit(e)}>
         <button type="submit">
           <svg className="tags__search--icon">

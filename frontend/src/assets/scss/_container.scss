@@ -65,13 +65,9 @@
 }
 
 .rest {
-  position: fixed;
-  top: 0;
-  right: 0;
-  width: 23vw;
-  height: 100vh;
+  position: relative;
+  height: 100%;
   background-color: $dimBlack;
-  border-left: 1px solid $greyBorder;
   z-index: 2;
   overflow-y: scroll;
 

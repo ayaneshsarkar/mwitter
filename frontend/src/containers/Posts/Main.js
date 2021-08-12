@@ -1,6 +1,6 @@
 const Main = props => {
   return(
-    <div className="fullVhHeight posts__main">
+    <div className="fullVhHeight posts__main" ref={props.navRef}>
       { props.children }
     </div>
   );

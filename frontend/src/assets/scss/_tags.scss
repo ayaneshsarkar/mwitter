@@ -1,20 +1,24 @@
 .tags {
-  margin: 0 1.6rem;
+  position: fixed;
+  top: 0;
+  width: 35rem;
+  height: 100%;
   margin-bottom: 5rem;
+  border-left: 1px solid $greyBorder;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 
   &__searchBox {
     position: fixed;
-    top: 0;
-    right: 0;
-    width: 23vw;
     height: 6rem;
     background-color: $dimBlack;
-    border-left: 0.1rem solid $greyBorder;
-    transition: $mainTransition;
-
+    // transition: $mainTransition;
     display: flex;
     justify-content: center;
   }
+
 
   &__search {
     margin-top: 0.5rem;
@@ -67,7 +71,7 @@
   }
 
   &__list {
-    width: 100%;
+    width: 90%;
     margin-top: 7.5rem;
     background-color: $postBreaker;
     border-radius: 2rem;
