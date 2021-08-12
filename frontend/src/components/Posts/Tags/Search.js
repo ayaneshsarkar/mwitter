@@ -12,7 +12,9 @@ const Search = ({ searchWidth }) => {
   }
   
   return (
-    <div className="tags__searchBox" style={{ width: searchWidth }}>
+    <div className="tags__searchBox" 
+      style={{ width: searchWidth ? `${searchWidth/10}rem` : searchWidth }}
+    >
       <form className="tags__search" onSubmit={(e) => handleSubmit(e)}>
         <button type="submit">
           <svg className="tags__search--icon">

@@ -19,7 +19,9 @@ const ProfileLayout = ({ user, posts, location, status, title }) => {
 
   return(
     <Main navRef={postNavRef}>
-      <nav className="posts__main_nav" style={{ width: postNavWidth }}>
+      <nav className="posts__main_nav" 
+        style={{ width: postNavWidth ? `${postNavWidth/10}rem` : postNavWidth }}
+      >
         <Link to="/posts">{ title || 'Home' }</Link>
       </nav>
 

@@ -19,7 +19,9 @@ const PostsLayout = ({ user, posts, post, comments, location, create }) => {
 
   return(
     <Main navRef={postNavRef}>
-      <nav className="posts__main_nav" style={{ width: postNavWidth }}>
+      <nav className="posts__main_nav" 
+        style={{ width: postNavWidth ? `${postNavWidth/10}rem` : postNavWidth }}
+      >
         <Link to="/posts">Home</Link>
       </nav>
 

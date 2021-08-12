@@ -6,7 +6,24 @@
 
 html {
   box-sizing: border-box;
-  font-size: 62.5% !important;
+  font-size: 62.5%; // 1rem = 10px
+  scroll-behavior: smooth;
+
+  @media only screen and (max-width: $bpHuge) { // 1800px
+    font-size: 75%; // 1rem = 12px
+  }
+
+  @media only screen and (max-width: $bpDflt) { // 1366px
+    font-size: 62.5%; // 1rem = 12px
+  }
+
+  @media only screen and (max-width: $bpLargest) { // 1200px
+    font-size: 56.25%; // 1rem = 9px
+  }
+
+  @media only screen and (max-width: $bpMedium) { // 900px
+    font-size: 50%; // 1rem = 8px
+  }
 }
 
 body {
