@@ -3,6 +3,38 @@
   grid-template-columns: 27.5rem auto 35rem;
   margin: 0 auto;
 
+  @media only screen and (max-width: $bpSideBreak) {
+    grid-template-columns: 20rem auto 35rem;
+  }
+
+  @media only screen and (max-width: $bpTagsSh) {
+    grid-template-columns: 20rem auto 30rem;
+  }
+
+  @media only screen and (max-width: $bpTagsBreak) {
+    grid-template-columns: 16rem auto 20rem;
+  }
+
+  @media only screen and (max-width: $bpMedium) {
+    grid-template-columns: 12rem auto 16rem;
+  }
+
+  @media only screen and (max-width: $bpSmallMedium) {
+    grid-template-columns: 12rem auto 10rem;
+  }
+
+  @media only screen and (max-width: $bpSmallerMedium) {
+    grid-template-columns: 12rem auto 0;
+  }
+
+  @media only screen and (max-width: $bpSmall) {
+    grid-template-columns: 10rem auto 0;
+  }
+
+  @media only screen and (max-width: $bpSmaller) {
+    grid-template-columns: 0 auto 0;
+  }
+
   &__nav {
     height: 100% !important;
 
@@ -18,6 +50,31 @@
       overflow-y: scroll;
       -ms-overflow-style: none;
       scrollbar-width: none;
+
+      @media only screen and (max-width: $bpSideBreak) {
+        width: 20rem;
+      }
+
+      @media only screen and (max-width: $bpTagsBreak) {
+        width: 16rem;
+      }
+
+      @media only screen and (max-width: $bpMedium) {
+        width: 12rem;
+      }
+
+      @media only screen and (max-width: $bpSmallerMedium) {
+        width: 12rem;
+      }
+
+      @media only screen and (max-width: $bpSmall) {
+        width: 10rem;
+      }
+
+      @media only screen and (max-width: $bpSmaller) {
+        width: 0;
+        border-right: none;
+      }
 
       &::-webkit-scrollbar {
         display: none;
@@ -38,6 +95,11 @@
       justify-content: center;
       align-items: center;
       transition: $mainTransition;
+
+      @media only screen and (max-width: $bpSideBreak) {
+        align-self: center;
+        margin-left: 0;
+      }
 
       &-link {
         width: 5rem;
@@ -60,6 +122,10 @@
       display: flex;
       flex-direction: column;
 
+      @media only screen and (max-width: $bpSideBreak) {
+        align-items: center;
+      }
+
       &--item, &--button {
         padding: 1.2rem 1.5rem;
         border-radius: 10rem;
@@ -70,6 +136,14 @@
         width: 100%;
         background-color: transparent;
         margin-bottom: 2rem;
+
+        @media only screen and (max-width: $bpSideBreak) {
+          width: 6rem;
+          height: 6rem;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        }
 
         &.active {
           background-color: $primaryColorHover;
@@ -92,6 +166,10 @@
             font-weight: 700;
             color: $whiteColor;
             margin: 0 1.6rem;
+
+            @media only screen and (max-width: $bpSideBreak) {
+              display: none;
+            }
           }
 
           &.icon {
@@ -127,6 +205,10 @@
         &:hover {
           cursor: pointer;
           background-color: $primaryColorDark;
+        }
+
+        @media only screen and (max-width: $bpSideBreak) {
+          display: none;
         }
       }
     }
@@ -167,6 +249,10 @@
       width: 100%;
       margin-top: 6rem;
       border-bottom: 1px solid $greyBorder;
+
+      @media only screen and (max-width: $bpSmaller) {
+        display: none;
+      }
 
       &.popUp {
         margin-top: 0 !important;
@@ -461,14 +547,32 @@
       background-color: $postBreaker;
       border-bottom: 1px solid $greyBorder;
 
+      @media only screen and (max-width: $bpSmaller) {
+        display: none;
+      }
+
       &.comments {
         border-top: 1px solid $greyBorder;
+
+        @media only screen and (max-width: $bpSmaller) {
+          display: block;
+        }
       }
     }
   }
 
   &__allPosts {
     padding: 1.1rem 0 1.6rem 0;
+
+    @media only screen and (max-width: $bpSmaller) {
+      margin-top: 6rem;
+    }
+
+    &.profile {
+      @media only screen and (max-width: $bpSmaller) {
+        margin-top: 0;
+      }
+    }
 
     &.margin {
       margin-top: 6rem;
