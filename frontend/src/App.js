@@ -11,9 +11,8 @@ import Tag from './pages/tag';
 import EditProfile from './pages/editProfile';
 import './assets/scss/index.scss';
 
-const App = props => {
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  useEffect(() => props.verifyAuth(), []);
+const App = ({ verifyAuth }) => {
+  useEffect(() => verifyAuth(), [ verifyAuth ]);
 
   return (
     <Router history={history}>
