@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import BackButton from '../Posts/BackButton';
 import Main from '../../containers/Posts/Main';
 import ProfileCover from './ProfileCover';
 import ProfileInfo from './ProfileInfo';
@@ -24,6 +25,7 @@ const ProfileLayout = ({ user, posts, location, status, title }) => {
       <nav className="posts__main_nav" 
         style={{ width: postNavWidth }}
       >
+        <BackButton />
         <Link to="/posts">{ title || 'Home' }</Link>
       </nav>
 

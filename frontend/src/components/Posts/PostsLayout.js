@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import BackButton from './BackButton';
 import CreateMweet from './Main/CreateMweet';
 import Main from '../../containers/Posts/Main';
 import Mweets from './Main/Mweets';
@@ -29,6 +30,7 @@ const PostsLayout = (
       <nav className="posts__main_nav" 
         style={{ width: postNavWidth }}
       >
+        {(location.pathname !== '/posts') ? <BackButton /> : ''}
         <Link to={link || "/posts"}>{ title || 'Home' }</Link>
       </nav>
 

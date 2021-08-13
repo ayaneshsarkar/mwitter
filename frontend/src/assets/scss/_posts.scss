@@ -292,23 +292,47 @@
     width: 100%;
 
     &_nav {
-      // display: none !important;
       position: fixed;
       top: 0%;
-      // left: 50%;
-      // width: 52.6vw;
       margin: 0 auto;
       height: 6rem;
       padding: 2rem;
       border-bottom: 1px solid $greyBorder;
       background-color: $dimBlack;
-      //border-right: 1px solid $greyBorder;
       display: flex;
       align-items: center;
       z-index: 2;
       font-size: 2.5rem;
       font-weight: 800;
-      // transform: translateX(-50%);
+
+      .postNavIconBox {
+        width: 3.7rem;
+        height: 3.7rem;
+        border-radius: 50%;
+        margin-right: 2.55rem;
+        background-color: transparent;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        .postNavIcon {
+          width: 2.55rem;
+          height: 2.55rem;
+          fill: none;
+          stroke: $whiteColor;
+          stroke-width: 0.2rem;
+
+          &:hover {
+            stroke-width: $primaryColor;
+          }
+        }
+
+        &:hover {
+          cursor: pointer;
+          background-color: $primaryColorHover;
+        }
+      }
     }
 
     .createPost {
