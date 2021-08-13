@@ -10,7 +10,7 @@ import Embed from './Embed';
 import PostValidationAlert from '../../../../alerts/PostValidationAlert';
 import MediaContent from './MediaContent';
 
-const CreatePost = ({ user, addPost, addComment, popUp, comment, id }) => {
+const CreatePost = ({ user, addPost, addComment, popUp, popUpClose, comment, id }) => {
   const [text, setText] = useState('');
   const [textClass, setTextClass] = useState('');
   const [image, setImage] = useState(null);
@@ -35,50 +35,50 @@ const CreatePost = ({ user, addPost, addComment, popUp, comment, id }) => {
     callback(e.target.files[0]);
   }
 
-  const setInputTextClass = () => {
-    if(image instanceof File || video instanceof File || embed) {
-      setTextClass(' noBorder');
-    }
-  }
-
-  const setMediaErrors = () => {
-    if(imgErr) setValidationErrImg(true);
-    if(vidErr) setValidationErrVid(true);
-  }
-
-  const setEmbedData = async () => {
-    if(!image && !video && !embedErr && embed) {
-      try {
-        const data = await getEmbedData(embed);
-
-        if(data !== metaData) {
-          setMetaData({ ...data });
-          setEmbedErr('');
-        }
-        
-      } catch(err) {
-        setMetaData(null);
-        setEmbedErr('URL not found!');
-      }
-    } else {
-      setMetaData(null);
-    }
-  }
-
-  const checkErrorsForBtn = () => {
-    if(!imgErr && !vidErr && !embedErr && text) {
-      setBtnDisable(false);
-    } else {
-      setBtnDisable(true);
-    }
-  }
-
   useEffect(() => {
+    const setInputTextClass = () => {
+      if(image instanceof File || video instanceof File || embed) {
+        setTextClass(' noBorder');
+      }
+    }
+  
+    const setMediaErrors = () => {
+      if(imgErr) setValidationErrImg(true);
+      if(vidErr) setValidationErrVid(true);
+    }
+  
+    const setEmbedData = async () => {
+      if(!image && !video && !embedErr && embed) {
+        try {
+          const data = await getEmbedData(embed);
+  
+          if(data !== metaData) {
+            setMetaData({ ...data });
+            setEmbedErr('');
+          }
+          
+        } catch(err) {
+          setMetaData(null);
+          setEmbedErr('URL not found!');
+        }
+      } else {
+        setMetaData(null);
+      }
+    }
+  
+    const checkErrorsForBtn = () => {
+      if(!imgErr && !vidErr && !embedErr && text) {
+        setBtnDisable(false);
+      } else {
+        setBtnDisable(true);
+      }
+    }
+
     setInputTextClass();
     setMediaErrors();
     setEmbedData();
     checkErrorsForBtn();
-  });
+  }, [embed, embedErr, image, imgErr, metaData, text, vidErr, video]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -93,12 +93,14 @@ const CreatePost = ({ user, addPost, addComment, popUp, comment, id }) => {
         await addPost(formData);
       } else {
         await addComment(user.id, id, formData);
+        popUpClose(true);
       }
 
       setImage(null);
       setVideo(null);
       setEmbed(null);
       setText('');
+      if(popUp) popUpClose(true);
 
     } catch(err) {
       console.log(err.message);
@@ -116,10 +118,8 @@ const CreatePost = ({ user, addPost, addComment, popUp, comment, id }) => {
           <TextInput user={user} textClass={textClass} value={text} setValue={setText} 
           comment={comment} />
 
-          
-
           {/* File Inputs */}
-          {!popUp ? 
+          {!comment ? 
             <>
               <input ref={imageRef} type="file" name="image" hidden 
                 onChange={(e) => setFile(e, setImage)} 

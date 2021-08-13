@@ -9,6 +9,14 @@
     padding: 2rem;
   }
 
+  &.mweetBox {
+    padding: 1rem;
+
+    .createPost__form__text {
+      min-height: 7.5rem;
+    }
+  }
+
   .embedHead {
     display: flex;
     align-items: center;

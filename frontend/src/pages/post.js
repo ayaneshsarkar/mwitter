@@ -8,7 +8,7 @@ const MainApp = ({ getSinglePost, user, post, comments, location, match }) => {
   useEffect(() => getSinglePost(match.params.id), [getSinglePost, match.params.id]);
 
   return (
-    <PostContainer>
+    <PostContainer user={user}>
       <PostsLayout user={user} post={post} location={location} create={false} 
       comments={comments} />
     </PostContainer>

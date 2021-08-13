@@ -1,10 +1,16 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import MweetAlert from './Main/MweetAlert';
 import Sprite from '../../assets/svg/feather-sprite.svg';
 
-const NavMenu = () => {
+const NavMenu = ({ user }) => {
+  const [alert, setAlert] = useState(false);
+
+  const openAlert = () => setAlert(true);
+
   return (
     <ul className="posts__nav_menu">
+      {/* Home */}
       <li className="posts__nav_menu--item active">
         <Link className="posts__nav_menu--item-link" to="/posts">
           <svg className="posts__nav_menu--item-link icon right-margin">
@@ -15,6 +21,7 @@ const NavMenu = () => {
         </Link>
       </li>
 
+      {/* Explore */}
       <li className="posts__nav_menu--item">
         <Link className="posts__nav_menu--item-link" to="/posts">
           <svg className="posts__nav_menu--item-link icon right-margin">
@@ -25,6 +32,7 @@ const NavMenu = () => {
         </Link>
       </li>
 
+      {/* Notifications */}
       <li className="posts__nav_menu--item">
         <Link className="posts__nav_menu--item-link" to="/posts">
           <svg className="posts__nav_menu--item-link icon right-margin">
@@ -35,6 +43,7 @@ const NavMenu = () => {
         </Link>
       </li>
 
+      {/* Edit Profile */}
       <li className="posts__nav_menu--item">
         <Link className="posts__nav_menu--item-link" to="/edit-profile">
           <svg className="posts__nav_menu--item-link icon right-margin">
@@ -45,7 +54,8 @@ const NavMenu = () => {
         </Link>
       </li>
 
-      <li className="posts__nav_menu--item tweet">
+      {/* Create Mweet */}
+      <li className="posts__nav_menu--item tweet" onClick={openAlert}>
         <Link className="posts__nav_menu--item-link" to="/posts">
           <svg className="posts__nav_menu--item-link icon right-margin">
             <use xlinkHref={`${Sprite}#edit-3`}></use>
@@ -55,7 +65,9 @@ const NavMenu = () => {
         </Link>
       </li>
 
-      <button className="posts__nav_menu--button">Mweet</button>
+      <button onClick={openAlert} className="posts__nav_menu--button">Mweet</button>
+
+      <MweetAlert open={alert} setClose={setAlert} user={user} />
     </ul>
   );
 }

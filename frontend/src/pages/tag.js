@@ -9,7 +9,7 @@ const Tag = ({ getPostsBySearch, match, user, posts, location  }) => {
   [getPostsBySearch, match.params.tag]);
   
   return (
-    <PostContainer>
+    <PostContainer user={user}>
       <PostsLayout user={user} posts={posts} location={location} />
     </PostContainer>
   );

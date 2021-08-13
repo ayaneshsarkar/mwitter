@@ -13,41 +13,41 @@ const MediaContent = props => {
     }
   }
 
-  const setActualMediaOnChange = () => {
-    setActualMedia(props.image, image, setImage, props.imgErr);
-    setActualMedia(props.video, video, setVideo, props.vidErr);
-
-    if(props.imgErr && image) {
-      setImage(null);
-      props.setImage(null);
-    }
-
-    if(props.vidErr && video) {
-      setVideo(null);
-      props.setVideo(null);
-    }
-  }
-
-  const setMediaErrors = () => {
-    if(image) {
-      const imgErr = isImage(image);
-      if(imgErr) props.setImgErr(imgErr);
-
-    } else if(video) {
-      const videoErr = isVideo(video);
-      if(videoErr) props.setVidErr(videoErr);
-    }
-  }
-
   const clearMedia = (callback, currentCallback) => {
     callback(null);
     currentCallback(null);
   }
 
   useEffect(() => {
+    const setActualMediaOnChange = () => {
+      setActualMedia(props.image, image, setImage, props.imgErr);
+      setActualMedia(props.video, video, setVideo, props.vidErr);
+  
+      if(props.imgErr && image) {
+        setImage(null);
+        props.setImage(null);
+      }
+  
+      if(props.vidErr && video) {
+        setVideo(null);
+        props.setVideo(null);
+      }
+    }
+  
+    const setMediaErrors = () => {
+      if(image) {
+        const imgErr = isImage(image);
+        if(imgErr) props.setImgErr(imgErr);
+  
+      } else if(video) {
+        const videoErr = isVideo(video);
+        if(videoErr) props.setVidErr(videoErr);
+      }
+    }
+
     setActualMediaOnChange();
     setMediaErrors();
-  });
+  }, [image, props, video]);
 
   return (
     <>

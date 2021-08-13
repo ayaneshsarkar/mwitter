@@ -8,7 +8,7 @@ const Search = ({ getPostsBySearch, match, user, posts, location  }) => {
   useEffect(() => getPostsBySearch(match.params.term), [getPostsBySearch, match.params.term]);
   
   return (
-    <PostContainer>
+    <PostContainer user={user}>
       <PostsLayout user={user} posts={posts} location={location} />
     </PostContainer>
   );

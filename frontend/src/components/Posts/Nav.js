@@ -3,11 +3,11 @@ import NavLogo from './NavLogo';
 import NavMenu from './NavMenu';
 import PostNav from '../../containers/Posts/PostNav';
 
-const Nav = () => {
+const Nav = ({ user }) => {
   return (
     <PostNav>
       <NavLogo />
-      <NavMenu />
+      <NavMenu user={user} />
     </PostNav>
   );
 }
