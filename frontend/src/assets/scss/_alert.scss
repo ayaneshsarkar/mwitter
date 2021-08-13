@@ -5,13 +5,55 @@
   padding: 4rem;
   min-width: 65vw;
 
+  .alertHeader {
+    width: 100%;
+    padding: 0 2.3rem;
+    height: 6rem;
+    display: flex;
+    align-items: center;
+    margin-bottom: 1.6rem;
+    border-bottom: 0.1rem solid $primaryColor;
+
+    .iconBox {
+      width: 3.7rem;
+      height: 3.7rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      background-color: transparent;
+      transition: $mainTransition;
+
+      &:hover {
+        cursor: pointer;
+        background-color: $primaryColorHover;
+      }
+
+      &:hover .icon {
+        stroke: $primaryColor;
+      }
+
+      .icon {
+        width: 2.55rem;
+        height: 2.55rem;
+        fill: none;
+        stroke: $whiteColor;
+        stroke-width: 0.2rem;
+      }
+    }
+  }
+
   &.commentBox {
-    padding: 2rem;
+    padding: 0;
     border-radius: 1.2rem;
+
+    .createPost__form__text {
+      min-height: 7.5rem;
+    }
   }
 
   &.mweetBox {
-    padding: 1rem;
+    padding: 0;
     border-radius: 1.2rem;
 
     .createPost__form__text {
