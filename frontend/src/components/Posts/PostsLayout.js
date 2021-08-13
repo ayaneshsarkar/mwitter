@@ -6,6 +6,7 @@ import Main from '../../containers/Posts/Main';
 import Mweets from './Main/Mweets';
 import Mweet from './Main/Mweet';
 import TagList from './Tags/TagList';
+import PostSearch from './PostSearch';
 
 const PostsLayout = (
   { user, title, posts, post, comments, location, create, tags, search, link }
@@ -27,11 +28,18 @@ const PostsLayout = (
 
   return(
     <Main navRef={postNavRef}>
-      <nav className="posts__main_nav" 
+      <nav className={`posts__main_nav${(location.pathname === '/explore') ? ' explore' : ''}`} 
         style={{ width: postNavWidth }}
       >
         {(location.pathname !== '/posts') ? <BackButton /> : ''}
-        <Link to={link || "/posts"}>{ title || 'Home' }</Link>
+        {
+          ((location.pathname === '/explore') ||
+            (location.pathname.includes('search')) ||
+            (location.pathname.includes('tag'))
+          ) ? 
+          <PostSearch term={search || ''} />
+          : <Link to={link || "/posts"}>{ title || 'Home' }</Link> 
+        }
       </nav>
 
       { create ? <CreateMweet user={user} popUp={false} /> : ''}

@@ -6,7 +6,7 @@ import ProfileCover from './ProfileCover';
 import ProfileInfo from './ProfileInfo';
 import Mweets from '../Posts/Main/Mweets';
 
-const ProfileLayout = ({ user, posts, location, status, title }) => {
+const ProfileLayout = ({ user, posts, location, status, title, link }) => {
   const [postNavWidth, setPostNavWidth] = useState(0);
   const postNavRef = useRef(null);
 
@@ -26,7 +26,7 @@ const ProfileLayout = ({ user, posts, location, status, title }) => {
         style={{ width: postNavWidth }}
       >
         <BackButton />
-        <Link to="/posts">{ title || 'Home' }</Link>
+        <Link to={link || "/posts"}>{ title || 'Home' }</Link>
       </nav>
 
       <div className="profile">

@@ -81,6 +81,23 @@
     display: flex;
     align-items: center;
 
+    &.postSearch {
+      margin-top: 0;
+      width: auto;
+      height: 4.51rem;
+      flex-grow: 1;
+      padding: 1rem 1.6rem;
+
+      .tags__search--input {
+        font-weight: 400;
+        padding: 2.3rem;
+      }
+
+      @media only screen and (max-width: $bpTagsBreak) {
+        display: flex !important;
+      }
+    }
+
     @media only screen and (max-width: $bpTagsBreak) {
      display: none !important;
     }
