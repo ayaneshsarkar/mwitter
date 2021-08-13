@@ -6,17 +6,21 @@ import Mweets from './Main/Mweets';
 import Mweet from './Main/Mweet';
 import TagList from './Tags/TagList';
 
-const PostsLayout = ({ user, posts, post, comments, location, create, tags }) => {
+const PostsLayout = (
+  { user, title, posts, post, comments, location, create, tags, search, link }
+) => {
   const [postNavWidth, setPostNavWidth] = useState(0);
   const postNavRef = useRef(null);
 
-  useEffect(() => setWidth(), []);
-
-  const setWidth = () => {
-    if(postNavRef && postNavRef.current && postNavRef.current.offsetWidth) {
-      setPostNavWidth(postNavRef.current.offsetWidth);
+  useEffect(() => {
+    const setWidth = () => {
+      if(postNavRef && postNavRef.current && postNavRef.current.offsetWidth) {
+        setPostNavWidth(postNavRef.current.offsetWidth);
+      }
     }
-  }
+
+    setWidth();
+  }, []);
 
   // (postNavWidth + 20)/10}rem
 
@@ -25,7 +29,7 @@ const PostsLayout = ({ user, posts, post, comments, location, create, tags }) =>
       <nav className="posts__main_nav" 
         style={{ width: postNavWidth }}
       >
-        <Link to="/posts">Home</Link>
+        <Link to={link || "/posts"}>{ title || 'Home' }</Link>
       </nav>
 
       { create ? <CreateMweet user={user} popUp={false} /> : ''}

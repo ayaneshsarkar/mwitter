@@ -10,7 +10,7 @@ const MainApp = ({ getAllTags, user, status, tags, location }) => {
   return (
     <PostContainer user={user} location={location}>
       <PostsLayout user={user} create={false} tags={tags} location={location} status={status} 
-       title={'Explore'} search={true} />
+       title={'Explore'} search={true} link={'/explore'} />
     </PostContainer>
   );
 }
