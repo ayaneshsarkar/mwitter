@@ -12,7 +12,7 @@ const CommentAlert = ({ open, setClose, user, id }) => {
   }, [commentClose, setClose]);
 
   return (
-    <Alert open={open} setClose={setClose}>
+    <Alert open={open} setClose={setClose} fullScreen={true}>
       <div className="alert commentBox">
         <AlertHeader setClose={setClose} />
         <div className="posts__main">
