@@ -23,7 +23,7 @@ const NavMenu = ({ user }) => {
 
       {/* Explore */}
       <li className="posts__nav_menu--item">
-        <Link className="posts__nav_menu--item-link" to="/posts">
+        <Link className="posts__nav_menu--item-link" to="/explore">
           <svg className="posts__nav_menu--item-link icon right-margin">
             <use xlinkHref={`${Sprite}#hash`}></use>
           </svg>

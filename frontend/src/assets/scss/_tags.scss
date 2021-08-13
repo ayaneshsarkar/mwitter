@@ -128,6 +128,21 @@
     background-color: $postBreaker;
     border-radius: 2rem;
 
+    &.postTags {
+      width: 100%;
+      margin-top: 6rem;
+      border-radius: 0;
+      background-color: inherit;
+
+      @media only screen and (max-width: $bpTagsBreak) {
+        display: block;
+      }
+
+      &.tagHead {
+        display: none;
+      }
+    }
+
     @media only screen and (max-width: $bpTagsBreak) {
       display: none;
     }

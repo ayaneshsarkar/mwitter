@@ -4,8 +4,9 @@ import CreateMweet from './Main/CreateMweet';
 import Main from '../../containers/Posts/Main';
 import Mweets from './Main/Mweets';
 import Mweet from './Main/Mweet';
+import TagList from './Tags/TagList';
 
-const PostsLayout = ({ user, posts, post, comments, location, create }) => {
+const PostsLayout = ({ user, posts, post, comments, location, create, tags }) => {
   const [postNavWidth, setPostNavWidth] = useState(0);
   const postNavRef = useRef(null);
 
@@ -39,6 +40,11 @@ const PostsLayout = ({ user, posts, post, comments, location, create }) => {
       { comments && comments.length ?
         <Mweets user={user} posts={comments} location={location} create={true} comments={true} 
         /> : '' 
+      }
+
+      {tags ?
+        <TagList tags={tags} postTags={true} /> 
+        : ''
       }
     </Main>
   );

@@ -9,6 +9,7 @@ import Post from './pages/post';
 import Searh from './pages/search';
 import Tag from './pages/tag';
 import EditProfile from './pages/editProfile';
+import Explore from './pages/explore';
 import './assets/scss/index.scss';
 
 const App = ({ verifyAuth }) => {
@@ -20,6 +21,7 @@ const App = ({ verifyAuth }) => {
         <Route exact path="/" component={Home} />
         <Route exact path="/posts" component={Posts} />
         <Route exact path="/edit-profile" component={EditProfile} />
+        <Route exact path="/explore" component={Explore} />
         <Route path="/post/:id" component={Post} />
         <Route path="/search/:term" component={Searh} />
         <Route path="/tag/:tag" component={Tag} />
