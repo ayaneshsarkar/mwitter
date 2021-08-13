@@ -15,6 +15,11 @@ const Alert = props => {
 
   return (
     <Dialog 
+      PaperProps={{
+        style: {
+          backgroundColor: 'transparent',
+        },
+      }}
       open={props.open}
       onClose={closeAlert}
       classes={!props.borderRadius ? { paper: 'br-none' } : undefined}

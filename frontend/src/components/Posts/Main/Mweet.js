@@ -6,6 +6,7 @@ import { removeComment } from '../../../actions/comments';
 import { getMediaUrl, getUser } from '../../../asynchronus/Posts';
 import history from '../../../config/history';
 import CommentAlert from './CommentAlert';
+import DeleteAlert from './DeleteAlert';
 import Img from '../../../assets/img/SamplePic.jpg';
 import Sprite from '../../../assets/svg/feather-sprite.svg';
 
@@ -14,6 +15,8 @@ const Mweet = ({ user, mweet, location, removePost, removeComment, single, comme
   const [mweetAuthorUrl, setMweetAuthorUrl] = useState(null);
   const [paddingTop, setPaddingTop] = useState(0);
   const [commentBox, setCommentBox] = useState(false);
+  const [deleteBox, setDeleteBox] = useState(false);
+
   const checkUser = user => Object.keys(user).length;
 
   useEffect(() => getAuthor(mweet.author), [mweet.author]);
@@ -91,11 +94,19 @@ const Mweet = ({ user, mweet, location, removePost, removeComment, single, comme
           </Link>}
 
           {(checkUser(user) && (mweet.author === user.id)) ? 
-            <div className="postDelete" onClick={() => deleteMweet(mweet.id)}>
-              <svg className="postDelete__icon">
-                <use xlinkHref={`${Sprite}#trash`}></use>
-              </svg>
-            </div> : ''
+            <>
+              <div className="postDelete" onClick={() => setDeleteBox(true)}>
+                <svg className="postDelete__icon">
+                  <use xlinkHref={`${Sprite}#trash`}></use>
+                </svg>
+              </div> 
+
+              <DeleteAlert open={deleteBox} setClose={setDeleteBox} 
+                callback={deleteMweet}
+                id={mweet.id} 
+              />
+            </>
+            : ''
           }
         </div>
 
