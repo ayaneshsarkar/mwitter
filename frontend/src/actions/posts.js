@@ -97,7 +97,9 @@ export const likePost = (postId, userId, likeId = null) => async dispatch => {
     
     const post = await getPost(postId);
     const likes = await getLikes(post.id, userId);
+    const comments = await getCommentsByPosts(postId);
     post.likes = likes;
+    post.comments = comments;
 
     dispatch({ type: GET_POST, payload: post });
 

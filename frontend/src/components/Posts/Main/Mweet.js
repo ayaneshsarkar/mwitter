@@ -176,17 +176,28 @@ const Mweet = ({
               : ''
             }
 
+            {/* Icons */}
             {(!comments && mweet.acf) ? <ul className="icons">
-              <li className="item">
-                <svg className={`icon${liked ? ' liked' : ''}`}
-                 onClick={() => manageLikes((mweet.likes || []), user, mweet.id)} >
-                  <use xlinkHref={`${Sprite}#heart`}></use>
-                </svg>
+              <li className="d-flex-center">
+                <div className="item">
+                  <svg className={`icon${liked ? ' liked' : ''}`}
+                  onClick={() => manageLikes((mweet.likes || []), user, mweet.id)} >
+                    <use xlinkHref={`${Sprite}#heart`}></use>
+                  </svg>
+                </div>
+                {(mweet.likes && (mweet.likes.length > 0)) && 
+                  <span className="count">{ mweet.likes.length }</span>
+                }
               </li>
-              <li className="item" onClick={() => setCommentBox(true)}>
-                <svg className="icon">
-                  <use xlinkHref={`${Sprite}#message-circle`}></use>
-                </svg>
+              <li className="d-flex-center" onClick={() => setCommentBox(true)}>
+                <div className="item">
+                  <svg className="icon">
+                    <use xlinkHref={`${Sprite}#message-circle`}></use>
+                  </svg>
+                </div>
+                {(mweet.comments && (mweet.comments.length > 0)) && 
+                  <span className="count">{ mweet.comments.length }</span>
+                }
               </li>
               <li className="item">
                 <svg className="icon">
@@ -229,24 +240,37 @@ const Mweet = ({
 
           <div className="interactInfo">
             <div className="d-flex-center item">
-              <p className="mr-1 int">500</p> Likes
+              <p className="mr-1 int">{ mweet.likes.length }</p>
+              { (mweet.likes.length === 1) ? 'Like' : 'Likes'  }
             </div>
             <div className="d-flex-center">
-              <p className="mr-1 int">5</p> Comments
+              <p className="mr-1 int">{ mweet.comments ? mweet.comments.length : '' }</p>
+              { (mweet.comments && mweet.comments.length === 1) ? 'Comment' : 'Comments'  }
             </div>
           </div>
 
+          {/* Icons */}
           <ul className="icons">
-            <li className="item">
-              <svg className={`icon${liked ? ' liked' : ''}`}
-                onClick={() => manageLikes((mweet.likes || []), user, mweet.id)} >
-                <use xlinkHref={`${Sprite}#heart`}></use>
-              </svg>
+            <li className="d-flex-center">
+              <div className="item">
+                <svg className={`icon${liked ? ' liked' : ''}`}
+                  onClick={() => manageLikes((mweet.likes || []), user, mweet.id)} >
+                  <use xlinkHref={`${Sprite}#heart`}></use>
+                </svg>
+              </div>
+              {(mweet.likes && (mweet.likes.length > 0)) && 
+                <span className="count">{ mweet.likes.length }</span>
+              }
             </li>
-            <li className="item" onClick={() => setCommentBox(true)}>
-              <svg className="icon">
-                <use xlinkHref={`${Sprite}#message-circle`}></use>
-              </svg>
+            <li className="d-flex-center" onClick={() => setCommentBox(true)}>
+              <div className="item">
+                <svg className="icon">
+                  <use xlinkHref={`${Sprite}#message-circle`}></use>
+                </svg>
+              </div>
+              {(mweet.comments && (mweet.comments.length > 0)) && 
+                <span className="count">{ mweet.comments.length }</span>
+              }
             </li>
             <li className="item">
               <svg className="icon">
