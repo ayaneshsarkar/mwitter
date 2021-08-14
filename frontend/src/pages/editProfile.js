@@ -10,7 +10,7 @@ const MainApp = ({ getAllPosts, user, posts, status, location }) => {
   return (
     <PostContainer user={user} location={location}>
       <ProfileLayout user={user} posts={posts} location={location} title={user.name} 
-      status={status} link={'/edit-profile'} />
+      status={status} link={'/edit-profile'} currentUser={user} />
     </PostContainer>
   );
 }

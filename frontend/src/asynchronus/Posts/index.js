@@ -13,6 +13,18 @@ export const getPosts = async () => {
   }
 }
 
+export const getAuthorSpecificPosts = async (authorId) => {
+  try {
+    const res = await fetchData('GET', `${server}/mweets?author=${authorId}`, null, false);
+    const posts = await res.json();
+
+    return posts;
+
+  } catch(err) {
+    throw new Error(err.message);
+  }
+}
+
 export const getPost = async id => {
   try {
     const res = await fetchData('GET', `${server}/mweets/${id}`, null, false);

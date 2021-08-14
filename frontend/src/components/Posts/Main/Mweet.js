@@ -49,7 +49,8 @@ const Mweet = ({
 
   const getPaddingTop = (mweetData, containerWidth) => {
     if(location.pathname === '/posts' || location.pathname.includes('search')
-    || location.pathname.includes('tag') || location.pathname.includes('profile')) {
+    || location.pathname.includes('tag') || location.pathname.includes('profile')
+    || location.pathname.includes('user')) {
       setPaddingTop('50%');
     } else if(location.pathname.includes('post')) {
       setPaddingTop('65%')
@@ -110,6 +111,7 @@ const Mweet = ({
           style={{ 
             backgroundImage: `url(${mweetAuthorUrl ? mweetAuthorUrl : ''})`
           }}
+          onClick={() => history.push(`/user/${author.id}`)}
           >
         </div>
       </div>}
@@ -117,16 +119,18 @@ const Mweet = ({
       {/* Profile Content */}
       <div className="posts__post--content">
         <div className="profile">
-          {(author && author.name) && <Link to="/posts" className="profile__info">
-            <h4 className="profile__info--title">
-              { author ? author.name : '' }
-            </h4>
-            <p className="profile__info--handle">
-              @{ author ? author.slug : '' }
-            </p>
-            <p className="dot singleDot">.</p>
-            <p className="profile__info--time singleTime">5m</p>
-          </Link>}
+          {(author && author.acf && author.name) && 
+            <Link to={`/user/${author.id}`} className="profile__info">
+              <h4 className="profile__info--title">
+                { author ? author.name : '' }
+              </h4>
+              <p className="profile__info--handle">
+                @{ author ? author.slug : '' }
+              </p>
+              <p className="dot singleDot">.</p>
+              <p className="profile__info--time singleTime">5m</p>
+            </Link>
+          }
 
           {(checkUser(user) && (mweet.author === user.id)) ? 
             <>

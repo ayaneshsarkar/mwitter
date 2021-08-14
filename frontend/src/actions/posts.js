@@ -4,9 +4,10 @@ import {
   CREATE_POST, 
   DELETE_POST, 
   GET_SEARCH_POSTS,
-  GET_COMMENTS_BY_POSTS
+  GET_COMMENTS_BY_POSTS,
+  GET_AUTHOR_POSTS
 } from './type';
-import { getPosts, getPost, deletePost } from '../asynchronus/Posts';
+import { getPosts, getPost, deletePost, getAuthorSpecificPosts } from '../asynchronus/Posts';
 import { searchPostsByTerm, searchPostsByTag } from '../asynchronus/Posts/searchPosts';
 import createPost from '../asynchronus/Posts/createPost';
 import { getCommentsByPosts } from '../asynchronus/Posts/comments';
@@ -27,6 +28,27 @@ export const getAllPosts = userId => async dispatch => {
     }
 
     dispatch({ type: GET_POSTS, payload: posts });
+
+  } catch(err) {
+    throw new Error(err.message);
+  }
+}
+
+export const getAllPostsByAuthor = authorId => async dispatch => {
+  try {
+    const posts = await getAuthorSpecificPosts(authorId);
+    
+    if(posts) {
+      for(const i in posts) {
+        const likes = await getLikes(posts[i].id, authorId);
+        const comments = await getCommentsByPosts(posts[i].id);
+
+        posts[i].likes = likes;
+        posts[i].comments = comments;
+      }
+    }
+
+    dispatch({ type: GET_AUTHOR_POSTS, payload: posts });
 
   } catch(err) {
     throw new Error(err.message);

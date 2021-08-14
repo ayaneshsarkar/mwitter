@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import EditProfile from "./EditProfile";
 import Sprite from '../../assets/svg/feather-sprite.svg';
 
-const ProfileInfo = ({ user, status, popUp, avatarRef, avatarFile }) => {
+const ProfileInfo = ({ user, status, popUp, avatarRef, avatarFile, currentUser }) => {
   const [editAlert, setEditAlert] = useState(false);
   const [avatar, setAvatar] = useState(null);
 
@@ -37,7 +37,7 @@ const ProfileInfo = ({ user, status, popUp, avatarRef, avatarFile }) => {
           </div>}
         </div>
 
-        { (status && !popUp) &&
+        { (status && !popUp && (user.id === currentUser.id)) &&
           <>
             <button className="profile__button" onClick={() => setEditAlert(true)}>
               Edit Profile
@@ -65,7 +65,7 @@ const ProfileInfo = ({ user, status, popUp, avatarRef, avatarFile }) => {
           <span className="profile__join--time">Joined February 2021</span>
         </div>
 
-        <div className="profile__follow d-flex-center">
+        <div className="profile__follow d-flex-center" style={{ display: 'none' }}>
           <div className="profile__follow--following d-flex-center">
             <span className="imp">50</span>
             <span>Following</span>

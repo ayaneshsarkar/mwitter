@@ -3,9 +3,12 @@ export const VERIFY_USER = 'VERIFY_USER';
 export const CREATE_USER = 'CREATE_USER';
 export const SIGNIN_USER = 'SIGNIN_USER';
 export const UPDATE_USER = 'UPDATE_USER';
+export const GET_SINGLE_USER = 'GET_SINGLE_USER';
+export const CLEAR_SINGLE_USER = 'CLEAR_SINGLE_USER';
 
 // POSTS
 export const GET_POSTS = 'GET_POSTS';
+export const GET_AUTHOR_POSTS = 'GET_AUTHOR_POSTS';
 export const GET_POST = 'GET_POST';
 export const CREATE_POST = 'CREATE_POST';
 export const DELETE_POST = 'DELETE_POST';

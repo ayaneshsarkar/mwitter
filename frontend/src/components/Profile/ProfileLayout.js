@@ -6,7 +6,7 @@ import ProfileCover from './ProfileCover';
 import ProfileInfo from './ProfileInfo';
 import Mweets from '../Posts/Main/Mweets';
 
-const ProfileLayout = ({ user, posts, location, status, title, link }) => {
+const ProfileLayout = ({ user, posts, location, status, title, link, currentUser }) => {
   const [postNavWidth, setPostNavWidth] = useState(0);
   const postNavRef = useRef(null);
 
@@ -31,7 +31,7 @@ const ProfileLayout = ({ user, posts, location, status, title, link }) => {
 
       <div className="profile">
         <ProfileCover user={user} />
-        <ProfileInfo user={user ? user : null} status={status} />
+        <ProfileInfo user={user ? user : null} status={status} currentUser={currentUser} />
       </div>
 
       { posts && posts.length ? 
