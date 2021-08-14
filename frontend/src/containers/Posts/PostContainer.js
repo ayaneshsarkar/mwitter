@@ -6,7 +6,7 @@ import Tags from '../../components/Posts/Tags';
 const PostContainer = props => {
   return (
     <PostWrapper>
-      <PostNav user={props.user} />
+      <PostNav user={props.user} location={props.location} />
       <main className="main">
         { props.children }
       </main>

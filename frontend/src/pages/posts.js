@@ -8,7 +8,7 @@ const MainApp = ({ getAllPosts, user, posts, location }) => {
   useEffect(() => getAllPosts(user.id), [getAllPosts, user.id]);
   
   return (
-    <PostContainer user={user}>
+    <PostContainer user={user} location={location}>
       <PostsLayout user={user} posts={posts} location={location} create={true} />
     </PostContainer>
   );

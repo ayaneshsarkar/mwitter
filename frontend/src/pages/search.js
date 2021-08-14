@@ -9,7 +9,7 @@ const Search = ({ getPostsBySearch, match, user, posts, location  }) => {
   [getPostsBySearch, match.params.term, user.id]);
   
   return (
-    <PostContainer user={user}>
+    <PostContainer user={user} location={location}>
       <PostsLayout search={match.params.term || ''} user={user} posts={posts} 
       location={location} />
     </PostContainer>

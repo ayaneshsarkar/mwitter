@@ -9,7 +9,7 @@ const MainApp = ({ getSinglePost, user, post, comments, location, match }) => {
   [getSinglePost, match.params.id, user.id]);
 
   return (
-    <PostContainer user={user}>
+    <PostContainer user={user} location={location}>
       <PostsLayout user={user} post={post} location={location} create={false} 
       comments={comments} title={"Mweet"} link={post ? `/post/${post.id}` : ''} />
     </PostContainer>
