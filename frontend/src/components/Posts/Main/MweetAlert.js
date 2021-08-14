@@ -12,7 +12,7 @@ const MweetAlert = ({ open, setClose, user }) => {
   }, [mweetClose, setClose]);
 
   return (
-    <Alert open={open} setClose={setClose}>
+    <Alert open={open} setClose={setClose} fullScreen={true}>
       <div className="alert mweetBox">
         <AlertHeader setClose={setClose} />
         <div className="posts__main">
