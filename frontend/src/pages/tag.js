@@ -5,8 +5,8 @@ import PostsLayout from '../components/Posts/PostsLayout';
 import PostContainer from '../containers/Posts/PostContainer';
 
 const Tag = ({ getPostsBySearch, match, user, posts, location  }) => {
-  useEffect(() => getPostsBySearch(match.params.tag, true), 
-  [getPostsBySearch, match.params.tag]);
+  useEffect(() => getPostsBySearch(match.params.tag, true, user.id), 
+  [getPostsBySearch, match.params.tag, user.id]);
   
   return (
     <PostContainer user={user}>

@@ -10,10 +10,22 @@ import { getPosts, getPost, deletePost } from '../asynchronus/Posts';
 import { searchPostsByTerm, searchPostsByTag } from '../asynchronus/Posts/searchPosts';
 import createPost from '../asynchronus/Posts/createPost';
 import { getCommentsByPosts } from '../asynchronus/Posts/comments';
+import { getLikes, createLike } from '../asynchronus/Posts/like';
 
-export const getAllPosts = () => async dispatch => {
+export const getAllPosts = userId => async dispatch => {
   try {
     const posts = await getPosts();
+
+    if(posts) {
+      for(const i in posts) {
+        const likes = await getLikes(posts[i].id, userId);
+        const comments = await getCommentsByPosts(posts[i].id);
+
+        posts[i].likes = likes;
+        posts[i].comments = comments;
+      }
+    }
+
     dispatch({ type: GET_POSTS, payload: posts });
 
   } catch(err) {
@@ -21,10 +33,14 @@ export const getAllPosts = () => async dispatch => {
   }
 }
 
-export const getSinglePost = id => async dispatch => {
+export const getSinglePost = (id, userId) => async dispatch => {
   try {
     const post = await getPost(id);
     const comments = await getCommentsByPosts(post.id);
+    const likes = await getLikes(post.id, userId);
+    post.likes = likes;
+    post.comments = comments;
+
     dispatch({ type: GET_POST, payload: post });
     dispatch({ type: GET_COMMENTS_BY_POSTS, payload: comments });
 
@@ -53,13 +69,36 @@ export const removePost = id => async dispatch => {
   }
 }
 
-export const getPostsBySearch = (search, tag = false) => async dispatch => {
+export const getPostsBySearch = (search, tag = false, userId) => async dispatch => {
   try {
     const posts = !tag ? await searchPostsByTerm(search) : await searchPostsByTag(search);
-    console.log(posts);
+
+    if(posts) {
+      for(const i in posts) {
+        const likes = await getLikes(posts[i].id, userId);
+        const comments = await getCommentsByPosts(posts[i].id);
+        
+        posts[i].likes = likes;
+        posts[i].comments = comments;
+      }
+    }
+
     dispatch({ type: GET_SEARCH_POSTS, payload: posts });
     
   } catch(err) {
     console.error(err.message);
+  }
+}
+
+export const likePost = postId => async dispatch => {
+  try {
+    const like = await createLike(postId);
+    const post = getPost(postId);
+    post.like = like;
+
+    dispatch({ type: GET_POST, payload: post });
+
+  } catch(err) {
+    throw new Error(err.message);
   }
 }

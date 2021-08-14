@@ -5,8 +5,7 @@ import PostsLayout from '../components/Posts/PostsLayout';
 import PostContainer from '../containers/Posts/PostContainer';
 
 const MainApp = ({ getAllPosts, user, posts, location }) => {
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  useEffect(() => getAllPosts(), []);
+  useEffect(() => getAllPosts(user.id), [getAllPosts, user.id]);
   
   return (
     <PostContainer user={user}>

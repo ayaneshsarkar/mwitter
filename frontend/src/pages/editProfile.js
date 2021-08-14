@@ -5,7 +5,7 @@ import ProfileLayout from '../components/Profile/ProfileLayout';
 import PostContainer from '../containers/Posts/PostContainer';
 
 const MainApp = ({ getAllPosts, user, posts, status, location }) => {
-  useEffect(() => getAllPosts(), [getAllPosts]);
+  useEffect(() => getAllPosts(user.id), [getAllPosts, user.id]);
   
   return (
     <PostContainer user={user} location={location}>

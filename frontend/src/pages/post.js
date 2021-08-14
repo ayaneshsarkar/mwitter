@@ -5,7 +5,8 @@ import PostsLayout from '../components/Posts/PostsLayout';
 import PostContainer from '../containers/Posts/PostContainer';
 
 const MainApp = ({ getSinglePost, user, post, comments, location, match }) => {
-  useEffect(() => getSinglePost(match.params.id), [getSinglePost, match.params.id]);
+  useEffect(() => getSinglePost(match.params.id, user.id), 
+  [getSinglePost, match.params.id, user.id]);
 
   return (
     <PostContainer user={user}>
