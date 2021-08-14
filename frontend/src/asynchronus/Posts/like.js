@@ -23,9 +23,14 @@ export const getLikes = async (postId, userId) => {
   }
 }
 
-export const createLike = async postId => {
+export const createOrDeleteLike = async (postId, likeId = null) => {
   try {
-    const fields = { fields: { postId }  };
+    if(likeId) {
+      await fetchSingleData('DELETE', `${server}/likes/${likeId}`, null);
+      return [];
+    }
+
+    const fields = { status: 'publish', fields: { postId }  };
     const likeRes = await fetchSingleData('POST', `${server}/likes`, fields);
     const likeData = await likeRes.json();
 

@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom'
 import { removePost } from '../../../actions/posts';
 import { removeComment } from '../../../actions/comments';
+import { likePost } from '../../../actions/posts';
 import { getMediaUrl, getUser } from '../../../asynchronus/Posts';
 import history from '../../../config/history';
 import CommentAlert from './CommentAlert';
@@ -10,16 +11,23 @@ import DeleteAlert from './DeleteAlert';
 import Img from '../../../assets/img/SamplePic.jpg';
 import Sprite from '../../../assets/svg/feather-sprite.svg';
 
-const Mweet = ({ user, mweet, location, removePost, removeComment, single, comments }) => {
+const Mweet = ({
+  user, mweet, location, removePost, removeComment, likePost, single, comments 
+}) => {
   const [author, setAuthor] = useState(null);
   const [mweetAuthorUrl, setMweetAuthorUrl] = useState(null);
   const [paddingTop, setPaddingTop] = useState(0);
   const [commentBox, setCommentBox] = useState(false);
   const [deleteBox, setDeleteBox] = useState(false);
+  const [liked, setLiked] = useState(false);
 
   const checkUser = user => Object.keys(user).length;
 
-  useEffect(() => getAuthor(mweet.author), [mweet.author]);
+  useEffect(() => {
+    getAuthor(mweet.author);
+    handleLikes((mweet.likes || null), user, mweet.id);
+  }, 
+  [liked, mweet.author, mweet.id, mweet.likes, user]);
 
   const getAuthor = async authorId => {
     const author = await getUser(authorId);
@@ -62,6 +70,33 @@ const Mweet = ({ user, mweet, location, removePost, removeComment, single, comme
         history.push(`/tag/${tag}`);
       } else {
         history.push(`/post/${mweet.id}`);
+      }
+    }
+  }
+
+  const handleLikes = (likes, user, postId) => {
+    if(likes && likes.length) {
+      for(const i in likes) {
+        if(likes[i].author === user.id && parseInt(likes[i].acf.postId) === postId) {
+          setLiked(true);
+        }
+      }
+    }
+  }
+
+  const manageLikes = async (likes, user, mweetId) => {
+    if(!likes.length) {
+      // Create
+      await likePost(mweetId, user.id);
+      setLiked(true);
+
+    } else {
+      for(const i in likes) {
+        if(likes[i].author === user.id) {
+          // Delete
+          await likePost(mweetId, user.id, likes[i].id);
+          setLiked(false);
+        }
       }
     }
   }
@@ -113,7 +148,7 @@ const Mweet = ({ user, mweet, location, removePost, removeComment, single, comme
         {/* Mweet Content */}
         {!single ? 
           <>
-            {!comments ? 
+            {(!comments && mweet.acf && mweet.acf.text) ? 
               <p 
                 onClick={(e) => getTag(e)}
                 className="text" dangerouslySetInnerHTML={{ __html: mweet.acf.text }}>
@@ -141,9 +176,10 @@ const Mweet = ({ user, mweet, location, removePost, removeComment, single, comme
               : ''
             }
 
-            {!comments ? <ul className="icons">
+            {(!comments && mweet.acf) ? <ul className="icons">
               <li className="item">
-                <svg className="icon">
+                <svg className={`icon${liked ? ' liked' : ''}`}
+                 onClick={() => manageLikes((mweet.likes || []), user, mweet.id)} >
                   <use xlinkHref={`${Sprite}#heart`}></use>
                 </svg>
               </li>
@@ -202,7 +238,8 @@ const Mweet = ({ user, mweet, location, removePost, removeComment, single, comme
 
           <ul className="icons">
             <li className="item">
-              <svg className="icon">
+              <svg className={`icon${liked ? ' liked' : ''}`}
+                onClick={() => manageLikes((mweet.likes || []), user, mweet.id)} >
                 <use xlinkHref={`${Sprite}#heart`}></use>
               </svg>
             </li>
@@ -226,4 +263,4 @@ const Mweet = ({ user, mweet, location, removePost, removeComment, single, comme
   );
 }
 
-export default connect(null, { removePost, removeComment })(Mweet);
+export default connect(null, { removePost, removeComment, likePost })(Mweet);

@@ -10,7 +10,7 @@ import { getPosts, getPost, deletePost } from '../asynchronus/Posts';
 import { searchPostsByTerm, searchPostsByTag } from '../asynchronus/Posts/searchPosts';
 import createPost from '../asynchronus/Posts/createPost';
 import { getCommentsByPosts } from '../asynchronus/Posts/comments';
-import { getLikes, createLike } from '../asynchronus/Posts/like';
+import { getLikes, createOrDeleteLike } from '../asynchronus/Posts/like';
 
 export const getAllPosts = userId => async dispatch => {
   try {
@@ -38,6 +38,7 @@ export const getSinglePost = (id, userId) => async dispatch => {
     const post = await getPost(id);
     const comments = await getCommentsByPosts(post.id);
     const likes = await getLikes(post.id, userId);
+
     post.likes = likes;
     post.comments = comments;
 
@@ -90,11 +91,13 @@ export const getPostsBySearch = (search, tag = false, userId) => async dispatch 
   }
 }
 
-export const likePost = postId => async dispatch => {
+export const likePost = (postId, userId, likeId = null) => async dispatch => {
   try {
-    const like = await createLike(postId);
-    const post = getPost(postId);
-    post.like = like;
+    !likeId ? await createOrDeleteLike(postId) : await createOrDeleteLike(postId, likeId);
+    
+    const post = await getPost(postId);
+    const likes = await getLikes(post.id, userId);
+    post.likes = likes;
 
     dispatch({ type: GET_POST, payload: post });
 

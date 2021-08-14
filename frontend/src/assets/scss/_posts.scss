@@ -868,6 +868,11 @@
             stroke: $svgColor;
             stroke-width: 1.5;
             transition: $mainTransition;
+
+            &.liked {
+              fill: $likeColor;
+              stroke: transparent;
+            }
           }
         }
       }
