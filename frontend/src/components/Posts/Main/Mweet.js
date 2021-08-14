@@ -39,9 +39,9 @@ const Mweet = ({
     }
   }
 
-  const deleteMweet = async id => {
+  const deleteMweet = async (id) => {
     try {
-      !comments ? await removePost(id) : await removeComment(id);
+      !comments ? await removePost(id) : await removeComment(id, user.id, mweet.post);
     } catch(err) {
       console.error(err.message);
     }
