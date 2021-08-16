@@ -37,7 +37,7 @@ const HomeNav = ({ status }) => {
           <li className="nav__menu_item" >
             <Link className="nav__menu_item-link" to="/posts" 
             onClick={(e) => openAlert(e, status)}>
-              Posts
+              Mweets
             </Link>
           </li>
         </ul>
