@@ -5,6 +5,7 @@ import { removePost } from '../../../actions/posts';
 import { removeComment } from '../../../actions/comments';
 import { likePost } from '../../../actions/posts';
 import { getMediaUrl, getUser } from '../../../asynchronus/Posts';
+import { getEmbedData } from '../../../asynchronus/Posts/embed';
 import history from '../../../config/history';
 import CommentAlert from './CommentAlert';
 import DeleteAlert from './DeleteAlert';
@@ -20,14 +21,16 @@ const Mweet = ({
   const [commentBox, setCommentBox] = useState(false);
   const [deleteBox, setDeleteBox] = useState(false);
   const [liked, setLiked] = useState(false);
+  const [embed, setEmbed] = useState(null);
 
   const checkUser = user => Object.keys(user).length;
 
   useEffect(() => {
     getAuthor(mweet.author);
     handleLikes((mweet.likes || null), user, mweet.id);
+    getEmbed(mweet);
   }, 
-  [liked, mweet.author, mweet.id, mweet.likes, user]);
+  [liked, mweet, mweet.author, mweet.id, mweet.likes, user]);
 
   const getAuthor = async authorId => {
     const author = await getUser(authorId);
@@ -102,6 +105,13 @@ const Mweet = ({
     }
   }
 
+  const getEmbed = async mweet => {
+    if(mweet.acf && mweet.acf.embed) {
+      const embedData = await getEmbedData(mweet.acf.embed);
+      setEmbed({ ...embedData });
+    }
+  }
+
   return (
     <div className={`posts__post${single ? ' single' : ''}${comments ? ' comments' : ''}`}>
       {/* Profile Image */}
@@ -169,14 +179,53 @@ const Mweet = ({
 
             {(mweet.acf && mweet.acf.image && !comments) ? 
               <div
-              className="media"
-              onLoad={(e) => getPaddingTop(mweet, e.target.offsetWidth)}
-              style={{ 
-                backgroundImage: `url(${mweet.acf.image.sizes.large})`, paddingTop
-              }}
+                className="media"
+                onLoad={(e) => getPaddingTop(mweet, e.target.offsetWidth)}
+                style={{ 
+                  backgroundImage: `url(${mweet.acf.image.sizes.large})`, paddingTop
+                }}
               >
                 <img src={Img} alt="Sample" className="img" />
               </div> 
+              
+              : (mweet.acf && mweet.acf.embed && embed && !comments) ?
+              
+              // Embed
+              <a className="embedBox" href={`http://${embed.url}`} 
+              target="_blank" rel="noreferrer">
+                <div className="embedBox--embed">
+                  {/* Embed Image */}
+                  <div className="embedBox--embed-image">
+                    {embed.image ? 
+                      <img src={embed.image} alt={embed.title} className="img" />
+                      : ''
+                    }
+                  </div>
+
+                  {/* Content */}
+                  <div className="embedBox--embed-content">
+                    {/* Title */}
+                    <h3 className="title">{ embed.title }</h3> 
+
+                    {/* Metadata */}
+                    <div className="link">
+                      <svg className="icon">
+                        <use xlinkHref={`${Sprite}#paperclip`}></use>
+                      </svg>
+                      <p className="text">{ embed.url }</p>
+                    </div>
+                  </div>
+                </div>
+              </a>
+              
+              : (mweet.acf && mweet.acf.video && !comments) ?
+
+              <div className="media">
+                <video className="video" controls autoPlay muted>
+                  <source src={mweet.acf.video.url} type={mweet.acf.video.mime_type} />
+                </video>
+              </div>
+
               : ''
             }
 
