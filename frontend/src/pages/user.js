@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { getSingleUser } from '../actions/auth';
 import { getAllPostsByAuthor } from '../actions/posts';
+import history from '../config/history';
 import ProfileLayout from '../components/Profile/ProfileLayout';
 import PostContainer from '../containers/Posts/PostContainer';
 
@@ -10,11 +11,13 @@ const MainApp = ({
 }) => {
 
   useEffect(() => {
-    getSingleUser(match.params.id);
-    getAllPostsByAuthor(match.params.id);
-  }, [getAllPostsByAuthor, getSingleUser, match.params.id]);
+    if(status) {
+      getSingleUser(match.params.id);
+      getAllPostsByAuthor(match.params.id);
+    }
+  }, [getAllPostsByAuthor, getSingleUser, match.params.id, status]);
   
-  if(user) {
+  if(user && status) {
     return (
       <PostContainer user={user} location={location}>
         <ProfileLayout user={user} posts={posts} location={location} title={user.name} 
@@ -22,6 +25,7 @@ const MainApp = ({
       </PostContainer>
     );
   } else {
+    history.push('/');
     return <></>;
   }
 }

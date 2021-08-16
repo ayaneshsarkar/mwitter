@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import history from '../config/history';
 import HomeContainer from '../containers/Home';
 import HomeWrapper from '../containers/HomeWrapper';
 import HomeNav from '../components/HomeNav';
@@ -8,16 +9,21 @@ import HomeForm from '../components/HomeForm';
 import HomeBackground from '../assets/img/homeBackground.jpg';
 
 const Index = ({ user, status }) => {
-  return (
-    <HomeContainer homeBackground={HomeBackground}>
-      <HomeNav status={status} user={user} />
-
-      <HomeWrapper>
-        <HomeHero />
-        <HomeForm />
-      </HomeWrapper>
-    </HomeContainer>
-  );
+  if(status) {
+    history.push('/posts');
+    return <></>;
+  } else {
+    return (
+      <HomeContainer homeBackground={HomeBackground}>
+        <HomeNav status={status} user={user} />
+  
+        <HomeWrapper>
+          <HomeHero />
+          <HomeForm />
+        </HomeWrapper>
+      </HomeContainer>
+    );
+  }
 }
 
 const mapStateToProps = state => {

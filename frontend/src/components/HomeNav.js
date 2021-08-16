@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import history from '../config/history';
 import PostValidationAlert from '../alerts/PostValidationAlert';
 
 const HomeNav = ({ status }) => {
@@ -12,6 +13,8 @@ const HomeNav = ({ status }) => {
     if(!status) {
       setError('You Have To Be Logged In To Visit This Page!');
       setAlert(true);
+    } else {
+      history.push('/posts');
     }
   }
 
