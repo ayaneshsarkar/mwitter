@@ -6,7 +6,7 @@ const HomeNav = () => {
     <nav className="navbar home">
       <div className="wrapper home nav">
         <Link className="home logo" to="/">
-          Octa Posts
+          Mwitter
         </Link>
 
         <ul className="nav__menu home">
@@ -19,12 +19,6 @@ const HomeNav = () => {
           <li className="nav__menu_item">
             <Link className="nav__menu_item-link" to="/posts">
               Posts
-            </Link>
-          </li>
-
-          <li className="nav__menu_item">
-            <Link className="nav__menu_item-link" to="/">
-              Contact Us
             </Link>
           </li>
         </ul>

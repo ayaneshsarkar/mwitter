@@ -7,6 +7,12 @@
     grid-template-columns: 1fr 1fr;
     grid-gap: 10rem;
     align-items: center;
+
+    @media only screen and (max-width: $bpHomeBreak) {
+      grid-template-columns: 1fr;
+      justify-content: center;
+      align-items: flex-start;
+    }
   }
 
   .homeHeroBanner, .homeForm {
@@ -17,12 +23,20 @@
   .homeHeroBanner {
     letter-spacing: 0.2rem;
     justify-self: start;
+
+    @media only screen and (max-width: $bpHomeBreak) {
+      display: none;
+    }
   }
 
   .homeForm {
     padding: 1.6rem;
     background-color: $whiteColorHome;
     border-radius: 0.5rem;
+
+    @media only screen and (max-width: $bpHomeBreak) {
+      justify-self: center;
+    }
   }
   
   &__banner {
