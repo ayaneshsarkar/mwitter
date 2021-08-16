@@ -57,7 +57,7 @@ const ProfileInfo = ({ user, status, popUp, avatarRef, avatarFile, currentUser }
           { user.description || 'You do not have a Bio!' }
         </div>
 
-        <div className="profile__join d-flex-center">
+        <div className="profile__join d-flex-center" style={{ display: 'none' }}>
           <svg className="profile__join--icon">
             <use xlinkHref={`${Sprite}#calendar`}></use>
           </svg>

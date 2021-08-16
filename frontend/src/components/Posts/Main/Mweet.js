@@ -7,6 +7,7 @@ import { likePost } from '../../../actions/posts';
 import { getMediaUrl, getUser } from '../../../asynchronus/Posts';
 import { getEmbedData } from '../../../asynchronus/Posts/embed';
 import history from '../../../config/history';
+import { getTime, formatDate } from '../../../helpers/time';
 import LightBox from '../../../alerts/LightBox';
 import CommentAlert from './CommentAlert';
 import DeleteAlert from './DeleteAlert';
@@ -142,7 +143,9 @@ const Mweet = ({
                 @{ author ? author.slug : '' }
               </p>
               <p className="dot singleDot">.</p>
-              <p className="profile__info--time singleTime">5m</p>
+              <p className="profile__info--time singleTime">
+                { getTime(mweet.date) }
+              </p>
             </Link>
           }
 
@@ -338,10 +341,12 @@ const Mweet = ({
             : ''
           }
 
-          <div className="d-flex-center postTime">
-            <p className="profile__info--time">5m</p>
+          <div className="d-flex-center postTime" style={{ pointerEvents: 'none' }}>
+            <p className="profile__info--time">{ getTime(mweet.date) }</p>
             <p className="dot">.</p>
-            <p className="profile__info--time">Aug 10, 2021</p>
+            <p className="profile__info--time">
+              { formatDate(mweet.date) }
+            </p>
             <p className="dot">.</p>
             <p className="profile__info--time">Mwitter For Web</p>
           </div>
