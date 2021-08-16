@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import history from '../config/history';
+import Head from '../containers/Head';
 import HomeContainer from '../containers/Home';
 import HomeWrapper from '../containers/HomeWrapper';
 import HomeNav from '../components/HomeNav';
@@ -14,14 +15,19 @@ const Index = ({ user, status }) => {
     return <></>;
   } else {
     return (
-      <HomeContainer homeBackground={HomeBackground}>
-        <HomeNav status={status} user={user} />
-  
-        <HomeWrapper>
-          <HomeHero />
-          <HomeForm />
-        </HomeWrapper>
-      </HomeContainer>
+      <>
+        <Head title="Mwitter / Home" 
+        description="This is Mwitter, social media of All Individuals." />
+
+        <HomeContainer homeBackground={HomeBackground}>
+          <HomeNav status={status} user={user} />
+    
+          <HomeWrapper>
+            <HomeHero />
+            <HomeForm />
+          </HomeWrapper>
+        </HomeContainer>
+      </>
     );
   }
 }

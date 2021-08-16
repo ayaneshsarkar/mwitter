@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { getPostsBySearch } from '../actions/posts';
-import history from '../config/history';
+import Head from '../containers/Head';
 import PostsLayout from '../components/Posts/PostsLayout';
 import PostContainer from '../containers/Posts/PostContainer';
 
@@ -13,16 +13,20 @@ const Search = ({ getPostsBySearch, match, user, posts, location, status }) => {
   }, 
   [getPostsBySearch, match.params.term, user.id, status]);
 
-  if(!status) {
-    history.push('/');
-    return <></>;
-  } else {
+  if(status) {
     return (
-      <PostContainer user={user} location={location}>
-        <PostsLayout search={match.params.term || ''} user={user} posts={posts} 
-        location={location} />
-      </PostContainer>
+      <>
+        <Head title={'Mwitter / Search'} 
+        description="This is Mwitter, social media of All Individuals." />
+
+        <PostContainer user={user} location={location}>
+          <PostsLayout search={match.params.term || ''} user={user} posts={posts} 
+          location={location} />
+        </PostContainer>
+      </>
     );
+  } else {
+    return <></>;
   }
 }
 

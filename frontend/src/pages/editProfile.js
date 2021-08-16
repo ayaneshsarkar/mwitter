@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { getAllPostsByAuthor } from '../actions/posts';
-import history from '../config/history';
+import Head from '../containers/Head';
 import ProfileLayout from '../components/Profile/ProfileLayout';
 import PostContainer from '../containers/Posts/PostContainer';
 
@@ -14,13 +14,17 @@ const MainApp = ({ getAllPostsByAuthor, user, posts, status, location }) => {
 
   if(user && user.id && status) {
     return (
-      <PostContainer user={user} location={location}>
-        <ProfileLayout user={user} posts={posts} location={location} title={user.name} 
-        status={status} link={'/edit-profile'} currentUser={user} />
-      </PostContainer>
+      <>
+        <Head title={'Mwitter / Profile'} 
+        description="This is Mwitter, social media of All Individuals." />
+
+        <PostContainer user={user} location={location}>
+          <ProfileLayout user={user} posts={posts} location={location} title={user.name} 
+          status={status} link={'/edit-profile'} currentUser={user} />
+        </PostContainer>
+      </>
     );
   } else {
-    history.push('/');
     return <></>
   }
 }
