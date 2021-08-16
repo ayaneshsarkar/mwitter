@@ -2,6 +2,7 @@ import React, { useState, useRef } from 'react';
 import { connect } from 'react-redux';
 import { updateCurrentUser } from '../../actions/auth';
 import Alert from '../../containers/Posts/Alert';
+import AlertHeader from '../Posts/AlertHeader';
 import ProfileCover from './ProfileCover';
 import ProfileInfo from './ProfileInfo';
 
@@ -44,8 +45,9 @@ const EditProfile = ({ open, setClose, user, status, updateCurrentUser }) => {
   }
 
   return (
-    <Alert open={open} setClose={setClose}>
+    <Alert open={open} setClose={setClose} fullScreen={true}>
       <div className="alert profile">
+        <AlertHeader setClose={setClose} profile={true} />
         <ProfileCover user={user} popUp={true} coverRef={coverRef} status={status} 
           cover={cover} setCover={setCover}
         />

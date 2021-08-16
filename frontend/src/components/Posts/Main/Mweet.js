@@ -7,6 +7,7 @@ import { likePost } from '../../../actions/posts';
 import { getMediaUrl, getUser } from '../../../asynchronus/Posts';
 import { getEmbedData } from '../../../asynchronus/Posts/embed';
 import history from '../../../config/history';
+import LightBox from '../../../alerts/LightBox';
 import CommentAlert from './CommentAlert';
 import DeleteAlert from './DeleteAlert';
 import Img from '../../../assets/img/SamplePic.jpg';
@@ -22,6 +23,7 @@ const Mweet = ({
   const [deleteBox, setDeleteBox] = useState(false);
   const [liked, setLiked] = useState(false);
   const [embed, setEmbed] = useState(null);
+  const [lightBox, setLightBox] = useState(false);
 
   const checkUser = user => Object.keys(user).length;
 
@@ -112,6 +114,8 @@ const Mweet = ({
     }
   }
 
+  const openLightbox = () => setLightBox(true);
+
   return (
     <div className={`posts__post${single ? ' single' : ''}${comments ? ' comments' : ''}`}>
       {/* Profile Image */}
@@ -181,11 +185,15 @@ const Mweet = ({
               <div
                 className="media"
                 onLoad={(e) => getPaddingTop(mweet, e.target.offsetWidth)}
+                onClick={openLightbox}
                 style={{ 
                   backgroundImage: `url(${mweet.acf.image.sizes.large})`, paddingTop
                 }}
               >
                 <img src={Img} alt="Sample" className="img" loading="lazy" />
+                <LightBox open={lightBox} setClose={setLightBox} 
+                image={mweet.acf.image.sizes['2048x2048']} 
+              />
               </div> 
               
               : (mweet.acf && mweet.acf.embed && embed && !comments) ?
@@ -276,11 +284,15 @@ const Mweet = ({
             <div
               className="media"
               onLoad={(e) => getPaddingTop(mweet, e.target.offsetWidth)}
+              onClick={openLightbox}
               style={{ 
                 backgroundImage: `url(${mweet.acf.image.sizes.large})`, paddingTop
               }}
             >
               <img src={Img} alt="Sample" className="img" />
+              <LightBox open={lightBox} setClose={setLightBox} 
+                image={mweet.acf.image.sizes['2048x2048']} 
+              />
             </div> 
             : (mweet.acf && mweet.acf.embed && embed) ?
             

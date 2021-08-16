@@ -5,6 +5,40 @@
   padding: 4rem;
   min-width: 65vw;
 
+  &.lightbox {
+    position: relative;
+    min-width: 90vw;
+    height: 95vh;
+    background-color: inherit;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+
+    .lightBoxCross {
+      position: absolute;
+      top: 0.7rem;
+      left: 0.7rem;
+      width: 5rem;
+      height: 5rem;
+      background-color: $blackColor;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      &:hover {
+        cursor: pointer;
+      }
+
+      .lightBoxIcon {
+        width: 4rem;
+        height: 4rem;
+        fill: none;
+        stroke: $whiteColor;
+      }
+    }
+  }
+
   .alertHeader {
     width: 100%;
     padding: 0 2.3rem;
@@ -13,6 +47,11 @@
     align-items: center;
     margin-bottom: 1.6rem;
     border-bottom: 0.1rem solid $primaryColor;
+
+    &.profileAlert {
+      margin-bottom: 0;
+      border-bottom: none;
+    }
 
     .iconBox {
       width: 3.7rem;

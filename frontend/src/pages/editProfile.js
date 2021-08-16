@@ -5,14 +5,23 @@ import ProfileLayout from '../components/Profile/ProfileLayout';
 import PostContainer from '../containers/Posts/PostContainer';
 
 const MainApp = ({ getAllPostsByAuthor, user, posts, status, location }) => {
-  useEffect(() => getAllPostsByAuthor(user.id), [getAllPostsByAuthor, user.id]);
-  
-  return (
-    <PostContainer user={user} location={location}>
-      <ProfileLayout user={user} posts={posts} location={location} title={user.name} 
-      status={status} link={'/edit-profile'} currentUser={user} />
-    </PostContainer>
-  );
+  console.log(user.id)
+  useEffect(() => {
+    if(user && user.id) {
+      getAllPostsByAuthor(user.id);
+    }
+  }, [getAllPostsByAuthor, user, user.id]);
+
+  if(user && user.id) {
+    return (
+      <PostContainer user={user} location={location}>
+        <ProfileLayout user={user} posts={posts} location={location} title={user.name} 
+        status={status} link={'/edit-profile'} currentUser={user} />
+      </PostContainer>
+    );
+  } else {
+    return <></>
+  }
 }
 
 const mapStateToProps = state => {
