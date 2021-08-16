@@ -160,7 +160,7 @@ const Mweet = ({
         </div>
 
         {/* Mweet Content */}
-        {!single ? 
+        {(!single && author && author.acf) ? 
           <>
             {(!comments && mweet.acf && mweet.acf.text) ? 
               <p 
@@ -185,19 +185,19 @@ const Mweet = ({
                   backgroundImage: `url(${mweet.acf.image.sizes.large})`, paddingTop
                 }}
               >
-                <img src={Img} alt="Sample" className="img" />
+                <img src={Img} alt="Sample" className="img" loading="lazy" />
               </div> 
               
               : (mweet.acf && mweet.acf.embed && embed && !comments) ?
               
               // Embed
               <a className="embedBox" href={`http://${embed.url}`} 
-              target="_blank" rel="noreferrer">
+                target="_blank" rel="noreferrer">
                 <div className="embedBox--embed">
                   {/* Embed Image */}
                   <div className="embedBox--embed-image">
                     {embed.image ? 
-                      <img src={embed.image} alt={embed.title} className="img" />
+                      <img src={embed.image} alt={embed.title} className="img" loading="lazy" />
                       : ''
                     }
                   </div>
@@ -220,8 +220,9 @@ const Mweet = ({
               
               : (mweet.acf && mweet.acf.video && !comments) ?
 
+              // Video
               <div className="media">
-                <video className="video" controls autoPlay muted>
+                <video className="video" controls muted>
                   <source src={mweet.acf.video.url} type={mweet.acf.video.mime_type} />
                 </video>
               </div>
@@ -263,7 +264,8 @@ const Mweet = ({
         }
       </div>
 
-      {single ? 
+      {/* SINGLE MWEET CONTENT */}
+      {(single && author && author.acf) ? 
         <div className="posts__post--content last">
           <p 
             onClick={(e) => getTag(e)}
@@ -272,14 +274,53 @@ const Mweet = ({
 
           {mweet.acf.image ? 
             <div
-            className="media"
-            onLoad={(e) => getPaddingTop(mweet, e.target.offsetWidth)}
-            style={{ 
-              backgroundImage: `url(${mweet.acf.image.sizes.large})`, paddingTop
-            }}
+              className="media"
+              onLoad={(e) => getPaddingTop(mweet, e.target.offsetWidth)}
+              style={{ 
+                backgroundImage: `url(${mweet.acf.image.sizes.large})`, paddingTop
+              }}
             >
               <img src={Img} alt="Sample" className="img" />
             </div> 
+            : (mweet.acf && mweet.acf.embed && embed) ?
+            
+            // Embed
+            <a className="embedBox single" href={`http://${embed.url}`} 
+            target="_blank" rel="noreferrer">
+              <div className="embedBox--embed">
+                {/* Embed Image */}
+                <div className="embedBox--embed-image">
+                  {embed.image ? 
+                    <img src={embed.image} alt={embed.title} className="img" loading="lazy" />
+                    : ''
+                  }
+                </div>
+
+                {/* Content */}
+                <div className="embedBox--embed-content">
+                  {/* Title */}
+                  <h3 className="title" style={{ fontSize: '2rem' }}>{ embed.title }</h3> 
+
+                  {/* Metadata */}
+                  <div className="link">
+                    <svg className="icon">
+                      <use xlinkHref={`${Sprite}#paperclip`}></use>
+                    </svg>
+                    <p className="text" style={{ fontSize: '1.6rem' }}>{ embed.url }</p>
+                  </div>
+                </div>
+              </div>
+            </a>
+            
+            : (mweet.acf && mweet.acf.video) ?
+
+            // Video
+            <div className="media">
+              <video className="video" controls muted>
+                <source src={mweet.acf.video.url} type={mweet.acf.video.mime_type} />
+              </video>
+            </div>
+
             : ''
           }
 
@@ -335,6 +376,7 @@ const Mweet = ({
         : ''
       }
 
+      {/* COMMENT ALERT */}
       <CommentAlert open={commentBox} setClose={setCommentBox} user={user} id={mweet.id} location={location} />
     </div>
   );
