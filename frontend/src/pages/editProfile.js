@@ -1,11 +1,11 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
-import { getAllPosts } from '../actions/posts';
+import { getAllPostsByAuthor } from '../actions/posts';
 import ProfileLayout from '../components/Profile/ProfileLayout';
 import PostContainer from '../containers/Posts/PostContainer';
 
-const MainApp = ({ getAllPosts, user, posts, status, location }) => {
-  useEffect(() => getAllPosts(user.id), [getAllPosts, user.id]);
+const MainApp = ({ getAllPostsByAuthor, user, posts, status, location }) => {
+  useEffect(() => getAllPostsByAuthor(user.id), [getAllPostsByAuthor, user.id]);
   
   return (
     <PostContainer user={user} location={location}>
@@ -23,4 +23,4 @@ const mapStateToProps = state => {
   }
 }
 
-export default connect(mapStateToProps, { getAllPosts })(MainApp);
+export default connect(mapStateToProps, { getAllPostsByAuthor })(MainApp);

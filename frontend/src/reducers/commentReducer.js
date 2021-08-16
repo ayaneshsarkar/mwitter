@@ -3,7 +3,8 @@ import {
   GET_COMMENTS, 
   CREATE_COMMENT, 
   DELETE_COMMENT, 
-  GET_COMMENTS_BY_POSTS 
+  GET_COMMENTS_BY_POSTS,
+  CLEAR_COMMENTS
 } from '../actions/type';
 
 const commentReducer = (state = {}, action) => {
@@ -16,6 +17,8 @@ const commentReducer = (state = {}, action) => {
       return { ...state, [action.payload.id]: action.payload };
     case DELETE_COMMENT:
       return _.omit(state, action.payload);
+    case CLEAR_COMMENTS:
+      return {  };
     default:
       return state;
   }

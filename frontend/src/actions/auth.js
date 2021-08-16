@@ -4,7 +4,12 @@ import {
   SIGNIN_USER, 
   UPDATE_USER, 
   GET_SINGLE_USER,
-  LOGOUT_USER 
+  LOGOUT_USER,
+  CLEAR_POSTS,
+  CLEAR_SEARCH_POSTS,
+  CLEAR_TAGS,
+  CLEAR_COMMENTS,
+  CLEAR_SINGLE_USER
 } from './type';
 import history from '../config/history';
 import { signUp } from '../asynchronus/Home/SignUp';
@@ -70,6 +75,11 @@ export const logoutUser = () => async dispatch => {
   localStorage.removeItem('userToken');
 
   dispatch({ type: LOGOUT_USER, payload: null });
+  dispatch({ type: CLEAR_POSTS, payload: null });
+  dispatch({ type: CLEAR_SEARCH_POSTS, payload: null });
+  dispatch({ type: CLEAR_TAGS, payload: null });
+  dispatch({ type: CLEAR_COMMENTS, payload: null });
+  dispatch({ type: CLEAR_SINGLE_USER, payload: null });
 
   history.push('/');
 }

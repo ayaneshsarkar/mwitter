@@ -15,17 +15,17 @@ export const CREATE_POST = 'CREATE_POST';
 export const DELETE_POST = 'DELETE_POST';
 export const GET_SEARCH_POSTS = 'GET_SEARCH_POSTS';
 export const GET_SEARCH_POST = 'GET_SEARCH_POST';
+export const CLEAR_POSTS = 'CLEAR_POSTS';
+export const CLEAR_SEARCH_POSTS = 'CLEAR_SEARCH_POSTS';
 
 // TAGS
 export const GET_TAGS = 'GET_TAGS';
+export const CLEAR_TAGS = 'CLEAR_TAGS';
 
 // COMMENTS
 export const GET_COMMENTS = 'GET_COMMENTS';
 export const GET_COMMENTS_BY_POSTS = 'GET_COMMENTS_BY_POSTS';
 export const CREATE_COMMENT = 'CREATE_COMMENT';
 export const DELETE_COMMENT = 'DELETE_COMMENT';
-
-
-
-
+export const CLEAR_COMMENTS = 'CLEAR_COMMENTS';
 

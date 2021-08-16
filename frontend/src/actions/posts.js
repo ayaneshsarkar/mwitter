@@ -6,7 +6,10 @@ import {
   GET_SEARCH_POSTS,
   GET_SEARCH_POST,
   GET_COMMENTS_BY_POSTS,
-  GET_AUTHOR_POSTS
+  CLEAR_COMMENTS,
+  GET_AUTHOR_POSTS,
+  CLEAR_SEARCH_POSTS,
+  CLEAR_SINGLE_USER
 } from './type';
 import { getPosts, getPost, deletePost, getAuthorSpecificPosts } from '../asynchronus/Posts';
 import { searchPostsByTerm, searchPostsByTag } from '../asynchronus/Posts/searchPosts';
@@ -28,6 +31,9 @@ export const getAllPosts = userId => async dispatch => {
       }
     }
 
+    dispatch({ type: CLEAR_SINGLE_USER, payload: null });
+    dispatch({ type: CLEAR_SEARCH_POSTS, payload: null });
+    dispatch({ type: CLEAR_COMMENTS, payload: null });
     dispatch({ type: GET_POSTS, payload: posts });
 
   } catch(err) {
@@ -50,6 +56,7 @@ export const getAllPostsByAuthor = authorId => async dispatch => {
     }
 
     dispatch({ type: GET_AUTHOR_POSTS, payload: posts });
+    dispatch({ type: CLEAR_COMMENTS, payload: null });
 
   } catch(err) {
     throw new Error(err.message);
@@ -65,6 +72,8 @@ export const getSinglePost = (id, userId) => async dispatch => {
     post.likes = likes;
     post.comments = comments;
 
+    dispatch({ type: CLEAR_SINGLE_USER, payload: null });
+    dispatch({ type: CLEAR_SEARCH_POSTS, payload: null });
     dispatch({ type: GET_POST, payload: post });
     dispatch({ type: GET_COMMENTS_BY_POSTS, payload: comments });
 
@@ -107,6 +116,8 @@ export const getPostsBySearch = (search, tag = false, userId) => async dispatch 
       }
     }
 
+    dispatch({ type: CLEAR_SINGLE_USER, payload: null });
+    dispatch({ type: CLEAR_COMMENTS, payload: null });
     dispatch({ type: GET_SEARCH_POSTS, payload: posts });
     
   } catch(err) {

@@ -4,7 +4,8 @@ import {
   GET_POST, 
   CREATE_POST, 
   DELETE_POST, 
-  GET_AUTHOR_POSTS 
+  GET_AUTHOR_POSTS,
+  CLEAR_POSTS
 } from '../actions/type';
 
 const postReducer = (state = {}, action) => {
@@ -19,6 +20,8 @@ const postReducer = (state = {}, action) => {
       return { ...state, [action.payload.id]: action.payload };
     case DELETE_POST:
       return _.omit(state, action.payload);
+    case CLEAR_POSTS:
+      return {  };
     default: 
       return state;
   }
