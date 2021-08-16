@@ -2,10 +2,11 @@ import React from 'react';
 import Alert from '../containers/Posts/Alert';
 import Sprite from '../assets/svg/feather-sprite.svg';
 
-const PostValidationAlert = ({ error, open, setClose, optionalErr }) => {
+const PostValidationAlert = ({ error, open, setClose, optionalErr, home }) => {
   return (
-    <Alert open={open} setClose={setClose} transition={true} optionalErr={optionalErr}>
-      <div className="alert postErrors">
+    <Alert open={open} setClose={setClose} transition={true} optionalErr={optionalErr}
+    home={home} >
+      <div className={`alert postErrors${home ? ' home' : ''}`}>
         <div className="postError">
           <div className="postError__iconBox">
             <svg className="postError__icon">

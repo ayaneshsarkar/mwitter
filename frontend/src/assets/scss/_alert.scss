@@ -153,6 +153,10 @@
       font-weight: 600;
       color: $primaryColor;
     }
+
+    &.home {
+      background-color: $whiteColor !important;
+    }
   }
 
   &.profile {

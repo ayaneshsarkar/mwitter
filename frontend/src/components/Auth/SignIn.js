@@ -88,7 +88,7 @@ const SignInBox = props => {
       />
 
       {/* Submit Button */}
-      <div className="flex align-items-center">
+      <div className="flex align-items-center homeButton">
         <Button text="Sign In" disabled={btnDisable} />
         <p className="authBtnText" onClick={setSignUp}>Create An Account</p>
       </div>

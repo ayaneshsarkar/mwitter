@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { register, logIn } from '../actions/auth';
 import SignUpBox from './Auth/SignUp';
 import SignInBox from './Auth/SignIn';
+import PostValidationAlert from '../alerts/PostValidationAlert';
 
 const HomeForm = props => {
   const [signUpErrors, setSignUpErrors] = useState(true);
@@ -13,6 +14,8 @@ const HomeForm = props => {
   const [signInSubmit, setSignInSubmit] = useState(false);
 
   const [signInAuthErr, setSignInAuthErr ] = useState('');
+  const [alert, setAlert] = useState(false);
+  const [alertError, setAlertError] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -27,6 +30,8 @@ const HomeForm = props => {
         await props.register(formData);
       } catch(err) {
         setSignUpSubmit(false);
+        setAlertError(err.message);
+        setAlert(true);
         console.log(err.message);
       }
     }
@@ -71,6 +76,10 @@ const HomeForm = props => {
           /> : ''
         }
       </form>
+
+      <PostValidationAlert open={alert} setClose={setAlert} error={alertError}  
+        home={true}
+      />
     </div>
   );
 }
