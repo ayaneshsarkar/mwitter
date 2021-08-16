@@ -31,6 +31,10 @@
               font-weight: 400;
               color: $whiteLink;
               transition: $mainTransition;
+              
+              &.active {
+                color: $whiteColor;
+              }
 
               &:hover {
                 color: $whiteColor;

@@ -29,10 +29,8 @@ const HomeForm = props => {
       try {
         await props.register(formData);
       } catch(err) {
-        setSignUpSubmit(false);
         setAlertError(err.message);
         setAlert(true);
-        console.log(err.message);
       }
     }
 
@@ -78,7 +76,7 @@ const HomeForm = props => {
       </form>
 
       <PostValidationAlert open={alert} setClose={setAlert} error={alertError}  
-        home={true}
+        home={true} transition={true}
       />
     </div>
   );

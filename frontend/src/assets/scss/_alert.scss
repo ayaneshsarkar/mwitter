@@ -127,6 +127,10 @@
     }
   }
 
+  &.home {
+    background-color: $whiteColor !important;
+  }
+
   .postError {
     display: flex;
     flex-direction: column;
@@ -152,10 +156,10 @@
       font-size: 3rem;
       font-weight: 600;
       color: $primaryColor;
-    }
 
-    &.home {
-      background-color: $whiteColor !important;
+      @media only screen and (max-width: $bpSmall) {
+        font-size: 2rem;
+      }
     }
   }
 

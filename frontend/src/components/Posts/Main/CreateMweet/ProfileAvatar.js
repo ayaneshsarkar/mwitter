@@ -6,7 +6,7 @@ const ProfileAvatar = ({ user }) => {
   useEffect(() => getAvatar(user), [user]);
 
   const getAvatar = (user) => {
-    if(user && user.acf) {
+    if(user && user.acf && user.acf.avatar) {
       setAvatar(user.acf.avatar.sizes.large);
     }
   }
