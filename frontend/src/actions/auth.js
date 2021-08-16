@@ -28,13 +28,17 @@ export const verifyAuth = () => async dispatch => {
 }
 
 export const register = formData => async dispatch => {
-  const { user, acf } = await signUp(formData, formData.get('password'));
-  user.acf = acf;
-
-  localStorage.setItem('userId', user.id);
-
-  dispatch({ type: CREATE_USER, payload: user });
-  history.push('/posts');
+  try {
+    const { user, acf } = await signUp(formData, formData.get('password'));
+    user.acf = acf;
+  
+    localStorage.setItem('userId', user.id);
+  
+    dispatch({ type: CREATE_USER, payload: user });
+    history.push('/posts');
+  } catch(err) {
+    throw new Error('E-Mail or Username has already been taken!');
+  }
 }
 
 export const logIn = formData => async dispatch => {

@@ -1,17 +1,25 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
 const ProfileAvatar = ({ user }) => {
-  // Check If User Exists
-  const checkUser = (user) => Object.keys(user).length;
+  const [avatar, setAvatar] = useState('');
+
+  useEffect(() => getAvatar(user), [user]);
+
+  const getAvatar = (user) => {
+    if(user && user.acf) {
+      setAvatar(user.acf.avatar.sizes.large);
+    }
+  }
+
 
   return (
     <div className="createPost__profile">
-      <div 
+      {(user && user.acf && avatar) && <div 
         className="createPost__profile--avatar"
         style={{ 
-          backgroundImage: `url(${checkUser(user) ? user.acf.avatar.sizes.large : ''})` 
+          backgroundImage: `url(${avatar ? user.acf.avatar.sizes.large : ''})` 
         }}
-      ></div>
+      ></div>}
     </div>
   );
 }

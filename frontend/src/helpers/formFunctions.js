@@ -26,7 +26,9 @@ export const setPasswordError = (e, setErrors, validationFunc, matchItem) => {
   };
 }
 
-export const setFileValue = (e, callback) => callback(e.target.files[0]);
+export const setFileValue = (e, callback) => {
+  e.target.files[0] ? callback(e.target.files[0]) : callback(null);
+}
 
 export const setFileError = (e, setError, validationFunc) => {
   const err = validationFunc(e.target.files[0], e.target.placeholder.toLowerCase());

@@ -18,7 +18,7 @@ export const isEmail = (email, fieldName, req = true) => {
 
 export const isImage = (file, key = null) => {
   if(typeof file !== 'object') {
-    return 'Invalid File';
+    return 'No File Chosen';
   } else {
     const fileName = file.name;
     const allowedArray = ["jpg", "jpeg", "png", "gif", "ico"];

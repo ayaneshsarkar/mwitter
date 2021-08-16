@@ -27,7 +27,7 @@ export const signUp = async (formData, password) => {
       const media = await sendMedia(formData);
 
       if(media.id) {
-        const fields = { fields: { avatar: media.id } };
+        const fields = { fields: { avatar: media.id, cover: media.id } };
 
         // Update Profile Picture
         const acfData = await 
@@ -40,6 +40,6 @@ export const signUp = async (formData, password) => {
     }
 
   } catch(err) {
-    console.error(err);
+    throw new Error(err.message);
   }
 }

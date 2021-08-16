@@ -107,30 +107,38 @@ export const File = props => {
   const fileClick = () => {
     fileInput.current.click();
   }
+
+  const getName = (e) => {
+    if(e.target && e.target.files[0] && e.target.files[0].name !== undefined) {
+      return e.target.files[0].name;
+    } else {
+      return '';
+    }
+  }
   
   return (
-    <div className="form--box full-width file">
-      {props.error && <p className="form--error fileError">{ props.error }</p> }
+      <div className="form--box full-width file">
+        {props.error && <p className="form--error fileError">{ props.error }</p> }
 
-      <input type="file" className="form--input file" name="file" placeholder="Avatar" 
-        hidden 
-        ref={fileInput} 
-        onChange={
-          (e) => 
-          {
-            setFileValue(e, props.onChange); 
-            props.setName(e.target.files[0].name);
-            setFileError(e, props.setError, isImage);
+        <input type="file" className="form--input file" name="file" placeholder="Avatar" 
+          hidden 
+          ref={fileInput} 
+          onChange={
+            (e) => 
+            {
+              setFileValue(e, props.onChange); 
+              props.setName(getName(e));
+              setFileError(e, props.setError, isImage);
+            }
           }
-        }
-      />
-      <div className="form--fileButton" onClick={fileClick}>
-        <svg className="icon">
-          <use xlinkHref={`${Sprite}#paperclip`}></use>
-        </svg>
+        />
+        <div className="form--fileButton" onClick={fileClick}>
+          <svg className="icon">
+            <use xlinkHref={`${Sprite}#paperclip`}></use>
+          </svg>
+        </div>
+        <span className="form--fileText">{ props.name || 'No File Chosen*' }</span>
       </div>
-      <span className="form--fileText">{ props.name || 'No File Chosen*' }</span>
-    </div>
   );
 }
 

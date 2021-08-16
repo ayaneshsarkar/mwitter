@@ -7,7 +7,7 @@ const SignUpBox = props => {
   const [handle, setHandle] = useState('');
   const [fullName, setFullName] = useState('');
   const [email, setEmail] = useState('');
-  const [fileURL, setFileURL] = useState({});
+  const [fileURL, setFileURL] = useState(null);
   const [fileName, setFileName] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');

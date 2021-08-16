@@ -23,7 +23,12 @@ const HomeForm = props => {
 
       const formData = new FormData(e.target);
 
-      await props.register(formData);
+      try {
+        await props.register(formData);
+      } catch(err) {
+        setSignUpSubmit(false);
+        console.log(err.message);
+      }
     }
 
     if(signInStatus && !signInErrors) {
