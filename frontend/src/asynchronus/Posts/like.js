@@ -9,8 +9,7 @@ export const getLikes = async (postId, userId) => {
   
     if(likesData.length) {
       for(const i in likesData) {
-        if(likesData[i].id && (likesData[i].author === userId) && 
-        (parseInt(likesData[i].acf.postId) === postId)) {
+        if(likesData[i].id && (parseInt(likesData[i].acf.postId) === postId)) {
           likes.push(likesData[i]);
         }
       }

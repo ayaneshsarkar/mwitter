@@ -17,13 +17,17 @@ const MainApp = ({
     }
   }, [getAllPostsByAuthor, getSingleUser, match.params.id, status]);
   
-  if(user && status) {
-    return (
-      <PostContainer user={user} location={location}>
-        <ProfileLayout user={user} posts={posts} location={location} title={user.name} 
-        status={status} link={'/edit-profile'} currentUser={currentUser} />
-      </PostContainer>
-    );
+  if(status) {
+    if(user) {
+      return (
+        <PostContainer user={user} location={location}>
+          <ProfileLayout user={user} posts={posts} location={location} title={user.name} 
+          status={status} link={'/edit-profile'} currentUser={currentUser} />
+        </PostContainer>
+      );
+    } else {
+      return <></>;
+    }
   } else {
     history.push('/');
     return <></>;

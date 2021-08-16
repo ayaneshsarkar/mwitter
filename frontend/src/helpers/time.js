@@ -9,7 +9,6 @@ export const getTime = time => {
   (isNaN(parseInt(fromNowArr[0])) ? fromNowArr[1].charAt(0).toUpperCase() : 
   fromNowArr[1].charAt(0));
 
-  console.log(fromNow)
   return modifiedStr;
 }
 

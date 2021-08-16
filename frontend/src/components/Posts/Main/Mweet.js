@@ -92,16 +92,18 @@ const Mweet = ({
   }
 
   const manageLikes = async (likes, user, mweetId) => {
-    if(!likes.length) {
+    const userLikes = likes.filter(like => like.author === user.id);
+
+    if(!userLikes.length) {
       // Create
       await likePost(mweetId, user.id, null, location.pathname);
       setLiked(true);
 
     } else {
-      for(const i in likes) {
-        if(likes[i].author === user.id) {
+      for(const i in userLikes) {
+        if(userLikes[i].author === user.id) {
           // Delete
-          await likePost(mweetId, user.id, likes[i].id, location.pathname);
+          await likePost(mweetId, user.id, userLikes[i].id, location.pathname);
           setLiked(false);
         }
       }
@@ -135,7 +137,10 @@ const Mweet = ({
       <div className="posts__post--content">
         <div className="profile">
           {(author && author.acf && author.name) && 
-            <Link to={`/user/${author.id}`} className="profile__info">
+            <Link 
+              to={`/user/${author.id}`} 
+              className="profile__info"
+            >
               <h4 className="profile__info--title">
                 { author ? author.name : '' }
               </h4>
