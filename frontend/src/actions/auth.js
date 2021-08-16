@@ -1,4 +1,11 @@
-import { VERIFY_USER, CREATE_USER, SIGNIN_USER, UPDATE_USER, GET_SINGLE_USER } from './type';
+import { 
+  VERIFY_USER, 
+  CREATE_USER, 
+  SIGNIN_USER, 
+  UPDATE_USER, 
+  GET_SINGLE_USER,
+  LOGOUT_USER 
+} from './type';
 import history from '../config/history';
 import { signUp } from '../asynchronus/Home/SignUp';
 import { signIn } from '../asynchronus/Home/SignIn';
@@ -56,4 +63,13 @@ export const getSingleUser = userId => async dispatch => {
   } catch(err) {
     throw new Error(err.message);
   }
+}
+
+export const logoutUser = () => async dispatch => {
+  localStorage.removeItem('userId');
+  localStorage.removeItem('userToken');
+
+  dispatch({ type: LOGOUT_USER, payload: null });
+
+  history.push('/');
 }

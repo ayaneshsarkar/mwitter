@@ -286,7 +286,7 @@ const Mweet = ({
         : ''
       }
 
-      <CommentAlert open={commentBox} setClose={setCommentBox} user={user} id={mweet.id} />
+      <CommentAlert open={commentBox} setClose={setCommentBox} user={user} id={mweet.id} location={location} />
     </div>
   );
 }

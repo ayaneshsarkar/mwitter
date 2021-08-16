@@ -10,7 +10,9 @@ import Embed from './Embed';
 import PostValidationAlert from '../../../../alerts/PostValidationAlert';
 import MediaContent from './MediaContent';
 
-const CreatePost = ({ user, addPost, addComment, popUp, popUpClose, comment, id }) => {
+const CreatePost = ({ 
+  user, addPost, addComment, popUp, popUpClose, comment, id, location 
+}) => {
   const [text, setText] = useState('');
   const [textClass, setTextClass] = useState('');
   const [image, setImage] = useState(null);
@@ -92,7 +94,7 @@ const CreatePost = ({ user, addPost, addComment, popUp, popUpClose, comment, id 
       if(!comment) {
         await addPost(formData);
       } else {
-        await addComment(user.id, id, formData);
+        await addComment(user.id, id, formData, location);
         popUpClose(true);
       }
 

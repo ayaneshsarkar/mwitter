@@ -5,6 +5,7 @@ export const SIGNIN_USER = 'SIGNIN_USER';
 export const UPDATE_USER = 'UPDATE_USER';
 export const GET_SINGLE_USER = 'GET_SINGLE_USER';
 export const CLEAR_SINGLE_USER = 'CLEAR_SINGLE_USER';
+export const LOGOUT_USER = 'LOGOUT_USER';
 
 // POSTS
 export const GET_POSTS = 'GET_POSTS';
@@ -23,3 +24,8 @@ export const GET_COMMENTS = 'GET_COMMENTS';
 export const GET_COMMENTS_BY_POSTS = 'GET_COMMENTS_BY_POSTS';
 export const CREATE_COMMENT = 'CREATE_COMMENT';
 export const DELETE_COMMENT = 'DELETE_COMMENT';
+
+
+
+
+

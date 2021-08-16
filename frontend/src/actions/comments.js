@@ -1,4 +1,10 @@
-import { GET_COMMENTS, CREATE_COMMENT, DELETE_COMMENT, GET_POST } from './type';
+import { 
+  GET_COMMENTS, 
+  CREATE_COMMENT, 
+  DELETE_COMMENT, 
+  GET_POST,
+  GET_SEARCH_POST 
+} from './type';
 import { 
   getComments, 
   createComment, 
@@ -18,7 +24,7 @@ export const getAllComments = () => async dispatch => {
   }
 }
 
-export const addComment = (userId, postId, formData) => async dispatch => {
+export const addComment = (userId, postId, formData, location = null) => async dispatch => {
   try {
     const comment = await createComment(userId, postId, formData);
     const likes = await getLikes(postId, userId);
@@ -30,6 +36,10 @@ export const addComment = (userId, postId, formData) => async dispatch => {
 
     dispatch({ type: CREATE_COMMENT, payload: comment });
     dispatch({ type: GET_POST, payload: post });
+
+    if(location && (location.includes('tag') || location.includes('search'))) {
+      dispatch({ type: GET_SEARCH_POST, payload: post });
+    }
 
   } catch(err) {
     throw new Error(err.message);

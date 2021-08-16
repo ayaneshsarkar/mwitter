@@ -1,15 +1,16 @@
 import React, { useState } from 'react';
+import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import history from '../../config/history';
+import { logoutUser } from '../../actions/auth';
 import MweetAlert from './Main/MweetAlert';
 import Sprite from '../../assets/svg/feather-sprite.svg';
 
-const NavMenu = ({ user, location }) => {
+const NavMenu = ({ user, location, logoutUser }) => {
   const [alert, setAlert] = useState(false);
 
   const logout = (e) => {
     e.preventDefault();
-    history.push('/');
+    logoutUser();
   };
 
   const openAlert = () => setAlert(true);
@@ -84,4 +85,4 @@ const NavMenu = ({ user, location }) => {
   );
 }
 
-export default NavMenu;
+export default connect(null, { logoutUser })(NavMenu);
