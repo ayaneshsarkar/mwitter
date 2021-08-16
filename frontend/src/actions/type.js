@@ -13,6 +13,7 @@ export const GET_POST = 'GET_POST';
 export const CREATE_POST = 'CREATE_POST';
 export const DELETE_POST = 'DELETE_POST';
 export const GET_SEARCH_POSTS = 'GET_SEARCH_POSTS';
+export const GET_SEARCH_POST = 'GET_SEARCH_POST';
 
 // TAGS
 export const GET_TAGS = 'GET_TAGS';

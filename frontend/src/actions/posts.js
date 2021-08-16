@@ -4,6 +4,7 @@ import {
   CREATE_POST, 
   DELETE_POST, 
   GET_SEARCH_POSTS,
+  GET_SEARCH_POST,
   GET_COMMENTS_BY_POSTS,
   GET_AUTHOR_POSTS
 } from './type';
@@ -113,7 +114,7 @@ export const getPostsBySearch = (search, tag = false, userId) => async dispatch 
   }
 }
 
-export const likePost = (postId, userId, likeId = null) => async dispatch => {
+export const likePost = (postId, userId, likeId = null, location = null) => async dispatch => {
   try {
     !likeId ? await createOrDeleteLike(postId) : await createOrDeleteLike(postId, likeId);
     
@@ -124,6 +125,10 @@ export const likePost = (postId, userId, likeId = null) => async dispatch => {
     post.comments = comments;
 
     dispatch({ type: GET_POST, payload: post });
+
+    if(location && (location.includes('tag') || location.includes('search'))) {
+      dispatch({ type: GET_SEARCH_POST, payload: post });
+    }
 
   } catch(err) {
     throw new Error(err.message);

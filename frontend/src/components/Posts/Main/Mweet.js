@@ -88,14 +88,14 @@ const Mweet = ({
   const manageLikes = async (likes, user, mweetId) => {
     if(!likes.length) {
       // Create
-      await likePost(mweetId, user.id);
+      await likePost(mweetId, user.id, null, location.pathname);
       setLiked(true);
 
     } else {
       for(const i in likes) {
         if(likes[i].author === user.id) {
           // Delete
-          await likePost(mweetId, user.id, likes[i].id);
+          await likePost(mweetId, user.id, likes[i].id, location.pathname);
           setLiked(false);
         }
       }
