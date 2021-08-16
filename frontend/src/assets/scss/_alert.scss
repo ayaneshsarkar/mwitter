@@ -7,12 +7,16 @@
 
   &.lightbox {
     position: relative;
-    min-width: 90vw;
+    min-width: 75vw;
     height: 95vh;
     background-color: inherit;
-    background-size: cover;
+    background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
+
+    @media only screen and (max-width: $bpSmall) {
+      background-size: contain;
+    }
 
     .lightBoxCross {
       position: absolute;
@@ -86,6 +90,18 @@
     padding: 0;
     border-radius: 1.2rem;
 
+    @media only screen and (max-width: $bpTagsBreak) {
+      min-width: 70vw;
+    }
+
+    @media only screen and (max-width: $bpSmallMedium) {
+      min-width: 80vw;
+    }
+
+    @media only screen and (max-width: $bpSmallerMedium) {
+      min-width: 85vw;
+    }
+
     @media only screen and (max-width: $bpSmall) {
       border-radius: 0;
       min-height: 100vh;
@@ -117,6 +133,18 @@
   &.mweetBox {
     padding: 0;
     border-radius: 1.2rem;
+
+    @media only screen and (max-width: $bpTagsBreak) {
+      min-width: 70vw;
+    }
+
+    @media only screen and (max-width: $bpSmallMedium) {
+      min-width: 80vw;
+    }
+
+    @media only screen and (max-width: $bpSmallerMedium) {
+      min-width: 85vw;
+    }
 
     @media only screen and (max-width: $bpSmall) {
       border-radius: 0;
@@ -205,6 +233,18 @@
   &.profile {
     min-width: 57vw;
     padding: 0;
+
+    @media only screen and (max-width: $bpTagsBreak) {
+      min-width: 70vw;
+    }
+
+    @media only screen and (max-width: $bpSmallMedium) {
+      min-width: 80vw;
+    }
+
+    @media only screen and (max-width: $bpSmallerMedium) {
+      min-width: 85vw;
+    }
   }
 
   &.delete {
@@ -215,6 +255,26 @@
     align-items: center;
     justify-content: center;
     border-radius: 1.2rem;
+
+    @media only screen and (max-width: $bpTagsBreak) {
+      min-width: 40vw;
+    }
+
+    @media only screen and (max-width: $bpSmallMedium) {
+      min-width: 50vw;
+    }
+
+    @media only screen and (max-width: $bpSmallerMedium) {
+      min-width: 55vw;
+    }
+
+    @media only screen and (max-width: $bpSmaller) {
+      min-width: 65vw;
+    }
+
+    @media only screen and (max-width: $bpSmallest) {
+      min-width: 75vw;
+    }
 
     .heading {
       font-size: 3.54rem;

@@ -262,9 +262,11 @@ const Mweet = ({
                 }
               </li>
               <li className="item">
-                <svg className="icon">
-                  <use xlinkHref={`${Sprite}#share`}></use>
-                </svg>
+                <a href={`/post/${mweet.id}`} target="_blank" rel="noreferrer">
+                  <svg className="icon">
+                    <use xlinkHref={`${Sprite}#external-link`}></use>
+                  </svg>
+                </a>
               </li>
             </ul> : ''}
           </>
@@ -379,9 +381,11 @@ const Mweet = ({
               }
             </li>
             <li className="item">
-              <svg className="icon">
-                <use xlinkHref={`${Sprite}#share`}></use>
-              </svg>
+              <Link to={`/post/${mweet.id}`}>
+                <svg className="icon">
+                  <use xlinkHref={`${Sprite}#external-link`}></use>
+                </svg>
+              </Link>
             </li>
           </ul>
         </div> 
