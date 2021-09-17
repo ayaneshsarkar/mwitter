@@ -1,25 +1,25 @@
-*
+# *
 
-# ignore everything in the root except the "wp-content" directory.
-!wp-content/
+# # ignore everything in the root except the "wp-content" directory.
+# !wp-content/
 
-# ignore everything in the "wp-content" directory, except:
-# "mu-plugins", "plugins", "themes" directory
+# # ignore everything in the "wp-content" directory, except:
+# # "mu-plugins", "plugins", "themes" directory
 
-# ignore these plugins
+# # ignore these plugins
 
-# ignore specific themes
+# # ignore specific themes
 
-# ignore node dependency directories
-node_modules/
+# # ignore node dependency directories
+# node_modules/
 
-# ignore log files and databases
-*.log
-*.sql
-*.sqlite
-.env
-!README.md
-!docker-compose.yml
-!Dockerfile
-!uploads.ini
-!.gitignore
+# # ignore log files and databases
+# *.log
+# *.sql
+# *.sqlite
+# .env
+# !README.md
+# !docker-compose.yml
+# !Dockerfile
+# !uploads.ini
+# !.gitignore
