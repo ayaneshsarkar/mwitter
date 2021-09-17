@@ -154,7 +154,7 @@ const Mweet = ({
             </Link>
           }
 
-          {(checkUser(user) && (mweet.author === user.id)) ? 
+          {(checkUser(user) && (mweet.author === user.id) && author) ? 
             <>
               <div className="postDelete" onClick={() => setDeleteBox(true)}>
                 <svg className="postDelete__icon">

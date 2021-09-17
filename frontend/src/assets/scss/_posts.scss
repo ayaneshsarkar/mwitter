@@ -332,6 +332,17 @@
           cursor: pointer;
           background-color: $primaryColorHover;
         }
+
+        &.bg {
+          display: none;
+          background-size: cover;
+          background-repeat: no-repeat;
+          background-position: center;
+
+          @media only screen and (max-width: $bpSmaller) {
+            display: flex;
+          }
+        }
       }
     }
 

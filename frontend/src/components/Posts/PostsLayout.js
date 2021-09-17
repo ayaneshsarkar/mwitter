@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import UserIconBg from './UserIconBg';
 import BackButton from './BackButton';
 import CreateMweet from './Main/CreateMweet';
 import Main from '../../containers/Posts/Main';
@@ -31,6 +32,7 @@ const PostsLayout = (
       <nav className={`posts__main_nav${(location.pathname === '/explore') ? ' explore' : ''}`} 
         style={{ width: postNavWidth }}
       >
+        {(location.pathname === '/posts') ? <UserIconBg user={user} /> : ''}
         {(location.pathname !== '/posts') ? <BackButton /> : ''}
         {
           ((location.pathname === '/explore') ||
