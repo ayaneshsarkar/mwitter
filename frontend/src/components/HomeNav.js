@@ -27,9 +27,7 @@ const HomeNav = ({ status }) => {
 
         <ul className="nav__menu home">
           <li className="nav__menu_item">
-            <Link className="nav__menu_item-link active" to="/" 
-              onClick={(e) => openAlert(e, status)}
-            >
+            <Link className="nav__menu_item-link active" to="/">
               Home
             </Link>
           </li>
