@@ -1081,6 +1081,7 @@
   right: 2.5rem;
   bottom: 9rem;
 
+  display: none !important;
   width: 7rem;
   height: 7rem;
   border-radius: 50%;
@@ -1092,6 +1093,10 @@
   justify-content: center;
   align-items: center;
   cursor: pointer;
+
+  @media only screen and (max-width: $bpSmaller) {
+    display: flex !important;
+  }
 
   .icon {
     width: 4rem;
