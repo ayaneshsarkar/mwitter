@@ -79,6 +79,11 @@ const NavMenu = ({ user, location, logoutUser }) => {
       </li>
 
       <button onClick={openAlert} className="posts__nav_menu--button">Mweet</button>
+      <button onClick={openAlert} className="mb-button">
+        <svg className="icon">
+          <use xlinkHref={`${Sprite}#edit-3`}></use>
+        </svg>
+      </button>
 
       <MweetAlert open={alert} setClose={setAlert} user={user} />
     </ul>

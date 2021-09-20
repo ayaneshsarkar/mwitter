@@ -665,6 +665,7 @@
 
   &__allPosts {
     padding: 1.1rem 0 1.6rem 0;
+    padding-bottom: 7rem;
 
     @media only screen and (max-width: $bpSmaller) {
       margin-top: 6rem;
@@ -1072,5 +1073,31 @@
         }
       }
     }
+  }
+}
+
+.mb-button {
+  position: fixed;
+  right: 2.5rem;
+  bottom: 9rem;
+
+  width: 7rem;
+  height: 7rem;
+  border-radius: 50%;
+  background-color: $primaryColor;
+  box-shadow: $bDflt;
+  z-index: 5;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+
+  .icon {
+    width: 4rem;
+    height: 4rem;
+    fill: none;
+    stroke: $whiteColor;
+    stroke-width: 1.2;
   }
 }
