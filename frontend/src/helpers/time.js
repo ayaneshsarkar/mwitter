@@ -4,11 +4,33 @@ export const getTime = time => {
   const fromNow = moment(time).fromNow();
 
   const fromNowArr = fromNow.split(' ');
-  const modifiedStr = 
-  (isNaN(parseInt(fromNowArr[0])) ? '1' : fromNowArr[0]) + 
-  (isNaN(parseInt(fromNowArr[0])) ? fromNowArr[1].charAt(0).toUpperCase() : 
-  fromNowArr[1].charAt(0));
+  let firstString = '';
+  let secondString = '';
 
+  // const modifiedStr = 
+  // (isNaN(parseInt(fromNowArr[0])) ? '1' : fromNowArr[0]) + 
+  // (isNaN(parseInt(fromNowArr[0])) ? fromNowArr[1].charAt(0).toUpperCase() : 
+  // fromNowArr[1].charAt(0));
+
+  if(fromNowArr[0] === 'a') {
+    firstString = 1;
+  } else {
+    firstString = fromNowArr[0];
+  }
+
+  if(fromNowArr[1] === 'minutes' || fromNowArr[1] === 'minute') {
+    secondString = 'm';
+  } else if(fromNowArr[1] === 'months' || fromNowArr[1] === 'month') {
+    secondString = 'M';
+  } else if(fromNowArr[1] === 'years' || fromNowArr[1] === 'year') {
+    secondString = 'Y';
+  } else if(fromNowArr[1] === 'few' || fromNowArr[1] === 'seconds' 
+  || fromNowArr[1] === 'second') {
+    secondString = 'm';
+  }
+
+  const modifiedStr = firstString + '' + secondString;
+  
   return modifiedStr;
 }
 
