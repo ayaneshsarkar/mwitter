@@ -12,7 +12,7 @@ export const getTime = time => {
   // (isNaN(parseInt(fromNowArr[0])) ? fromNowArr[1].charAt(0).toUpperCase() : 
   // fromNowArr[1].charAt(0));
 
-  if(fromNowArr[0] === 'a') {
+  if(fromNowArr[0] === 'a' || fromNowArr[0] === 'an') {
     firstString = 1;
   } else {
     firstString = fromNowArr[0];
