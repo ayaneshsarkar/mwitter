@@ -27,6 +27,8 @@ export const getTime = time => {
   } else if(fromNowArr[1] === 'few' || fromNowArr[1] === 'seconds' 
   || fromNowArr[1] === 'second') {
     secondString = 'm';
+  } else if(fromNowArr[1] === 'hours' || fromNowArr[1] === 'hour') {
+    secondString = 'h';
   }
 
   const modifiedStr = firstString + '' + secondString;
